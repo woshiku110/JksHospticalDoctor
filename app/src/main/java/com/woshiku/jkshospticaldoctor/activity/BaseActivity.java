@@ -6,7 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
-
+import me.imid.swipebacklayout.lib.Utils;
 import me.imid.swipebacklayout.lib.app.SwipeBackActivityHelper;
 
 /**
@@ -59,4 +59,22 @@ public abstract class BaseActivity extends AppCompatActivity{
         initStatusBar();
     }
 
+    @Override
+    public View findViewById(int id) {
+        View v = super.findViewById(id);
+        if (v == null && mHelper != null)
+            return mHelper.findViewById(id);
+        return v;
+    }
+
+    @Override
+    protected void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        mHelper.onPostCreate();
+    }
+
+    public void scrollToFinishActivity() {
+        Utils.convertActivityToTranslucent(this);
+        mHelper.getSwipeBackLayout().scrollToFinishActivity();
+    }
 }
