@@ -7,14 +7,22 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/TranslucentTheme">
-        <activity android:name=".MainActivity">
+        android:theme="@style/AppTheme">
+        <activity android:name=".activity.splash.SplashActivity"
+                  android:theme="@style/TranslucentTheme"
+                  android:windowSoftInputMode="adjustPan|stateHidden"
+                  android:configChanges="orientation|keyboardHidden|screenSize"
+                  android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".activity.main.MainActivity"
+                  android:theme="@style/TranslucentTheme"
+                  android:windowSoftInputMode="adjustPan|stateHidden"
+                  android:configChanges="orientation|keyboardHidden|screenSize"
+                  android:screenOrientation="portrait">
+        </activity>
     </application>
-
 </manifest>
