@@ -1,1 +1,1 @@
-include ':app', ':swipebacklib'
+include ':app', ':swipebacklib', ':bottomtabbarlib'
