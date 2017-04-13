@@ -1,7 +1,5 @@
 package com.woshiku.jkshospticaldoctor.activity.splash;
 
-import android.content.Intent;
-import android.os.Handler;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.animation.AlphaAnimation;
@@ -10,10 +8,11 @@ import android.view.animation.AnimationSet;
 import android.widget.LinearLayout;
 import com.woshiku.jkshospticaldoctor.R;
 import com.woshiku.jkshospticaldoctor.activity.BaseActivity;
-import com.woshiku.jkshospticaldoctor.activity.main.MainActivity;
 import com.woshiku.jkshospticaldoctor.activity.splash.presenter.SplashPresenter;
 import com.woshiku.jkshospticaldoctor.activity.splash.presenter.SplashPresenterImple;
 import com.woshiku.jkshospticaldoctor.activity.splash.view.SplashView;
+import com.woshiku.jkshospticaldoctor.activity.utils.LogUtil;
+
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 
@@ -33,6 +32,7 @@ public class SplashActivity extends BaseActivity implements SplashView{
         ButterKnife.inject(this);
         splashPresenter = new SplashPresenterImple(this);
         splashPresenter.initPage();
+        LogUtil.print("splash activity");
     }
 
     @Override
@@ -74,13 +74,12 @@ public class SplashActivity extends BaseActivity implements SplashView{
      * */
     @Override
     public void setAnimEnd() {
-        final Intent intent = new Intent(this, MainActivity.class);
-        new Handler().post(new Runnable() {
+        runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                startActivity(intent);
                 scrollToFinishActivity();
             }
         });
+
     }
 }

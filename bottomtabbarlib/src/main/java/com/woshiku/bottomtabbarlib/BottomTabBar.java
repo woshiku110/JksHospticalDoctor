@@ -40,6 +40,7 @@ public class BottomTabBar extends RelativeLayout{
         tabBarBg = a.getColor(R.styleable.BottomTabBar_tabBarBg, ContextCompat.getColor(context,R.color.tabbar_bg));
         bottomBar = new LinearLayout(context);
         bottomBar.setBackgroundColor(tabBarBg);
+        bottomBar.setOrientation(LinearLayout.HORIZONTAL);
         bottomBar.setId(R.id.bottom_bar_line);
     }
     /**

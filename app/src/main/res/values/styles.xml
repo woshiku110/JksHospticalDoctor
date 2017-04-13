@@ -11,4 +11,8 @@
         <!--在Android 4.4之前的版本上运行，直接跟随系统主题-->
         <item name="android:windowIsTranslucent">true</item>
     </style>
+    <style name="SplashTheme" parent="TranslucentTheme">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+    </style>
 </resources>

@@ -2,4 +2,6 @@
 <resources>
     <color name="tabbar_bg">@android:color/darker_gray</color>
     <color name="test_color">#f00</color>
+    <color name="selector_txt_unselect">#0f0</color>
+    <color name="selector_txt_selected">#00f</color>
 </resources>
