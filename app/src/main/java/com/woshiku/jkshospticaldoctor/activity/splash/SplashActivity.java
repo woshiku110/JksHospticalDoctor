@@ -44,7 +44,7 @@ public class SplashActivity extends BaseActivity implements SplashView{
     public void setAnimViewShow() {
         AnimationSet set = new AnimationSet(false);// 动画集合
         AlphaAnimation alpha = new AlphaAnimation(1, 1);// 渐变动画
-        alpha.setDuration(2000);// 动画时间
+        alpha.setDuration(1000);// 动画时间
         alpha.setFillAfter(true);// 保持动画状态
         set.addAnimation(alpha);
         // 设置动画监听
@@ -80,6 +80,5 @@ public class SplashActivity extends BaseActivity implements SplashView{
                 scrollToFinishActivity();
             }
         });
-
     }
 }

@@ -3,5 +3,8 @@
     <declare-styleable name="BottomTabBar">
         <attr name="tabBarHeight" format="dimension"/>
         <attr name="tabBarBg" format="color"/>
+        <attr name="tabIconSize" format="dimension"/>
+        <attr name="tabMargin" format="dimension"/>
+        <attr name="tabTextSize" format="integer"/>
     </declare-styleable>
 </resources>

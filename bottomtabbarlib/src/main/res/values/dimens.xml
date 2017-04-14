@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="bottom_tabbar_height">45dp</dimen>
+    <dimen name="bottom_tabbar_icon_size">20dp</dimen>
+    <dimen name="bottom_tabbar_margin">5dp</dimen>
+    <dimen name="bottom_tabbar_line">1dp</dimen>
 </resources>
