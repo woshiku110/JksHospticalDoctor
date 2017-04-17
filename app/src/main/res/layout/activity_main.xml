@@ -6,27 +6,27 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".activity.main.MainActivity"
     android:background="@color/blueTitleBg">
-
     <com.woshiku.bottomtabbarlib.BottomTabBar
         android:id="@id/main_bottom_bar"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:tabBarBg="#f0f0f0"
-        app:tabIconSize="25dp"
-        app:tabMargin="5dp"
-        app:tabBarHeight="50dp"
-        app:tabTextSize="15"
+        app:tabIconSize="22dp"
+        app:tabMargin="4dp"
+        app:tabBarHeight="48dp"
+        app:tabTextSize="12"
         app:tabRemindMargin="-15dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true">
-        <android.support.v4.view.ViewPager
+        <com.woshiku.jkshospticaldoctor.activity.view.NoSmoothViewPager
+            android:id="@id/main_bottom_viewpager"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@android:color/white">
 
-        </android.support.v4.view.ViewPager>
+        </com.woshiku.jkshospticaldoctor.activity.view.NoSmoothViewPager>
     </com.woshiku.bottomtabbarlib.BottomTabBar>
 </RelativeLayout>

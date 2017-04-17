@@ -108,6 +108,9 @@ public class BottomTabBar extends RelativeLayout{
         manageMenu.setTabbarClickListener(new ManageMenu.TabbarClickListener() {
             @Override
             public void tabbarClick(int pos) {
+                if(viewPager != null){
+                    viewPager.setCurrentItem(pos,false);
+                }
                 if(tabbarClickListener != null){
                     tabbarClickListener.tabbarClick(pos);
                 }
