@@ -8,13 +8,15 @@
     android:background="@color/blueTitleBg">
 
     <com.woshiku.bottomtabbarlib.BottomTabBar
+        android:id="@id/main_bottom_bar"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:tabBarBg="#f0f0f0"
-        app:tabIconSize="24dp"
+        app:tabIconSize="25dp"
         app:tabMargin="5dp"
         app:tabBarHeight="50dp"
-        app:tabTextSize="12"
+        app:tabTextSize="15"
+        app:tabRemindMargin="-15dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"

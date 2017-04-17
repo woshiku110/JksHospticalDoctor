@@ -1,6 +1,7 @@
 package com.woshiku.bottomtabbarlib;
 
 import android.content.Context;
+import android.view.View;
 import android.widget.LinearLayout;
 
 /**
@@ -15,10 +16,18 @@ public class ManageMenu {
     int selectedPos = 0;
     int []selectedColor;
     int []unSelectedColors;
-    int tabIconSize,topMargin,textSize;
+    int tabIconSize,topMargin,textSize,tabbarRemindMargin;
     private TabbarClickListener tabbarClickListener;
+    private NewsClearRemindListener newsClearRemindListener;
     interface TabbarClickListener{
         void tabbarClick(int pos);
+    }
+    interface NewsClearRemindListener{
+        void newsClearRemind(int index,boolean isRemindText,int amount);
+    }
+
+    public void setNewsClearRemindListener(NewsClearRemindListener newsClearRemindListener) {
+        this.newsClearRemindListener = newsClearRemindListener;
     }
 
     public void setTabbarClickListener(TabbarClickListener tabbarClickListener) {
@@ -46,6 +55,9 @@ public class ManageMenu {
             menuItemView.setTabIconSize(tabIconSize);
             menuItemView.setMarginSize(topMargin);
             menuItemView.setTextSize(textSize);
+            menuItemView.setTabMargin(tabbarRemindMargin);
+            menuItemView.hideRemind();
+            menuItemView.hidePoint();
             menuItemView.setLayoutParams(params);
             final int posIndex = i;
             menuItemView.setMenuItemClickListener(new MenuItemView.MenuItemClickListener() {
@@ -68,6 +80,23 @@ public class ManageMenu {
             MenuItemView menuItemView = (MenuItemView)parentLine.getChildAt(i);
             if(i==index){
                 menuItemView.setChecked(true);
+                if(isRemindText(menuItemView)){//关闭消息 并提醒提示
+                    menuItemView.getRemindText().setVisibility(View.INVISIBLE);
+                    if(newsClearRemindListener != null){
+                        int amount = 0;
+                        try {
+                            amount = Integer.parseInt(menuItemView.getRemindText().getText().toString());
+                        }catch (Exception e){
+                        }
+                        newsClearRemindListener.newsClearRemind(i,true,amount);
+                    }
+                }
+                if(isRemindPoint(menuItemView)){//关闭消息 并提醒提示
+                    menuItemView.getPoint().setVisibility(View.INVISIBLE);
+                    if(newsClearRemindListener != null){
+                        newsClearRemindListener.newsClearRemind(i,false,-1);
+                    }
+                }
             }else{
                 menuItemView.setChecked(false);
             }
@@ -100,5 +129,26 @@ public class ManageMenu {
 
     public void setTextSize(int textSize) {
         this.textSize = textSize;
+    }
+
+    public void setTabbarRemindMargin(int tabbarRemindMargin) {
+        this.tabbarRemindMargin = tabbarRemindMargin;
+    }
+    private boolean isRemindText(MenuItemView menuItemView){
+        return menuItemView.getRemindText().getVisibility()== View.VISIBLE?true:false;
+    }
+    private boolean isRemindPoint(MenuItemView menuItemView){
+        return menuItemView.getPoint().getVisibility()== View.VISIBLE?true:false;
+    }
+    public void setTabbarNews(int index,boolean isRemindText,int amount){
+        if(index != selectedPos){//索引值不是当前显示
+            MenuItemView menuItemView = (MenuItemView) parentLine.getChildAt(index);
+            if(isRemindText){
+                menuItemView.getRemindText().setVisibility(View.VISIBLE);
+                menuItemView.getRemindText().setText(amount+"");
+            }else{
+                menuItemView.getPoint().setVisibility(View.VISIBLE);
+            }
+        }
     }
 }

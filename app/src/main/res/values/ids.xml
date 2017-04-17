@@ -2,4 +2,6 @@
 <resources>
     <!--闪屏页-->
     <item name="line_splash" type="id"/>
+    <!--主界面-->
+    <item name="main_bottom_bar" type="id"/>
 </resources>

@@ -4,4 +4,5 @@
     <dimen name="bottom_tabbar_icon_size">20dp</dimen>
     <dimen name="bottom_tabbar_margin">5dp</dimen>
     <dimen name="bottom_tabbar_line">1dp</dimen>
+    <dimen name="bottom_tabbar_remind_margin">-5dp</dimen>
 </resources>

@@ -17,8 +17,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center"
-            >
+            android:gravity="center">
             <RelativeLayout
                 android:id="@id/item_bottom_bar_relate"
                 android:layout_width="match_parent"
@@ -57,8 +56,7 @@
                     android:background="@drawable/remind_round_point"
                     android:gravity="center"
                     android:layout_alignBaseline="@id/item_bottom_bar_line"
-                    android:layout_toRightOf="@id/item_bottom_bar_line"
-                    />
+                    android:layout_toRightOf="@id/item_bottom_bar_line" />
                 <TextView
                     android:id="@id/item_bottom_bar_point"
                     android:layout_width="5dp"

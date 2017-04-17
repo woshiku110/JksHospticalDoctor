@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 /**
@@ -19,7 +20,7 @@ import android.widget.TextView;
 public class MenuItemView extends LinearLayout{
     ImageView icon;
     TextView text,remindText,point;
-    int unSelectedColor,selectedColor,tabIconSize,marginSize;
+    int unSelectedColor,selectedColor,marginSize;
     CardView cardView;
     private MenuItemClickListener menuItemClickListener;
 
@@ -73,11 +74,11 @@ public class MenuItemView extends LinearLayout{
     }
 
     public void hideRemind(){
-        remindText.setVisibility(GONE);
+        remindText.setVisibility(INVISIBLE);
     }
 
     public void hidePoint(){
-        point.setVisibility(GONE);
+        point.setVisibility(INVISIBLE);
     }
 
     public void showPoint(){
@@ -106,10 +107,10 @@ public class MenuItemView extends LinearLayout{
     public void setChecked(boolean isChecked){
         if(isChecked){
             icon.setEnabled(false);
-            text.setTextColor(selectedColor);
+            text.setTextColor(ContextCompat.getColor(getContext(),selectedColor));
         }else{
             icon.setEnabled(true);
-            text.setTextColor(unSelectedColor);
+            text.setTextColor(ContextCompat.getColor(getContext(),unSelectedColor));
         }
     }
 
@@ -120,5 +121,18 @@ public class MenuItemView extends LinearLayout{
 
     public void setTextSize(int textSize){
         text.setTextSize(TypedValue.COMPLEX_UNIT_SP,textSize);
+    }
+
+    public void setTabMargin(int tabMargin){
+        RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams)remindText.getLayoutParams();
+        lp.leftMargin = tabMargin;
+        RelativeLayout.LayoutParams lpOne = (RelativeLayout.LayoutParams)point.getLayoutParams();
+        lpOne.leftMargin = tabMargin;
+    }
+    public TextView getRemindText(){
+        return remindText;
+    }
+    public TextView getPoint(){
+        return point;
     }
 }
