@@ -13,7 +13,7 @@
         app:tabBarBg="#f0f0f0"
         app:tabIconSize="22dp"
         app:tabMargin="4dp"
-        app:tabBarHeight="48dp"
+        app:tabBarHeight="49dp"
         app:tabTextSize="12"
         app:tabRemindMargin="-15dp"
         android:layout_alignParentBottom="true"

@@ -5,4 +5,14 @@
     <!--主界面-->
     <item name="main_bottom_bar" type="id"/>
     <item name="main_bottom_viewpager" type="id"/>
+    <!--fragment Preorder-->
+    <item name="preorder_xrecycle" type="id"/>
+    <item name="preorder_recycle" type="id"/>
+    <item name="item_choose_left" type="id"/>
+    <item name="item_choose_left_txt" type="id"/>
+    <item name="item_choose_right" type="id"/>
+    <item name="item_choose_right_txt" type="id"/>
+    <item name="item_preorder_icon" type="id"/>
+    <item name="item_preorder_sex" type="id"/>
+    <item name="item_preorder_date" type="id"/>
 </resources>

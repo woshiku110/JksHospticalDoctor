@@ -1,4 +1,4 @@
-package com.woshiku.jkshospticaldoctor.activity.fragment.impleMain;
+package com.woshiku.jkshospticaldoctor.activity.fragment.impleMain.personalCenter;
 
 import android.annotation.SuppressLint;
 import android.support.v4.app.FragmentActivity;
@@ -9,21 +9,21 @@ import com.woshiku.jkshospticaldoctor.activity.fragment.BaseFragment;
 
 /**
  * Created by admin on 2017-04-17.
- * @desc 候诊列表
+ * @desc 个人中心fragment
  */
 
 @SuppressLint("ValidFragment")
-public class HoldDialogFragment extends BaseFragment{
+public class PersonalCenterFragment extends BaseFragment{
     View mView;
 
     @SuppressLint("ValidFragment")
-    public HoldDialogFragment(FragmentActivity mActivity) {
+    public PersonalCenterFragment(FragmentActivity mActivity) {
         super(mActivity);
     }
 
     @Override
     public View initViews() {
-        mView = View.inflate(getContext(), R.layout.fragment_main_holddialog,null);
+        mView = View.inflate(getContext(), R.layout.fragment_main_personalcenter,null);
         return mView;
     }
 }

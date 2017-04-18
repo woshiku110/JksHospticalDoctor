@@ -3,7 +3,9 @@ package com.woshiku.jkshospticaldoctor.activity.fragment.impleMain;
 import android.support.v4.app.FragmentActivity;
 
 import com.woshiku.jkshospticaldoctor.activity.fragment.BaseFragment;
-
+import com.woshiku.jkshospticaldoctor.activity.fragment.impleMain.holdDialog.HoldDialogFragment;
+import com.woshiku.jkshospticaldoctor.activity.fragment.impleMain.personalCenter.PersonalCenterFragment;
+import com.woshiku.jkshospticaldoctor.activity.fragment.impleMain.preorder.PreorderFragment;
 import java.util.HashMap;
 import java.util.Map;
 
