@@ -7,6 +7,7 @@
       <module fileurl="file://$PROJECT_DIR$/bottomtabbarlib/bottomtabbarlib.iml" filepath="$PROJECT_DIR$/bottomtabbarlib/bottomtabbarlib.iml" />
       <module fileurl="file://$PROJECT_DIR$/commonjarslib/commonjarslib.iml" filepath="$PROJECT_DIR$/commonjarslib/commonjarslib.iml" />
       <module fileurl="file://$PROJECT_DIR$/swipebacklib/swipebacklib.iml" filepath="$PROJECT_DIR$/swipebacklib/swipebacklib.iml" />
+      <module fileurl="file://$PROJECT_DIR$/urllibrary/urllibrary.iml" filepath="$PROJECT_DIR$/urllibrary/urllibrary.iml" />
     </modules>
   </component>
 </project>

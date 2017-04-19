@@ -16,7 +16,6 @@ import com.woshiku.jkshospticaldoctor.R;
 public class ItemChooseView extends LinearLayout{
     LinearLayout leftLine,rightLine;
     TextView leftText,rightText;
-    private boolean isWaitRece = true;
     private UserClickListener userClickListener;
 
     public ItemChooseView(Context context) {
@@ -27,11 +26,9 @@ public class ItemChooseView extends LinearLayout{
         super(context, attrs);
     }
 
-    interface UserClickListener{
+    public interface UserClickListener{
         void userClick(boolean isWait);
     }
-
-
 
     @Override
     protected void onFinishInflate() {
@@ -45,6 +42,7 @@ public class ItemChooseView extends LinearLayout{
         leftLine.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
+                setWaitChecked(true);
                 if(userClickListener != null){
                     userClickListener.userClick(true);
                 }
@@ -53,6 +51,7 @@ public class ItemChooseView extends LinearLayout{
         rightLine.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
+                setWaitChecked(false);
                 if(userClickListener != null){
                     userClickListener.userClick(false);
                 }
@@ -69,6 +68,8 @@ public class ItemChooseView extends LinearLayout{
         }else{
             leftLine.setEnabled(true);
             rightLine.setEnabled(false);//设置right选中
+            leftText.setTextColor(ContextCompat.getColor(getContext(),R.color.txt_unselected_color));
+            rightText.setTextColor(ContextCompat.getColor(getContext(),R.color.txt_selected_color));
         }
     }
 
