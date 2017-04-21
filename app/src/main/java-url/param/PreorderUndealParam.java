@@ -2,10 +2,8 @@ package param;
 
 
 import com.woshiku.urllibrary.domain.CommonUrlData;
-
 import java.util.HashMap;
 import java.util.Map;
-
 import common.Global;
 
 /**

@@ -5,7 +5,8 @@ package com.woshiku.jkshospticaldoctor.activity.fragment.impleMain.preorder.mode
  */
 
 public interface PreorderModel {
-    void loadUrlData();
+    void loadUndealData(PreorderModelListener preorderModelListener);
+    void loadDealedData(PreorderModelListener preorderModelListener);
     interface PreorderModelListener{//视图层接口
         void onInitPage();
         void onLoadingPage();

@@ -6,6 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.Toast;
+import com.woshiku.waitlibrary.WaitDialog;
 import me.imid.swipebacklayout.lib.Utils;
 import me.imid.swipebacklayout.lib.app.SwipeBackActivityHelper;
 
@@ -16,7 +18,8 @@ public abstract class BaseActivity extends AppCompatActivity{
     protected abstract void initViews();//用于初始化继承后activity初始化布局
     protected abstract void swipeBackCallback();//滑动移除时回调
     protected SwipeBackActivityHelper mHelper;
-
+    WaitDialog waitDialog;
+    View parentView;
     /**
      * @desc 用于初始化活动侧滑配置
      * */
@@ -37,7 +40,7 @@ public abstract class BaseActivity extends AppCompatActivity{
      * */
     private void initStatusBar(){
         ViewGroup contentFrameLayout = (ViewGroup) findViewById(Window.ID_ANDROID_CONTENT);
-        View parentView = contentFrameLayout.getChildAt(0);
+        parentView = contentFrameLayout.getChildAt(0);
         if (parentView != null && Build.VERSION.SDK_INT >= 14) {
             parentView.setFitsSystemWindows(true);
         }
@@ -76,5 +79,37 @@ public abstract class BaseActivity extends AppCompatActivity{
     public void scrollToFinishActivity() {
         Utils.convertActivityToTranslucent(this);
         mHelper.getSwipeBackLayout().scrollToFinishActivity();
+    }
+
+    public void toastShort(final String msg){
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                Toast.makeText(BaseActivity.this,msg,Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+    public void openDialog(){
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                if(waitDialog == null){
+                    waitDialog = new WaitDialog(BaseActivity.this,parentView);
+                }
+                waitDialog.showDialog();
+            }
+        });
+
+    }
+    public void closeDialog(){
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                if(waitDialog == null){
+                    waitDialog = new WaitDialog(BaseActivity.this,parentView);
+                }
+                waitDialog.closeDialog();
+            }
+        });
     }
 }

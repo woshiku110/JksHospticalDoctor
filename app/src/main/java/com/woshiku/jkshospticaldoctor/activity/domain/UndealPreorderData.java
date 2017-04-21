@@ -87,4 +87,17 @@ public class UndealPreorderData {
     public void setChoose(boolean choose) {
         isChoose = choose;
     }
+
+    @Override
+    public String toString() {
+        return "UndealPreorderData{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", icon='" + icon + '\'' +
+                ", date='" + date + '\'' +
+                ", sex='" + sex + '\'' +
+                ", amount='" + amount + '\'' +
+                ", isChoose=" + isChoose +
+                '}';
+    }
 }

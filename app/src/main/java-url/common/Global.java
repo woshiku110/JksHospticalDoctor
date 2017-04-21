@@ -5,6 +5,6 @@ package common;
  */
 
 public class Global {
-    public static String baseUrl = "http://123.207.243.224/";
-    public static String _token;
+    public static String baseUrl = "http://123.207.243.224/jfs1.1/";
+    public static String _token = "";
 }

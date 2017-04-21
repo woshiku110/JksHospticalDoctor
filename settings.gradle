@@ -1,1 +1,1 @@
-include ':app', ':swipebacklib', ':bottomtabbarlib', ':commonjarslib', ':urllibrary'
+include ':app', ':swipebacklib', ':bottomtabbarlib', ':commonjarslib', ':urllibrary', ':inputlib', ':waitlibrary'

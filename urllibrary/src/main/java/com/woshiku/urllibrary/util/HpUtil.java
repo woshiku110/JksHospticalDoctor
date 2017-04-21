@@ -1,16 +1,17 @@
 package com.woshiku.urllibrary.util;
 
-import com.squareup.okhttp.Callback;
-import com.squareup.okhttp.FormEncodingBuilder;
-import com.squareup.okhttp.OkHttpClient;
-import com.squareup.okhttp.Request;
-import com.squareup.okhttp.Response;
-import com.woshiku.urllibrary.common.Global;
+
 import com.woshiku.urllibrary.domain.Result;
 import com.woshiku.urllibrary.inter.CommonUrlListener;
 import java.io.IOException;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.FormBody;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 /**
  * Created by Administrator on 2016/11/2.
@@ -19,39 +20,36 @@ public class HpUtil {
     private OkHttpClient okHttpClient;
     protected CommonUrlListener commonUrlListener;
     public HpUtil(){
-        if(okHttpClient == null){
-            okHttpClient = new OkHttpClient();
-            okHttpClient.setConnectTimeout(Global.timeOutTime, TimeUnit.SECONDS);
+        if(okHttpClient == null) {
+            OkHttpClient.Builder builder = new OkHttpClient.Builder()
+                    .connectTimeout(15, TimeUnit.SECONDS);
+            okHttpClient =  builder.build();
         }
     }
     public void setCommonUrlListener(CommonUrlListener commonUrlListener) {
         this.commonUrlListener = commonUrlListener;
     }
-    protected synchronized Response onInternet(String baseUrl,String actionUrl,Map<String,String> params,String intent,boolean isAsc){
+    protected synchronized Response onInternet(String baseUrl, String actionUrl, Map<String,String> params, String intent, boolean isAsc) throws IOException {
         String recordUrl="";
-        recordUrl+=baseUrl;
-        recordUrl+=actionUrl;
-        recordUrl+="?";
-        FormEncodingBuilder formEncodingBuilder = new FormEncodingBuilder();
+        recordUrl += baseUrl;
+        recordUrl += actionUrl;
+        recordUrl += "?";
+        FormBody.Builder postDatas = new FormBody.Builder();
         for(Map.Entry<String,String> entry:params.entrySet()){
-            formEncodingBuilder.add(entry.getKey(),entry.getValue());
+            postDatas.add(entry.getKey(),entry.getValue());
             recordUrl += entry.getKey()+"="+entry.getValue()+"&";
         }
-        BugLog.print(intent,recordUrl);
-        Request request = new Request.Builder().url(baseUrl+actionUrl).post(formEncodingBuilder.build()).build();
+        BugLog.print(recordUrl);
+        Request request = new Request.Builder().url(baseUrl+actionUrl).post(postDatas.build()).build();
+        Response response = null;
         if(isAsc){
-            try {
-                return okHttpClient.newCall(request).execute();
-            } catch (IOException e) {
-                e.printStackTrace();
-                return null;
-            }
+            response = okHttpClient.newCall(request).execute();
         }else{
             okHttpClient.newCall(request).enqueue(new MyCallBack(intent));
         }
-        return null;
+        return response;
     }
-    class MyCallBack implements Callback{
+    class MyCallBack implements Callback {
         private String intent;
 
         public MyCallBack(String intent) {
@@ -59,8 +57,7 @@ public class HpUtil {
         }
 
         @Override
-        public void onFailure(Request request, IOException e) {
-            BugLog.print(intent, "error", e);
+        public void onFailure(Call call, IOException e) {
             Result result = new Result();
             result.setIntent(intent);
             result.setSuccess(false);
@@ -70,7 +67,7 @@ public class HpUtil {
         }
 
         @Override
-        public void onResponse(Response response) throws IOException {
+        public void onResponse(Call call, Response response) throws IOException {
             BugLog.print(intent, response.body().toString());
             Result result = new Result();
             result.setMsg(response.body().string());

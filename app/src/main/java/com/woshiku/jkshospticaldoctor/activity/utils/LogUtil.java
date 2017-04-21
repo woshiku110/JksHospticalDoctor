@@ -19,7 +19,16 @@ public class LogUtil {
             Log.e(tag,msg);
         }
     }
-
+    public static void print(String msg,Exception e){
+        if(isPrint){
+            Log.e("lookat",msg,e);
+        }
+    }
+    public static void print(Exception e){
+        if(isPrint){
+            Log.e("lookat","",e);
+        }
+    }
     public static void print(String tag,String msg,Exception e){
         if(isPrint){
             Log.e(tag,msg,e);

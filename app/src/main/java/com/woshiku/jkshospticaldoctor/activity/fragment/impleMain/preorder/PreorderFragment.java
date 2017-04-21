@@ -11,6 +11,8 @@ import com.woshiku.jkshospticaldoctor.R;
 import com.woshiku.jkshospticaldoctor.activity.adapter.fragment.PreorderAdapter;
 import com.woshiku.jkshospticaldoctor.activity.domain.UndealPreorderData;
 import com.woshiku.jkshospticaldoctor.activity.fragment.BaseFragment;
+import com.woshiku.jkshospticaldoctor.activity.fragment.impleMain.preorder.presenter.PreorderPresenter;
+import com.woshiku.jkshospticaldoctor.activity.fragment.impleMain.preorder.presenter.PreorderPresenterImple;
 import com.woshiku.jkshospticaldoctor.activity.fragment.impleMain.preorder.view.PreorderView;
 import java.util.ArrayList;
 import java.util.List;
@@ -31,6 +33,7 @@ public class PreorderFragment extends BaseFragment implements PreorderView{
     LinearLayoutManager layoutManager;
     List<UndealPreorderData> mList;
     PreorderAdapter preorderAdapter;
+    PreorderPresenter preorderPresent;
     @SuppressLint("ValidFragment")
     public PreorderFragment(FragmentActivity mActivity) {
         super(mActivity);
@@ -40,10 +43,12 @@ public class PreorderFragment extends BaseFragment implements PreorderView{
     public View initViews() {
         mView = View.inflate(getContext(), R.layout.fragment_main_preorder,null);
         ButterKnife.inject(this,mView);
-
+        preorderPresent = new PreorderPresenterImple(this);
+        preorderPresent.initPage();//加载时默认页面配置
         return mView;
     }
 
+    /*以下是preorderview视图层*/
     @Override
     public void setInitPage() {
         recyclerView.setHasFixedSize(true);

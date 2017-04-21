@@ -9,8 +9,8 @@
         android:id="@id/item_bottom_bar_cardview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:clickable="true"
         app:cardCornerRadius="0dp"
+        android:clickable="true"
         app:cardElevation="0dp"
         android:foreground="?android:attr/selectableItemBackground">
 

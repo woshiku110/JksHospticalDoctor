@@ -2,6 +2,10 @@
 <resources>
     <!--闪屏页-->
     <item name="line_splash" type="id"/>
+    <!--登录界面-->
+    <item name="login_input_user" type="id"/>
+    <item name="login_input_pass" type="id"/>
+    <item name="login_bt" type="id"/>
     <!--主界面-->
     <item name="main_bottom_bar" type="id"/>
     <item name="main_bottom_viewpager" type="id"/>
@@ -17,5 +21,4 @@
     <item name="item_preorder_name" type="id"/>
     <item name="item_preorder_sex" type="id"/>
     <item name="item_preorder_date" type="id"/>
-
 </resources>
