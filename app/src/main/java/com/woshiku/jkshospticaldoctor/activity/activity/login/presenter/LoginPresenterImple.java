@@ -1,5 +1,6 @@
 package com.woshiku.jkshospticaldoctor.activity.activity.login.presenter;
 
+import android.app.Activity;
 import com.woshiku.jkshospticaldoctor.activity.activity.login.model.LoginModel;
 import com.woshiku.jkshospticaldoctor.activity.activity.login.model.LoginModelImple;
 import com.woshiku.jkshospticaldoctor.activity.activity.login.view.LoginView;
@@ -55,5 +56,13 @@ public class LoginPresenterImple implements LoginPresenter,LoginModel.LoginModel
         if(loginView != null){
             loginView.hideWait();
         }
+    }
+
+    @Override
+    public Activity onGetActivity() {
+        if(loginView != null){
+            return loginView.getActivity();
+        }
+        return null;
     }
 }

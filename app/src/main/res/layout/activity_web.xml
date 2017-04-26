@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/blueTitleBg">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/web_bottom"
+        android:orientation="vertical">
+        <include layout="@layout/item_web_title"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <com.woshiku.progresslibrary.RoundCornerProgressBar
+                android:id="@id/web_panel_pb"
+                android:layout_width="fill_parent"
+                android:layout_height="2dp"
+                app:rcBackgroundColor="@color/custom_progress_background"
+                app:rcBackgroundPadding="0dp"
+                app:rcMax="100"
+                app:rcProgress="50"
+                app:rcProgressColor="@color/custom_progress_orange_progress"
+                app:rcRadius="0dp" />
+            <WebView
+                android:id="@id/web_panel_webview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            </WebView>
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:id="@id/web_bottom"
+        android:layout_width="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:id="@id/web_bottom_preorder"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:orientation="horizontal"
+            android:visibility="gone"
+            android:weightSum="2">
+            <LinearLayout
+                android:id="@id/web_bottom_preorder_cancel"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="#D25040">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="退单"
+                    android:textSize="18sp"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:textColor="@android:color/white"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@id/web_bottom_preorder_accept"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+
+                android:background="#4C89E3">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="接单"
+                    android:textSize="18sp"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:textColor="@android:color/white"
+                    />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>

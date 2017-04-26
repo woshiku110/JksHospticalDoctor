@@ -1,0 +1,46 @@
+
+#basicInfo , #part , #image , #described , #qa{
+    background-color: white;
+    border: 1px solid #DDDDDD;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+body .content{
+    margin: 10px 30px 10px 30px;
+}
+
+body .content p{
+    display: inline-block;
+    font-size: 15px;
+}
+
+.groupTitle{
+    margin: 10px 0px 0px 30px;
+}
+
+
+/*基础信息*/
+#basicInfo{
+    line-height: 20px;
+}
+
+#basicInfo .address{
+    margin: 15px 0px;
+}
+
+
+/*患病部位*/
+ #part .content{
+     margin: 10px 30px 5px 30px;!important;
+     line-height: 28px;
+}
+#part .content p{
+    margin-bottom: 5px;
+}
+
+/*患病部位图片*/
+#image .content{
+    margin: 30px 0px 0px 30px;
+}
+

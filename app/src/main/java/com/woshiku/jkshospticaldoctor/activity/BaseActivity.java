@@ -53,7 +53,9 @@ public abstract class BaseActivity extends AppCompatActivity{
     public void setGesture(boolean isok){
         mHelper.getSwipeBackLayout().setEnableGesture(isok);
     }
-
+    public void setScrollDirection(int direction){
+        mHelper.getSwipeBackLayout().setEdgeTrackingEnabled(direction);
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

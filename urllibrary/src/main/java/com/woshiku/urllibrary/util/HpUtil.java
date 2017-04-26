@@ -22,7 +22,7 @@ public class HpUtil {
     public HpUtil(){
         if(okHttpClient == null) {
             OkHttpClient.Builder builder = new OkHttpClient.Builder()
-                    .connectTimeout(15, TimeUnit.SECONDS);
+                    .connectTimeout(10, TimeUnit.SECONDS);
             okHttpClient =  builder.build();
         }
     }

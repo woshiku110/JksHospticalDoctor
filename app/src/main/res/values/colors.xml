@@ -6,4 +6,5 @@
     <color name="blueTitleBg">#3d96e2</color>
     <color name="txt_selected_color">@android:color/white</color>
     <color name="txt_unselected_color">#666666</color>
+    <color name="login_bg">#e9f0f6</color>
 </resources>

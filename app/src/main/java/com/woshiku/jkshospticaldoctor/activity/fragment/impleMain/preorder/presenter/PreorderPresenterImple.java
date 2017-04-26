@@ -19,13 +19,22 @@ public class PreorderPresenterImple implements PreorderPresenter,PreorderModel.P
 
     @Override
     public void initPage() {
-        //默认加载初如化页面
-        loadUndealData();
+        onInitPage();
+    }
+
+    @Override
+    public void firstLoadingPage() {
+        onLoadingPage(true);
     }
 
     @Override
     public void loadUndealData() {
         preorderModel.loadUndealData(this);
+    }
+
+    @Override
+    public void loadDealedData() {
+        preorderModel.loadDealedData(this);
     }
 
     /*以下是view视图层要实现的接口*/
@@ -37,23 +46,30 @@ public class PreorderPresenterImple implements PreorderPresenter,PreorderModel.P
     }
 
     @Override
-    public void onLoadingPage() {
+    public void onLoadingPage(boolean isFirst) {
         if(preorderView != null){
-            preorderView.loadingPage();
+            preorderView.loadingPage(isFirst);
         }
     }
 
     @Override
-    public void onLoadFail() {
+    public void onLoadFail(boolean isUndeal) {
         if(preorderView != null){
-            preorderView.loadFail();
+            preorderView.loadFail(isUndeal);
         }
     }
 
     @Override
-    public void onLoadOk() {
+    public void onLoadNoData(boolean isUndeal) {
         if(preorderView != null){
-            preorderView.loadOk();
+            preorderView.loadNoData(isUndeal);
+        }
+    }
+
+    @Override
+    public void onLoadOk(boolean isUndeal, Object object) {
+        if(preorderView != null){
+            preorderView.loadOk(isUndeal,object);
         }
     }
 }

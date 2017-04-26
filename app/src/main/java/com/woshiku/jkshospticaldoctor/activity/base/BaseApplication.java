@@ -2,6 +2,8 @@ package com.woshiku.jkshospticaldoctor.activity.base;
 
 import android.app.Application;
 
+import com.woshiku.jkshospticaldoctor.activity.utils.LogUtil;
+
 import org.xutils.x;
 
 /**
@@ -9,9 +11,15 @@ import org.xutils.x;
  */
 
 public class BaseApplication extends Application {
+    static Application application;
     @Override
     public void onCreate() {
         super.onCreate();
         x.Ext.init(this);
+        application = this;
+        LogUtil.print("on create");
+    }
+    public static Application getApplication(){
+        return application;
     }
 }

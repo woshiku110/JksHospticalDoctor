@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="titleBlue">#3d96e2</color>
+    <color name="check_bg_blue">#3d96e2</color>
+    <color name="check_bg_gray">#a6a6a6</color>
+    <color name="new_orange_color">#ff7861</color>
+    <color name="lightgray">#e9f0f6</color>
+    <!--<color name="lightgray">#f0f0f0</color>-->
+    <color name="black">#000000</color>
+    <color name="unselected_state">#9e9e9e</color>
+    <color name="hospital_txt_color">#666666</color>
+    <color name="check_detail_line_bg">#e2e2e2</color>
+    <color name="check_detail_bg">#fbfbfb</color>
+    <color name="check_detail_txt_gray_state">#8e8e8e</color>
+    <color name="user_press_color_manage">#DCDCDC</color>
+</resources>

@@ -7,6 +7,7 @@
     <item name="login_input_pass" type="id"/>
     <item name="login_bt" type="id"/>
     <!--主界面-->
+    <item name="main_top_title" type="id"/>
     <item name="main_bottom_bar" type="id"/>
     <item name="main_bottom_viewpager" type="id"/>
     <!--fragment Preorder-->
@@ -21,4 +22,18 @@
     <item name="item_preorder_name" type="id"/>
     <item name="item_preorder_sex" type="id"/>
     <item name="item_preorder_date" type="id"/>
+    <item name="item_preorder_card" type="id"/>
+    <!--候诊列表-->
+    <item name="item_hold_back" type="id"/>
+    <!--webview的id-->
+    <item name="web_panel_webview" type="id"/>
+    <item name="web_panel_pb" type="id"/>
+    <!--webview的title-->
+    <item name="web_title_return" type="id"/>
+    <item name="web_title_title" type="id"/>
+    <item name="web_title_right" type="id"/>
+    <item name="web_bottom" type="id"/>
+    <item name="web_bottom_preorder" type="id"/>
+    <item name="web_bottom_preorder_accept" type="id"/>
+    <item name="web_bottom_preorder_cancel" type="id"/>
 </resources>

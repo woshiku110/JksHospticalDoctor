@@ -39,4 +39,5 @@ dependencies {
     compile project(':urllibrary')
     compile project(':inputlib')
     compile project(':waitlibrary')
+    compile project(':dialoglib')
 }

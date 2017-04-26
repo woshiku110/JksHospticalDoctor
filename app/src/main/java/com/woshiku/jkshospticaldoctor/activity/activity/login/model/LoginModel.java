@@ -1,5 +1,7 @@
 package com.woshiku.jkshospticaldoctor.activity.activity.login.model;
 
+import android.app.Activity;
+
 import com.woshiku.jkshospticaldoctor.activity.domain.LoginData;
 
 /**
@@ -13,5 +15,6 @@ public interface LoginModel {
         void onToast(String msg);
         void onShowWait();
         void onHideWait();
+        Activity onGetActivity();
     }
 }

@@ -1,5 +1,6 @@
 package com.woshiku.jkshospticaldoctor.activity.activity.login;
 
+import android.app.Activity;
 import android.view.View;
 import android.widget.EditText;
 import com.woshiku.jkshospticaldoctor.R;
@@ -38,7 +39,7 @@ public class LoginActivity extends BaseActivity implements LoginView{
     void userClick(View view){
         loginPresenter.login();
     }
-    /**
+    /**6
      * @desc 初始化页面
      * */
     @Override
@@ -66,5 +67,10 @@ public class LoginActivity extends BaseActivity implements LoginView{
         String userName = userNameInput.getText().toString();
         String userPass = userPassInput.getText().toString();
         return new LoginData(userName,userPass);
+    }
+
+    @Override
+    public Activity getActivity() {
+        return this;
     }
 }

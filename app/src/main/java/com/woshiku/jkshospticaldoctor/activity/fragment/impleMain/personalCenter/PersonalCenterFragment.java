@@ -1,6 +1,7 @@
 package com.woshiku.jkshospticaldoctor.activity.fragment.impleMain.personalCenter;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.support.v4.app.FragmentActivity;
 import android.view.View;
 
@@ -16,6 +17,8 @@ import com.woshiku.jkshospticaldoctor.activity.fragment.BaseFragment;
 public class PersonalCenterFragment extends BaseFragment{
     View mView;
 
+
+
     @SuppressLint("ValidFragment")
     public PersonalCenterFragment(FragmentActivity mActivity) {
         super(mActivity);
@@ -25,5 +28,10 @@ public class PersonalCenterFragment extends BaseFragment{
     public View initViews() {
         mView = View.inflate(getContext(), R.layout.fragment_main_personalcenter,null);
         return mView;
+    }
+
+    @Override
+    protected void dealBroadcastRece(Intent intent) {
+
     }
 }

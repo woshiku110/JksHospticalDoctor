@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <title>接诊详情</title>
+    <link href="../Global/Global.css" rel="stylesheet">
+    <link href="css/MentDiagnose.css" rel="stylesheet">
+</head>
+
+
+
+<body style="overflow-x: hidden">
+
+<!--基础信息-->
+<div id="basicInfo" style="overflow-x: hidden">
+    <div class="content" style="overflow-x: hidden">
+        <div>
+            <p class="title">患者名称 :</p> <p id="basicInfo-name">&nbsp;</p>
+        </div>
+        <div>
+            <p class="title address">就诊地址 :</p> <p id="basicInfo-address">&nbsp;</p>
+        </div>
+        <div>
+            <p class="title">预约时间 :</p> <p id="basicInfo-time">&nbsp;</p>
+        </div>
+    </div>
+</div>
+
+<!--患病部位-->
+<div id="part" style="overflow-x: hidden">
+    <div class="content" style="overflow-x: hidden">
+        <div>
+            <p class="title">患病部位</p>
+        </div>
+        <div>
+            <p id="part-part">&nbsp;</p>
+        </div>
+        <div>
+            <p class="title">患病症状</p>
+        </div>
+        <div>
+            <p id="part-symptoms">&nbsp;</p>
+        </div>
+    </div>
+</div>
+
+
+<!--患处照片-->
+<div id="image" style="display: none" style="overflow-x: hidden">
+    <p class="groupTitle" style="display: block">患处照片或检查处照片</p>
+    <div class ="content" style="overflow-x: hidden">
+
+    </div>
+</div>
+
+
+<!--症状描述-->
+<div id="described">
+    <p class="groupTitle" style="display: block">症状描述</p>
+    <div class="content" style="overflow-x: hidden">
+        <p id="described-text">-200</p>
+    </div>
+</div>
+
+
+<!--预症问题回答-->
+<div id="qa">
+    <p class="groupTitle" style="display: block">预症问题回答</p>
+    <div class="content" style="overflow-x: hidden">
+
+    </div>
+</div>
+
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="../Global/Jquery/jquery.js"></script>
+<script src="../Global/Global.js"></script>
+<script src="js/MentDiagnose.js"></script>
+
+</body>
+</html>

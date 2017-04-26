@@ -1,18 +1,28 @@
 package com.woshiku.jkshospticaldoctor.activity.main;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
+import android.text.TextUtils;
+
+import com.google.gson.Gson;
 import com.woshiku.bottomtabbarlib.BottomTabBar;
 import com.woshiku.jkshospticaldoctor.R;
 import com.woshiku.jkshospticaldoctor.activity.BaseActivity;
+import com.woshiku.jkshospticaldoctor.activity.domain.LoginData;
+import com.woshiku.jkshospticaldoctor.activity.domain.LoginReturnData;
 import com.woshiku.jkshospticaldoctor.activity.fragment.impleMain.FragmentFactory;
-import com.woshiku.jkshospticaldoctor.activity.splash.SplashActivity;
+import com.woshiku.jkshospticaldoctor.activity.activity.splash.SplashActivity;
 import com.woshiku.jkshospticaldoctor.activity.utils.LogUtil;
+import com.woshiku.jkshospticaldoctor.activity.utils.RdUtil;
 import com.woshiku.jkshospticaldoctor.activity.view.NoSmoothViewPager;
+import com.woshiku.urllibrary.domain.Result;
+
 import butterknife.ButterKnife;
 import butterknife.InjectView;
+import common.Global;
 
 public class MainActivity extends BaseActivity {
     @InjectView(R.id.main_bottom_bar)
@@ -25,9 +35,45 @@ public class MainActivity extends BaseActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.inject(this);
         LogUtil.print("main activity");
-        startActivity(new Intent(this, SplashActivity.class));
-        initBottomBar();
-        initFragment();
+        try{
+            Bundle bundle = getIntent().getExtras();
+            boolean isLogin = bundle.getBoolean("isLogin");
+            if(isLogin){//从登录页面进来的
+                initBottomBar();
+                initFragment();
+            }else{//不是从登录页面进来的
+                startActivity(new Intent(this, SplashActivity.class));
+                String msg = RdUtil.readData("logindata");
+                if(!TextUtils.isEmpty(msg)){
+                    String loginMsg = RdUtil.readData("loginReturn");
+                    if(!TextUtils.isEmpty(loginMsg)){
+                        Gson gson = new Gson();
+                        LoginReturnData loginReturnData = gson.fromJson(loginMsg, LoginReturnData.class);
+                        Global._token = loginReturnData.token;
+                    }
+                    initBottomBar();
+                    initFragment();
+                }else{
+                    finish();
+                }
+            }
+        }catch (Exception e){
+            //不是从登录页面进来的
+            startActivity(new Intent(this, SplashActivity.class));
+            String msg = RdUtil.readData("logindata");
+            if(!TextUtils.isEmpty(msg)){
+                String loginMsg = RdUtil.readData("loginReturn");
+                if(!TextUtils.isEmpty(loginMsg)){
+                    Gson gson = new Gson();
+                    LoginReturnData loginReturnData = gson.fromJson(loginMsg, LoginReturnData.class);
+                    Global._token = loginReturnData.token;
+                }
+                initBottomBar();
+                initFragment();
+            }else{
+                finish();
+            }
+        }
     }
     private void initBottomBar(){
         bottomTabBar.setTabbarNews(1,true,5);

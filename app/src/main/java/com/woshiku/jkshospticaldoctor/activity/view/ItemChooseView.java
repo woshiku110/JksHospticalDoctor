@@ -27,7 +27,7 @@ public class ItemChooseView extends LinearLayout{
     }
 
     public interface UserClickListener{
-        void userClick(boolean isWait);
+        void userClick(boolean isUndeal);
     }
 
     @Override
@@ -59,7 +59,7 @@ public class ItemChooseView extends LinearLayout{
         });
     }
 
-    private void setWaitChecked(boolean isChecked){
+    public void setWaitChecked(boolean isChecked){
         if(isChecked){
             leftLine.setEnabled(false);//设置left选中
             rightLine.setEnabled(true);

@@ -1,5 +1,7 @@
 package com.woshiku.jkshospticaldoctor.activity.activity.login.view;
 
+import android.app.Activity;
+
 import com.woshiku.jkshospticaldoctor.activity.domain.LoginData;
 
 /**
@@ -12,4 +14,5 @@ public interface LoginView {
     void showWait();
     void hideWait();
     LoginData getUserInfo();
+    Activity getActivity();
 }

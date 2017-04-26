@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:name=".activity.base.BaseApplication"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.splash.SplashActivity"
+        <activity android:name=".activity.activity.splash.SplashActivity"
                   android:theme="@style/SplashTheme"
                   android:windowSoftInputMode="adjustPan|stateHidden"
                   android:configChanges="orientation|keyboardHidden|screenSize"
@@ -21,17 +21,23 @@
                   android:windowSoftInputMode="adjustPan|stateHidden"
                   android:configChanges="orientation|keyboardHidden|screenSize"
                   android:screenOrientation="portrait">
-
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity android:name=".activity.activity.login.LoginActivity"
                   android:theme="@style/TranslucentTheme"
                   android:windowSoftInputMode="adjustPan|stateHidden"
                   android:configChanges="orientation|keyboardHidden|screenSize"
                   android:screenOrientation="portrait">
-                    <intent-filter>
-                        <action android:name="android.intent.action.MAIN" />
-                        <category android:name="android.intent.category.LAUNCHER" />
-                    </intent-filter>
+        </activity>
+        <activity android:name=".activity.activity.reception.AppointReceActivity"
+                  android:theme="@style/TranslucentTheme"
+                  android:windowSoftInputMode="adjustPan|stateHidden"
+                  android:configChanges="orientation|keyboardHidden|screenSize"
+                  android:screenOrientation="portrait">
+
         </activity>
     </application>
 </manifest>

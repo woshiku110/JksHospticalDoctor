@@ -9,8 +9,9 @@ public interface PreorderModel {
     void loadDealedData(PreorderModelListener preorderModelListener);
     interface PreorderModelListener{//视图层接口
         void onInitPage();
-        void onLoadingPage();
-        void onLoadFail();
-        void onLoadOk();
+        void onLoadingPage(boolean isFirst);
+        void onLoadFail(boolean isUndeal);
+        void onLoadNoData(boolean isUndeal);
+        void onLoadOk(boolean isUndeal,Object object);
     }
 }

@@ -2,7 +2,7 @@ package parse;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.woshiku.jkshospticaldoctor.activity.domain.UndealPreorderData;
+import com.woshiku.jkshospticaldoctor.activity.domain.PreorderData;
 import com.woshiku.jkshospticaldoctor.activity.utils.LogUtil;
 import com.woshiku.urllibrary.domain.Result;
 import java.lang.reflect.Type;
@@ -17,12 +17,12 @@ import inter.ResultListener;
 public class PreorderUndealParse {
     public static void preorderUndeal(Result msg, ResultListener resultListener){
         if(msg.isSuccess()){
+            //LogUtil.print("undeal msg:"+msg.getMsg());
             parseMsg(msg.getMsg(),resultListener);
         }else{
             resultListener.onFail("parse fail");
             Result result = msg;
             LogUtil.print("PreorderUndealParse parse fail");
-            //LogUtil.print(msg.getMsg());
         }
     }
 
@@ -42,8 +42,8 @@ public class PreorderUndealParse {
     /**
      * @desc 解析多个个message
      * */
-    private static List<UndealPreorderData> parseMessages(String msg){
-        List<UndealPreorderData> mList = new ArrayList<>();
+    private static List<PreorderData> parseMessages(String msg){
+        List<PreorderData> mList = new ArrayList<>();
         Gson gson = new Gson();
         Type listType = new TypeToken<List<String[]>>(){}.getType();
         try{
@@ -59,7 +59,7 @@ public class PreorderUndealParse {
     /**
      * @desc 解析单个message
      * */
-    private static UndealPreorderData parseMessage(String[] strs){
-        return new UndealPreorderData(strs[0],strs[1],strs[2],strs[3],strs[4],strs[5],false);
+    private static PreorderData parseMessage(String[] strs){
+        return new PreorderData(strs[0],strs[1],strs[2],strs[3],strs[4],strs[5],false);
     }
 }
