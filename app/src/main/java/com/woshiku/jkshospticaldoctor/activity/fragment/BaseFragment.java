@@ -12,7 +12,14 @@ import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+
+import com.woshiku.jkshospticaldoctor.R;
 import com.woshiku.jkshospticaldoctor.activity.utils.LogUtil;
+
+import org.xutils.image.ImageOptions;
+import org.xutils.x;
+
 import common.Global;
 
 /**
@@ -65,7 +72,20 @@ public abstract class BaseFragment extends Fragment{
     public void initDatas(){
 
     }
-
+    /**
+     * 加载显示图片
+     * */
+    public void displayImageView(ImageView imagewView, String path){
+        LogUtil.print(path);
+        ImageOptions imageOptions = new ImageOptions.Builder()
+                .setIgnoreGif(false)//是否忽略gif图。false表示不忽略。不写这句，默认是true
+                .setFailureDrawableId(R.mipmap.img_error)
+                .setLoadingDrawableId(R.mipmap.img_default)
+                .setImageScaleType(ImageView.ScaleType.CENTER_CROP)
+                .setCircular(true)
+                .build();
+        x.image().bind(imagewView,path,imageOptions);
+    }
     @Override
     public void onDestroy() {
         super.onDestroy();

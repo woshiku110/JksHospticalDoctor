@@ -8,6 +8,7 @@
       <module fileurl="file://$PROJECT_DIR$/commonjarslib/commonjarslib.iml" filepath="$PROJECT_DIR$/commonjarslib/commonjarslib.iml" />
       <module fileurl="file://$PROJECT_DIR$/dialoglib/dialoglib.iml" filepath="$PROJECT_DIR$/dialoglib/dialoglib.iml" />
       <module fileurl="file://$PROJECT_DIR$/inputlib/inputlib.iml" filepath="$PROJECT_DIR$/inputlib/inputlib.iml" />
+      <module fileurl="file://$PROJECT_DIR$/overscrolllib/overscrolllib.iml" filepath="$PROJECT_DIR$/overscrolllib/overscrolllib.iml" />
       <module fileurl="file://$PROJECT_DIR$/progresslibrary/progresslibrary.iml" filepath="$PROJECT_DIR$/progresslibrary/progresslibrary.iml" />
       <module fileurl="file://$PROJECT_DIR$/swipebacklib/swipebacklib.iml" filepath="$PROJECT_DIR$/swipebacklib/swipebacklib.iml" />
       <module fileurl="file://$PROJECT_DIR$/urllibrary/urllibrary.iml" filepath="$PROJECT_DIR$/urllibrary/urllibrary.iml" />

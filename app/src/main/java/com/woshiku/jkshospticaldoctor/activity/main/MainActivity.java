@@ -48,8 +48,8 @@ public class MainActivity extends BaseActivity {
                     String loginMsg = RdUtil.readData("loginReturn");
                     if(!TextUtils.isEmpty(loginMsg)){
                         Gson gson = new Gson();
-                        LoginReturnData loginReturnData = gson.fromJson(loginMsg, LoginReturnData.class);
-                        Global._token = loginReturnData.token;
+                        Global.loginReturnData = gson.fromJson(loginMsg, LoginReturnData.class);
+                        Global._token = Global.loginReturnData.token;
                     }
                     initBottomBar();
                     initFragment();
@@ -65,8 +65,8 @@ public class MainActivity extends BaseActivity {
                 String loginMsg = RdUtil.readData("loginReturn");
                 if(!TextUtils.isEmpty(loginMsg)){
                     Gson gson = new Gson();
-                    LoginReturnData loginReturnData = gson.fromJson(loginMsg, LoginReturnData.class);
-                    Global._token = loginReturnData.token;
+                    Global.loginReturnData = gson.fromJson(loginMsg, LoginReturnData.class);
+                    Global._token = Global.loginReturnData.token;
                 }
                 initBottomBar();
                 initFragment();

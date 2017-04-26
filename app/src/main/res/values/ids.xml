@@ -23,6 +23,9 @@
     <item name="item_preorder_sex" type="id"/>
     <item name="item_preorder_date" type="id"/>
     <item name="item_preorder_card" type="id"/>
+    <!--fragment个人中心-->
+    <item name="item_personal_one_icon" type="id"/>
+    <item name="item_personal_exit" type="id"/>
     <!--候诊列表-->
     <item name="item_hold_back" type="id"/>
     <!--webview的id-->
