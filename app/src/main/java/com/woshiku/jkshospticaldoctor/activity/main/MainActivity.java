@@ -6,20 +6,17 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.text.TextUtils;
-
+import android.view.KeyEvent;
 import com.google.gson.Gson;
 import com.woshiku.bottomtabbarlib.BottomTabBar;
 import com.woshiku.jkshospticaldoctor.R;
 import com.woshiku.jkshospticaldoctor.activity.BaseActivity;
-import com.woshiku.jkshospticaldoctor.activity.domain.LoginData;
+import com.woshiku.jkshospticaldoctor.activity.activity.splash.SplashActivity;
 import com.woshiku.jkshospticaldoctor.activity.domain.LoginReturnData;
 import com.woshiku.jkshospticaldoctor.activity.fragment.impleMain.FragmentFactory;
-import com.woshiku.jkshospticaldoctor.activity.activity.splash.SplashActivity;
 import com.woshiku.jkshospticaldoctor.activity.utils.LogUtil;
 import com.woshiku.jkshospticaldoctor.activity.utils.RdUtil;
 import com.woshiku.jkshospticaldoctor.activity.view.NoSmoothViewPager;
-import com.woshiku.urllibrary.domain.Result;
-
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import common.Global;
@@ -30,6 +27,7 @@ public class MainActivity extends BaseActivity {
     @InjectView(R.id.main_bottom_viewpager)
     NoSmoothViewPager viewPager;
     String []titles = {"预约列表","候诊列表","个人中心"};
+    private int maxPage = 3;
     @Override
     protected void initViews() {
         setContentView(R.layout.activity_main);
@@ -59,6 +57,7 @@ public class MainActivity extends BaseActivity {
             }
         }catch (Exception e){
             //不是从登录页面进来的
+            LogUtil.print("闪屏页面进入");
             startActivity(new Intent(this, SplashActivity.class));
             String msg = RdUtil.readData("logindata");
             if(!TextUtils.isEmpty(msg)){
@@ -91,14 +90,15 @@ public class MainActivity extends BaseActivity {
         });
     }
     private void initFragment(){
-        viewPager.setAdapter(new MainPage(getSupportFragmentManager()));
-
+        viewPager.setAdapter(new MainPage(MainActivity.this.getSupportFragmentManager()));
+        viewPager.setOffscreenPageLimit(maxPage);
     }
 
     class MainPage extends FragmentStatePagerAdapter{
 
         public MainPage(FragmentManager fm) {
             super(fm);
+            LogUtil.print("实例化mainpage");
         }
 
         @Override
@@ -114,5 +114,23 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void swipeBackCallback() {
 
+    }
+
+
+    public void closeApp(){
+        FragmentFactory.clearFragments();
+        RdUtil.saveData("logindata","");
+        RdUtil.saveData("isLogin","");
+        finish();
+    }
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if ((keyCode == KeyEvent.KEYCODE_BACK) )
+        {
+           FragmentFactory.clearFragments();
+            finish();
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }

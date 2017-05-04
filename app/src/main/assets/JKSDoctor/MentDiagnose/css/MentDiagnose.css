@@ -6,6 +6,10 @@
     margin-bottom: 10px;
 }
 
+body{
+    display: none;
+}
+
 body .content{
     margin: 10px 30px 10px 30px;
 }
@@ -22,15 +26,29 @@ body .content p{
 
 /*基础信息*/
 #basicInfo{
-    line-height: 20px;
+    /*line-height: 20px;*/
 }
+
+#basicInfo .center{
+    margin: 15px 0px;
+    text-align: start;
+    display: flex;
+    align-items: flex-start;
+}
+
+
+
 
 #basicInfo .address{
-    margin: 15px 0px;
+
+    /*width: 25%;*/
+}
+#basicInfo #basicInfo-address{
+    width: calc(100% - 70px);
 }
 
 
-/*患病部位*/
+    /*患病部位*/
  #part .content{
      margin: 10px 30px 5px 30px;!important;
      line-height: 28px;

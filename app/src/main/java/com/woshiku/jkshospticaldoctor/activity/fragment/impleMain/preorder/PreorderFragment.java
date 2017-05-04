@@ -72,8 +72,6 @@ public class PreorderFragment extends BaseFragment implements PreorderView, Preo
             }
         });
         preorderPresent.firstLoadingPage();//第一次加载数据
-        preorderPresent.loadUndealData();//用于加载待处理数据
-        preorderPresent.loadDealedData();//用于处理已加载处理数据
     }
 
     @Override
@@ -117,6 +115,8 @@ public class PreorderFragment extends BaseFragment implements PreorderView, Preo
         preorderAdapter.setOnItemClickListener(PreorderFragment.this);
         preorderAdapter.setOnChooseListener(this);
         recyclerView.setAdapter(preorderAdapter);
+        preorderPresent.loadUndealData();//用于加载待处理数据
+        preorderPresent.loadDealedData();//用于处理已加载处理数据
     }
     public void setPageData(boolean isUndeal,List<PreorderData> mList,int pageState){
         PreorderData preorderData = showList.get(0);

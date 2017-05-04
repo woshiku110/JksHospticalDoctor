@@ -4,46 +4,37 @@
 
 
 window.onload = function () {
-    var id = getId();
-    console.log("id:"+id);
-    loadDataFromWeb(id);
+    loadDataFromWeb(getId());
 }
+/**
+*@desc 用于获取原生的orderId
+*/
+
 function getId(){
     return window.control.getOrderId();
 }
+
 /**
  * 请求网络数据
  * @param value  订单的ID
  */
 function loadDataFromWeb(value) {
-    $.ajax({
-        url: IP + "yuyue/AppointmentSupport_getOrder",
-        type: 'post',
-        dataType:'json',
-        async:true,
-        data: {
-            id:value
-        },
-        success: function(res) {
-            if(res.success){
-                var msg = JSON.parse(res.msg);
-                updataUI(msg);
-            }else {
-                loadDataFromWebFailure();
-            }
-        },
-        error:function(res){
-            loadDataFromWebError();
+    var paramete = {token:tokenx , id:value};
+    CYAjax.post(paramete , 'yuyue/AppointmentSupport_getOrder' , function (res) {
+        if(res.success){
+            var msg = JSON.parse(res.msg);
+            $('body').css({
+                'display':'block'
+            });
+            updataUI(msg);
+        }else {
+            prompt('加载失败');
         }
+    },function (error) {
+        prompt('加载错误');
     });
 }
 
-function loadDataFromWebFailure() {
-    console.log('加载失败');
-}
-function loadDataFromWebError() {
-    console.log('加载错误');
-}
 
 /**
  * 更新UI

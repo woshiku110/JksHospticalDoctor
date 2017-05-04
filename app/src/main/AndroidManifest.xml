@@ -39,5 +39,38 @@
                   android:screenOrientation="portrait">
 
         </activity>
+        <activity android:name=".activity.activity.recetime.ReceTimeActivity"
+                  android:theme="@style/TranslucentTheme"
+                  android:windowSoftInputMode="adjustPan|stateHidden"
+                  android:configChanges="orientation|keyboardHidden|screenSize"
+                  android:screenOrientation="portrait">
+        </activity>
+        <activity android:name=".activity.activity.medicalsearch.MedicalSearchActivity"
+                  android:theme="@style/TranslucentTheme"
+                  android:windowSoftInputMode="adjustPan|stateHidden"
+                  android:configChanges="orientation|keyboardHidden|screenSize"
+                  android:screenOrientation="portrait">
+
+        </activity>
+        <activity android:name=".activity.activity.receptionhistory.ReceptionHistoryActivity"
+                  android:theme="@style/TranslucentTheme"
+                  android:windowSoftInputMode="adjustPan|stateHidden"
+                  android:configChanges="orientation|keyboardHidden|screenSize"
+                  android:screenOrientation="portrait">
+        </activity>
+        <activity android:name=".activity.activity.checkreception.CheckReceptionActivity"
+                  android:theme="@style/TranslucentTheme"
+                  android:windowSoftInputMode="adjustPan|stateHidden"
+                  android:configChanges="orientation|keyboardHidden|screenSize"
+                  android:screenOrientation="portrait">
+
+        </activity>
+        <activity android:name=".activity.activity.checkrecedetail.CheckReceDetailActivity"
+                  android:theme="@style/TranslucentTheme"
+                  android:windowSoftInputMode="adjustPan|stateHidden"
+                  android:configChanges="orientation|keyboardHidden|screenSize"
+                  android:screenOrientation="portrait">
+
+        </activity>
     </application>
 </manifest>

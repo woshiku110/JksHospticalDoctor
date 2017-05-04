@@ -1,12 +1,14 @@
 package com.woshiku.jkshospticaldoctor.activity.view;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
 import com.woshiku.jkshospticaldoctor.R;
 
 /**
@@ -16,18 +18,25 @@ import com.woshiku.jkshospticaldoctor.R;
 public class ItemChooseView extends LinearLayout{
     LinearLayout leftLine,rightLine;
     TextView leftText,rightText;
+    private String textLeft,textRight;
     private UserClickListener userClickListener;
-
     public ItemChooseView(Context context) {
         super(context);
     }
 
     public ItemChooseView(Context context, AttributeSet attrs) {
         super(context, attrs);
+        getAttrs(context,attrs);
     }
 
     public interface UserClickListener{
         void userClick(boolean isUndeal);
+    }
+
+    private void getAttrs(Context context, AttributeSet attrs){
+        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.ItemChooseView);
+        textLeft = a.getString(R.styleable.ItemChooseView_left_text);
+        textRight = a.getString(R.styleable.ItemChooseView_right_text);
     }
 
     @Override
@@ -57,6 +66,8 @@ public class ItemChooseView extends LinearLayout{
                 }
             }
         });
+        leftText.setText(textLeft);
+        rightText.setText(textRight);
     }
 
     public void setWaitChecked(boolean isChecked){

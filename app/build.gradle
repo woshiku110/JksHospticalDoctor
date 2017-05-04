@@ -44,4 +44,6 @@ dependencies {
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'com.liaoinstan.springview:library:1.2.6'
     compile project(':overscrolllib')
+    compile project(':wheelwidgetslib')
+    compile project(':mydatepicker')
 }

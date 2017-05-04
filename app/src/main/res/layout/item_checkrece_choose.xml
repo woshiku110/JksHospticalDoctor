@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="65dp">
+    <com.woshiku.jkshospticaldoctor.activity.view.ItemChooseView
+        android:id="@id/item_check_rece_choose"
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        app:left_text="待核实列表"
+        app:right_text="已核实列表">
+
+    </com.woshiku.jkshospticaldoctor.activity.view.ItemChooseView>
+</LinearLayout>

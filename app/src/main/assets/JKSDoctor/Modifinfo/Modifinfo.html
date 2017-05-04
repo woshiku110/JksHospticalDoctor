@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <title>个人信息</title>
+    <!--<link href="../Global/Global.css" rel="stylesheet">-->
+    <style>
+        input{border: none;width:120px; text-align:right;}
+        .tx{height: 60px;border-bottom:1px solid #ddd;}
+        .tx-left{float: left;margin-left: 4px;}
+        .tx-right{float: right;}
+
+        .ptzh{height: 40px;border-bottom:1px solid #ddd;}
+        .ptzh-left{float: left;margin-left: 4px;}
+        .ptzh-right{float: right;padding: 15px 0px;margin-right:0px; }
+
+        .sj{height: 40px;border-bottom:1px solid #ddd;}
+        .sj-left{float: left;margin-left: -64px;}
+        .sj-right{float: right;padding: 15px 0px;margin-right:-120px;}
+
+        .dz{height: 40px;border-bottom:1px solid #ddd;}
+        .dz-left{float: left;margin-left: -48px;}
+        .dz-right{float: right;padding: 15px 0px;margin-right:-120px;}
+        .dl{height: 40px;border-bottom:1px solid #ddd;}
+        .dl-left{float: left;margin-left: -65px;}
+        .dl-right{float: right;padding: 15px 0px;margin-right:-120px;}
+
+        #headImg{border-radius: 25px};
+    </style>
+</head>
+<body>
+<div class="tx">
+    <div class="tx-left">
+        <p>头像</p>
+    </div>
+
+    <div class="tx-right">
+        <img id="headImg" style="width: 50px;height: 50px;" onclick="headImgClick()">
+    </div>
+</div>
+
+<div class="ptzh">
+    <div class="ptzh-left">
+        <p>平台账号</p>
+    </div>
+    <div class="ptzh-right">
+        <input type="zh" value="-200" id="username">
+    </div>
+</div>
+
+<div class="sj">
+    <div class="sj-left">
+        <p>手机号</p>
+    </div>
+    <div class="sj-right">
+        <input type="sj" value="-200" id="phonex">
+    </div>
+</div>
+
+<div class="dz">
+    <div class="dz-left">
+        <p>邮件地址</p>
+    </div>
+    <div class="dz-right">
+        <input type="dz" value="-200" id="emailx">
+    </div>
+</div>
+
+<div class="dl" onclick="enterClick()">
+    <div class="dl-left">
+        <p>登陆密码</p>
+    </div>
+    <div class="dl-right">
+        <img src="../Global/imgs/Enter.png" style="width: 15px;height: 20px;">
+    </div>
+</div>
+
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="../Global/jquery/jquery1.11.3.min.js"></script>
+<script src="../Global/Global.js"></script>
+<script src="js/Modifinfo.js"></script>
+</body>
+</html>

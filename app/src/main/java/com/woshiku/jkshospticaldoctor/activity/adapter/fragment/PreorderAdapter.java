@@ -9,6 +9,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.andview.refreshview.recyclerview.BaseRecyclerAdapter;
 import com.woshiku.jkshospticaldoctor.R;
 import com.woshiku.jkshospticaldoctor.activity.domain.PreorderData;
 import com.woshiku.jkshospticaldoctor.activity.utils.LogUtil;
@@ -31,6 +33,7 @@ public class PreorderAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     Context context;
     OnItemClickListener onItemClickListener;
     OnChooseListener onChooseListener;
+
     public interface OnItemClickListener{
         void onItemClick(PreorderData preorderData,int pos);
     }

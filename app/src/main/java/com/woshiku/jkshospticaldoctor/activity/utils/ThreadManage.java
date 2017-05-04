@@ -7,7 +7,7 @@ import java.util.concurrent.Executors;
  * Created by Administrator on 2017/3/3.
  */
 public class ThreadManage {
-    private static int maxThreadAmount = 1;
+    private static int maxThreadAmount = 5;
     private static ExecutorService executorService;
     private static ThreadManage threadManage;
     private ThreadManage() {

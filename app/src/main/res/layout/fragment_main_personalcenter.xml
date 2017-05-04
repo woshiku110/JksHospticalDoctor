@@ -29,6 +29,7 @@
                     android:background="@mipmap/ic_launcher"
                     android:layout_marginLeft="@dimen/person_center_gap_two" />
                 <TextView
+                    android:id="@id/item_personal_interval_name"
                     android:layout_toRightOf="@id/item_personal_one_icon"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -53,6 +54,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
             <android.support.v7.widget.CardView
+                android:id="@id/item_personal_interval_rece_time"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:clickable="true"
@@ -123,13 +125,13 @@
                 android:layout_marginRight="@dimen/person_center_line_gap"
                 />
             <android.support.v7.widget.CardView
+                android:id="@id/item_personal_interval"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:clickable="true"
                 app:cardCornerRadius="0dp"
                 app:cardElevation="0dp"
-                android:foreground="?android:attr/selectableItemBackground"
-                >
+                android:foreground="?android:attr/selectableItemBackground">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -156,10 +158,11 @@
                             />
                     </LinearLayout>
                     <TextView
+                        android:id="@id/item_personal_interval_time_txt"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         style="@style/personal_txt"
-                        android:text="00小时30分"
+                        android:text="00:30"
                         android:layout_marginRight="20dp"
                         android:layout_centerVertical="true"
                         android:layout_alignParentRight="true"
@@ -173,6 +176,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
             <android.support.v7.widget.CardView
+                android:id="@id/item_personal_rece_history"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:clickable="true"
@@ -208,6 +212,7 @@
                 android:layout_marginRight="@dimen/person_center_line_gap"
                 />
             <android.support.v7.widget.CardView
+                android:id="@id/item_personal_check_receipe"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:clickable="true"

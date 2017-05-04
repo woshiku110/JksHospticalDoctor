@@ -36,8 +36,8 @@
     <LinearLayout
         android:id="@id/web_bottom"
         android:layout_width="match_parent"
-        android:layout_alignParentBottom="true"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true">
         <LinearLayout
             android:id="@id/web_bottom_preorder"
             android:layout_width="match_parent"
@@ -72,6 +72,47 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="接单"
+                    android:textSize="18sp"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:textColor="@android:color/white"
+                    />
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@id/web_bottom_check"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:orientation="horizontal"
+            android:visibility="gone"
+            android:weightSum="2">
+            <LinearLayout
+                android:id="@id/web_bottom_check_newdrug"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="#D25040">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="新增加药品"
+                    android:textSize="18sp"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:textColor="@android:color/white"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@id/web_bottom_check_ok"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+
+                android:background="#4C89E3">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="核审无误"
                     android:textSize="18sp"
                     android:gravity="center"
                     android:layout_gravity="center"

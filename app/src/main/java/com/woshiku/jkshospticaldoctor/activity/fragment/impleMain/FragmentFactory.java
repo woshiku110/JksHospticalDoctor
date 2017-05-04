@@ -14,7 +14,7 @@ import java.util.Map;
  */
 public class FragmentFactory {
     protected static Map<Integer,BaseFragment> map = new HashMap<>();
-    public static int count = 5;
+    public static int count = 3;
     /**
      * @param mActivity 放入FragmentActivity
      * @param pos 创建第几个fragment
@@ -53,6 +53,9 @@ public class FragmentFactory {
      * @desc 清除fragments
      * */
     public static void clearFragments(){
+        for(int i=0;i<count;i++){
+            getFragment(i).removeBroadcast();
+        }
         map = new HashMap<>();
     }
 }

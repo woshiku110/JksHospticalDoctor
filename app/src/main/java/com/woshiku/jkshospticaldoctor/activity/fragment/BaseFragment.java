@@ -50,7 +50,7 @@ public abstract class BaseFragment extends Fragment{
         LogUtil.print("register filter");
     }
     public void removeBroadcast(){
-        if(myReceBroad == null){
+        if(myReceBroad != null){
             mActivity.unregisterReceiver(myReceBroad);
         }
     }
@@ -89,7 +89,7 @@ public abstract class BaseFragment extends Fragment{
     @Override
     public void onDestroy() {
         super.onDestroy();
-        removeBroadcast();
+        //removeBroadcast();
         LogUtil.print("remove fragment");
     }
 }

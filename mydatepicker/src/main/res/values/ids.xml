@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="my_left_bt" type="id"/>
+    <item name="my_right_bt" type="id"/>
+    <item name="month_text" type="id"/>
+</resources>

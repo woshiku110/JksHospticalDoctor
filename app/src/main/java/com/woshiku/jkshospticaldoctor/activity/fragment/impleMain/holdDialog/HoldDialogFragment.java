@@ -40,9 +40,6 @@ public class HoldDialogFragment extends BaseFragment implements HoldDialogView, 
     HoldDialogPresenter preorderPresent;
     HoldDialogAdapter preorderAdapter;
     List<HoldDialogData> showList;
-
-
-
     @SuppressLint("ValidFragment")
     public HoldDialogFragment(FragmentActivity mActivity) {
         super(mActivity);
@@ -71,7 +68,7 @@ public class HoldDialogFragment extends BaseFragment implements HoldDialogView, 
             }
         });
         preorderPresent.firstLoadingPage();//第一次加载数据
-        preorderPresent.loadData();//用于加载处理数据
+
     }
 
     @Override
@@ -87,6 +84,7 @@ public class HoldDialogFragment extends BaseFragment implements HoldDialogView, 
         preorderAdapter = new HoldDialogAdapter(mActivity,mList);
         preorderAdapter.setOnItemClickListener(HoldDialogFragment.this);
         recyclerView.setAdapter(preorderAdapter);
+        preorderPresent.loadData();//用于加载处理数据
     }
 
     @Override
@@ -124,6 +122,7 @@ public class HoldDialogFragment extends BaseFragment implements HoldDialogView, 
             closeFresh(true);
         }
     }
+
     public void closeFresh(final boolean isFresh){
         mActivity.runOnUiThread(new Runnable() {
             @Override

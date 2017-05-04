@@ -25,9 +25,17 @@
     <item name="item_preorder_card" type="id"/>
     <!--fragment个人中心-->
     <item name="item_personal_one_icon" type="id"/>
+    <item name="item_personal_interval" type="id"/>
+    <item name="item_personal_interval_time_txt" type="id"/>
+    <item name="item_personal_interval_name" type="id"/>
+    <item name="item_personal_interval_rece_time" type="id"/>
     <item name="item_personal_exit" type="id"/>
+    <item name="item_personal_check_receipe" type="id"/>
+    <item name="item_personal_rece_history" type="id"/>
     <!--候诊列表-->
     <item name="item_hold_back" type="id"/>
+    <!--接诊时间-->
+    <item name="rece_time_datepicker_line" type="id"/>
     <!--webview的id-->
     <item name="web_panel_webview" type="id"/>
     <item name="web_panel_pb" type="id"/>
@@ -39,4 +47,20 @@
     <item name="web_bottom_preorder" type="id"/>
     <item name="web_bottom_preorder_accept" type="id"/>
     <item name="web_bottom_preorder_cancel" type="id"/>
+    <!--药品列表-->
+    <item name="item_medical_search_input" type="id"/>
+    <item name="item_medical_search_bt" type="id"/>
+    <item name="item_medical_no" type="id"/>
+    <item name="item_medical_name" type="id"/>
+    <item name="item_medical_unit" type="id"/>
+    <item name="item_medical_card" type="id"/>
+    <!--刷新外加recycle列表-->
+    <item name="multi_xrecycleview" type="id"/>
+    <item name="multi_recycleview" type="id"/>
+    <!--核实处方-->
+    <item name="item_check_rece_choose" type="id"/>
+    <!--审核详情-->
+    <item name="web_bottom_check" type="id"/>
+    <item name="web_bottom_check_newdrug" type="id"/>
+    <item name="web_bottom_check_ok" type="id"/>
 </resources>
