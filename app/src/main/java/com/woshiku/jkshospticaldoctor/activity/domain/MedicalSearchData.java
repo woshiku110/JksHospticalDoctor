@@ -48,6 +48,46 @@ public class MedicalSearchData extends PageState{
         this.standard = standard;
     }
 
+    public String getUnit() {
+        return unit;
+    }
+
+    public void setUnit(String unit) {
+        this.unit = unit;
+    }
+
+    public String getAmount() {
+        return amount;
+    }
+
+    public void setAmount(String amount) {
+        this.amount = amount;
+    }
+
+    public String getEleOne() {
+        return eleOne;
+    }
+
+    public void setEleOne(String eleOne) {
+        this.eleOne = eleOne;
+    }
+
+    public String getEleTwo() {
+        return eleTwo;
+    }
+
+    public void setEleTwo(String eleTwo) {
+        this.eleTwo = eleTwo;
+    }
+
+    public String getOrder() {
+        return order;
+    }
+
+    public void setOrder(String order) {
+        this.order = order;
+    }
+
     @Override
     public String toString() {
         return "MedicalSearchData{" +

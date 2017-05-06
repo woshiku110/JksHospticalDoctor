@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import com.andview.refreshview.XRefreshView;
 import com.woshiku.jkshospticaldoctor.R;
+import com.woshiku.jkshospticaldoctor.activity.activity.checkticket.CheckTicketActivity;
 import com.woshiku.jkshospticaldoctor.activity.activity.reception.AppointReceActivity;
 import com.woshiku.jkshospticaldoctor.activity.adapter.fragment.PreorderAdapter;
 import com.woshiku.jkshospticaldoctor.activity.domain.PreorderData;
@@ -170,6 +171,9 @@ public class PreorderFragment extends BaseFragment implements PreorderView, Preo
             bd.putString("intent","loadasset");
             bd.putString("orderId",preorderData.getId());
             intent.putExtras(bd);
+            startActivity(intent);
+        }else{
+            Intent intent = new Intent(mActivity, CheckTicketActivity.class);
             startActivity(intent);
         }
     }

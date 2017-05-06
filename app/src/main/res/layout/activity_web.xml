@@ -37,6 +37,7 @@
         android:id="@id/web_bottom"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="vertical"
         android:layout_alignParentBottom="true">
         <LinearLayout
             android:id="@id/web_bottom_preorder"
@@ -95,7 +96,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="新增加药品"
+                    android:text="新增药品"
                     android:textSize="18sp"
                     android:gravity="center"
                     android:layout_gravity="center"
@@ -112,7 +113,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="核审无误"
+                    android:text="核实无误"
                     android:textSize="18sp"
                     android:gravity="center"
                     android:layout_gravity="center"

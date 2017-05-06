@@ -18,9 +18,11 @@ var prescription = function () {
 
 
 window.onload = function () {
-    loadDataFromWeb('127');
+    loadDataFromWeb(getId());
 }
-
+function getId(){
+    return window.control.getOrderId();
+}
 /**
  * 请求网络数据
  * @param value  订单的ID

@@ -14,4 +14,5 @@
     <dimen name="check_detail_view_item_check_margin">10dp</dimen>
     <dimen name="check_detail_view_item_check_size">16dp</dimen>
     <dimen name="check_detail_top_view_margin">18dp</dimen>
+    <dimen name="check_az_size">18dp</dimen>
 </resources>

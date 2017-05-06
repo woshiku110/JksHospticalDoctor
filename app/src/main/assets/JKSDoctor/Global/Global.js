@@ -8,7 +8,7 @@ var IP = 'http://123.207.243.224';
 var URL = IP+'/jfs1.1/';
 var IMGPATH = 'http://123.207.243.224/File/filebed/';
 var tokenx = 'Sp4GQSyZVDqvhf1i6Mw2.23w86X5bBPlSZZOUDWwnEodRT/Lmto0lw__';
-
+var _veritfyClassName;
 function setToken(value) {
     tokenx = value;
 }

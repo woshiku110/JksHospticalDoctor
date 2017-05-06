@@ -8,4 +8,6 @@
     <dimen name="person_center_item_height">45dp</dimen>
     <dimen name="person_center_line_gap">20dp</dimen>
     <dimen name="person_center_icon">25dp</dimen>
+    <dimen name="check_ticket_margin">20dp</dimen>
+
 </resources>

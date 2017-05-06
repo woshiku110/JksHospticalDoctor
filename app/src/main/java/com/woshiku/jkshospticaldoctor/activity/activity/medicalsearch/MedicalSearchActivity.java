@@ -1,5 +1,7 @@
 package com.woshiku.jkshospticaldoctor.activity.activity.medicalsearch;
 
+import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.KeyEvent;
@@ -7,30 +9,29 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.andview.refreshview.XRefreshView;
+import com.google.gson.Gson;
 import com.woshiku.jkshospticaldoctor.R;
 import com.woshiku.jkshospticaldoctor.activity.BaseActivity;
 import com.woshiku.jkshospticaldoctor.activity.activity.medicalsearch.presenter.MedicalPresenter;
 import com.woshiku.jkshospticaldoctor.activity.activity.medicalsearch.presenter.MedicalPresenterImple;
 import com.woshiku.jkshospticaldoctor.activity.activity.medicalsearch.view.MedicalSearchView;
 import com.woshiku.jkshospticaldoctor.activity.adapter.MedicalSearchAdapter;
-import com.woshiku.jkshospticaldoctor.activity.domain.HoldDialogData;
 import com.woshiku.jkshospticaldoctor.activity.domain.MedicalSearchData;
 import com.woshiku.jkshospticaldoctor.activity.inter.PageState;
 import com.woshiku.jkshospticaldoctor.activity.utils.LogUtil;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
+import common.Global;
 import me.imid.swipebacklayout.lib.SwipeBackLayout;
 
 /**
  * Created by admin on 2017-04-28.
  */
 
-public class MedicalSearchActivity extends BaseActivity implements MedicalSearchView, MedicalSearchAdapter.TextChangeListener {
+public class MedicalSearchActivity extends BaseActivity implements MedicalSearchView, MedicalSearchAdapter.TextChangeListener, MedicalSearchAdapter.OnItemClickListener {
     @InjectView(R.id.multi_xrecycleview)
     XRefreshView xRefreshView;
     @InjectView(R.id.multi_recycleview)
@@ -93,6 +94,7 @@ public class MedicalSearchActivity extends BaseActivity implements MedicalSearch
     private void initDatas(List<MedicalSearchData> mList){
         preorderAdapter = new MedicalSearchAdapter(this,mList);
         preorderAdapter.setTextChangeListener(this);
+        preorderAdapter.setOnItemClickListener(this);
         recyclerView.setAdapter(preorderAdapter);
         presenter.loadData(searchText);//用于第一次加载数据
     }
@@ -167,5 +169,26 @@ public class MedicalSearchActivity extends BaseActivity implements MedicalSearch
     public void textChange(String text) {
         searchText = text;
         presenter.loadData(text);
+    }
+
+    @Override
+    public void onItemClick(final MedicalSearchData medicalSearchData) {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                String[] datas = {medicalSearchData.getNo(),medicalSearchData.getMedicalName(),medicalSearchData.getStandard(),
+                    medicalSearchData.getUnit(),medicalSearchData.getAmount(),medicalSearchData.getEleOne(),medicalSearchData.getEleTwo(),
+                medicalSearchData.getOrder()};
+                Gson gson = new Gson();
+                String res = gson.toJson(datas);
+                LogUtil.print("gson:"+res);
+                Intent intent = new Intent();
+                Bundle bd = new Bundle();
+                bd.putString("res",res);
+                intent.putExtras(bd);
+                setResult(Global.medicalSearchReurn,intent);
+                scrollToFinishActivity();
+            }
+        });
     }
 }

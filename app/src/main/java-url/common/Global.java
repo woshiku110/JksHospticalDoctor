@@ -12,4 +12,7 @@ public class Global {
     public static String _token = "";
     public static String mainAction = "com.woshiku.mainaction";
     public static LoginReturnData loginReturnData;
+    public static final int medicalSearchReurn = 20000;//药品搜索返回页面
+    public static final int medicalSearchEnter = 20001;//药品搜索进入页面
+    public static final String checkReceAction = "com.woshiku.checkReceDetailActivity";
 }

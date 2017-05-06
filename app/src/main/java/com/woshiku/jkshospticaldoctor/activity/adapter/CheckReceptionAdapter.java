@@ -187,6 +187,7 @@ public class CheckReceptionAdapter extends RecyclerView.Adapter<RecyclerView.Vie
             notifyItemRangeInserted(oldDatas.size(),Math.abs(count));
         }
     }
+
     public void deleData(List<CheckReceData> preorderDatas,int index){
         notifyItemRemoved(index);
         preorderDataList = preorderDatas;

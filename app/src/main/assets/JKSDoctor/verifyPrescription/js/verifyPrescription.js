@@ -19,7 +19,6 @@ var prescription = function () {
 
 window.onload = function () {
     loadDataFromWeb(getId());
-    console.log('window load ok');
 }
 
 function getId(){
@@ -71,7 +70,17 @@ function deleteBtnClick(button) {
 function editBtnClick(button) {
     var className = $(button.parentNode.parentNode).attr('class');
     //你修改完成后 掉一下这个函数，传class名字 和 新数量
-    edit(className , 99);
+    /*edit(className , 99);*/
+    _veritfyClassName = className;//把当前量给classname
+    openAndroidDialog();
+}
+
+function openAndroidDialog(){
+    window.control.openAmountDialog();
+}
+
+function androidReviseAmount(amount){
+    edit(_veritfyClassName,amount);
 }
 //编辑成功后 修改UI和数据
 function edit(className , newNumber) {
@@ -81,7 +90,6 @@ function edit(className , newNumber) {
             domEle[6] = newNumber;
             obj.text(newNumber + domEle[3]);
         }
-
     });
 }
 
@@ -91,6 +99,7 @@ function edit(className , newNumber) {
  * @param drug  单个药单的数组
  */
 function addDrug(drug) {
+    drug = JSON.parse(drug);
     objectx[6].push(drug);
     var title = tagBox('录入药单').appendTo($('body'));
     creatDrugBox(drug,'15px').appendTo(title);
@@ -110,16 +119,21 @@ function ok(tokenx) {
 
     CYAjax.post(parameter , "yuyue/MedicinalProcess_doctorAffirm" ,function (res) {
         if(res.success){
+            submitOk(true,"确认成功");
             prompt('确认成功');
         }else {
+            submitOk(true,"确认失败");
             prompt('确认失败');
         }
     },function (error) {
+        submitOk(false,"网络请求失败");
         prompt('网络请求失败');
     });
 }
 
-
+function submitOk(isOk,desc){
+    window.control.checkOk(isOk,desc);
+}
 
 /**
  * 初始化UI
@@ -174,6 +188,7 @@ function creatDrugBox(arr,margin) {
     }).appendTo(parentsBox);
 
     $('<p>' + arr[2] + '</p>').css({
+
         'font-size':'14px',
         'width':'50px'
     }).appendTo(infoBox);

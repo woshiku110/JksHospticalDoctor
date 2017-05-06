@@ -63,4 +63,10 @@
     <item name="web_bottom_check" type="id"/>
     <item name="web_bottom_check_newdrug" type="id"/>
     <item name="web_bottom_check_ok" type="id"/>
+    <!--检查单列表-->
+    <item name="item_check_ticket_title" type="id"/>
+    <item name="item_check_ticket_choose" type="id"/>
+    <item name="item_check_ticket_content" type="id"/>
+    <item name="item_check_ticket_cardview" type="id"/>
+    <item name="check_ticket_azview" type="id"/>
 </resources>

@@ -31,7 +31,7 @@ public class LoginParse {
             }
         }else{
             if(resultListener!=null){
-                resultListener.onFail("获取数据有问题");
+                resultListener.onFail(result.getMsg());
             }
         }
     }

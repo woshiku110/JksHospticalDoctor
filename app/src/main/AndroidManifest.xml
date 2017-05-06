@@ -72,5 +72,19 @@
                   android:screenOrientation="portrait">
 
         </activity>
+        <activity android:name=".activity.activity.lookrecedetail.LookReceDetailActivity"
+                  android:theme="@style/TranslucentTheme"
+                  android:windowSoftInputMode="adjustPan|stateHidden"
+                  android:configChanges="orientation|keyboardHidden|screenSize"
+                  android:screenOrientation="portrait">
+
+        </activity>
+        <activity android:name=".activity.activity.checkticket.CheckTicketActivity"
+                  android:theme="@style/TranslucentTheme"
+                  android:windowSoftInputMode="adjustPan|stateHidden"
+                  android:configChanges="orientation|keyboardHidden|screenSize"
+                  android:screenOrientation="portrait">
+
+        </activity>
     </application>
 </manifest>
