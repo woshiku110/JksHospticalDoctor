@@ -54,7 +54,9 @@ public class FragmentFactory {
      * */
     public static void clearFragments(){
         for(int i=0;i<count;i++){
-            getFragment(i).removeBroadcast();
+            if(getFragment(i) != null){
+                getFragment(i).removeBroadcast();
+            }
         }
         map = new HashMap<>();
     }

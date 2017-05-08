@@ -141,35 +141,73 @@ var CYAjax = {
  * -------------->    Cookie管理     <-----------------
  */
 var CYCookie = {
-    /**
+    get: function(key) {
+        var that = this;
+        var data = window.control.getValue(key);
+        if (that.isJSONStr(data)){
+            return JSON.parse(data);
+        }
+        return data;
+    },
+    set: function(key , value , time , path) {
+        var type = typeof (value);
+        if (type == 'object') {
+            value = JSON.stringify(value);
+        }
+        window.control.setKeyValue(key,value);
+    },
+    clear: function(key , value) {
+    },
+    isJSONStr:function(str) {
+        if (typeof str == 'string') {
+            try {
+                JSON.parse(str);
+                return true;
+            } catch(error) {
+                return false;
+            }
+        }
+        console.log("%c 参数不是字符串", 'color: red');
+    }
+};
+/*var CYCookie = {
+    var that = this;
+    *//**
      * 获取Cookie值
      * @param key  主键
-     */
+     *//*
     get: function(key) {
-        var arr,reg=new RegExp("(^| )"+key+"=([^;]*)(;|$)");
+        console.log("diaoyong get"+key);
+        *//*var arr,reg=new RegExp("(^| )"+key+"=([^;]*)(;|$)");
         if(arr=document.cookie.match(reg)){
             var data =  decodeURIComponent(arr[2]);
             if (this.isJSONStr(data)){
                 return JSON.parse(data);
             }
             return data;
+        }*//*
+        *//*var data = window.control.getValue(String key);
+        if (that.isJSONStr(data)){
+             return JSON.parse(data);
         }
+        return data;*//*
         return null;
     },
-    /**
+    *//**
      * 设置Cookie值
      * @param key    主键
      * @param value  值
      * @param time   时间(string类型 m1 代表1秒 s1 代表1分  h1 代表1小时 d1 代表1天  null则为浏览器关闭清除)
      * @param path   作用域地址(null则为全项目读取)
-     */
+     *//*
     set: function(key , value , time , path) {
+        *//*console.log("diaoyong set");
         var type = typeof (value);
         if (type == 'object') {
             value = JSON.stringify(value);
         }
-
-        path = path == null ? '/' : path;
+        window.control.setKeyValue(key,value);*//*
+        *//*path = path == null ? '/' : path;
 
         if (time != null && typeof (time) == 'string'){
             var firstLetter = time.substring(0,1);
@@ -195,25 +233,24 @@ var CYCookie = {
             document.cookie= key + '='+ value +";expires=" + exp.toGMTString() + ';path=' + path;
         }else {
             document.cookie= key + '='+ value + ';path=' + path;
-        }
-
+        }*//*
     },
-    /**
+    *//**
      * 清除
      * @param key   主键
      * @param path  作用域地址(null则为全项目读取)
-     */
+     *//*
     clear: function (key , path) {
-        path = (path == null || path == undefined) ? '/' : path;
+        *//*path = (path == null || path == undefined) ? '/' : path;
         var exp = new Date();
         exp.setTime(exp.getTime() -1);
-        document.cookie= key + '= ' +";expires=" + exp.toGMTString() + ';path=' + path;
+        document.cookie= key + '= ' +";expires=" + exp.toGMTString() + ';path=' + path;*//*
     },
-    /**
+    *//**
      * 判断是否是JSON格式
      * @param   str 需要判断的字符串
      * @return      布尔值
-     */
+     *//*
     isJSONStr:function(str) {
         if (typeof str == 'string') {
             try {
@@ -226,4 +263,5 @@ var CYCookie = {
         console.log("%c 参数不是字符串", 'color: red');
     }
 
-};
+};*/
+

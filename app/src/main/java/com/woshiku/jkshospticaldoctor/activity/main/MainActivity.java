@@ -32,7 +32,7 @@ public class MainActivity extends BaseActivity {
     protected void initViews() {
         setContentView(R.layout.activity_main);
         ButterKnife.inject(this);
-        LogUtil.print("main activity");
+        LogUtil.print("主活动");
         try{
             Bundle bundle = getIntent().getExtras();
             boolean isLogin = bundle.getBoolean("isLogin");
@@ -40,7 +40,8 @@ public class MainActivity extends BaseActivity {
                 initBottomBar();
                 initFragment();
             }else{//不是从登录页面进来的
-                startActivity(new Intent(this, SplashActivity.class));
+                LogUtil.print("不是从登录页面进来的");
+                startActivity(new Intent(this, SplashActivity.class));//打开闪屏页
                 String msg = RdUtil.readData("logindata");
                 if(!TextUtils.isEmpty(msg)){
                     String loginMsg = RdUtil.readData("loginReturn");
@@ -52,7 +53,8 @@ public class MainActivity extends BaseActivity {
                     initBottomBar();
                     initFragment();
                 }else{
-                    finish();
+                    FragmentFactory.clearFragments();
+                    MainActivity.this.finish();
                 }
             }
         }catch (Exception e){
@@ -70,7 +72,9 @@ public class MainActivity extends BaseActivity {
                 initBottomBar();
                 initFragment();
             }else{
-                finish();
+                LogUtil.print("没有账号,结束主活动");
+                FragmentFactory.clearFragments();
+                MainActivity.this.finish();
             }
         }
     }
@@ -127,7 +131,7 @@ public class MainActivity extends BaseActivity {
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if ((keyCode == KeyEvent.KEYCODE_BACK) )
         {
-           FragmentFactory.clearFragments();
+            FragmentFactory.clearFragments();
             finish();
             return true;
         }

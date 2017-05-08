@@ -83,6 +83,7 @@ function setDefaults(button) {
  * 保存
  */
 function save() {
+    alert('is save');
     var waitAddressStr = $('#WaitAddress').find('textarea').val();
     var seeAddressStr = $('#SeeAddress').find('textarea').val();
 

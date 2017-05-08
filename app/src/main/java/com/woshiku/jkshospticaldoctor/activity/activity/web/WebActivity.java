@@ -1,5 +1,6 @@
 package com.woshiku.jkshospticaldoctor.activity.activity.web;
 import android.app.Activity;
+import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -8,6 +9,7 @@ import com.woshiku.jkshospticaldoctor.activity.BaseActivity;
 import com.woshiku.jkshospticaldoctor.activity.activity.web.presenter.WebPresenter;
 import com.woshiku.jkshospticaldoctor.activity.activity.web.presenter.WebPresenterImple;
 import com.woshiku.jkshospticaldoctor.activity.activity.web.view.WebView;
+import com.woshiku.jkshospticaldoctor.activity.utils.LogUtil;
 import com.woshiku.progresslibrary.RoundCornerProgressBar;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -29,6 +31,8 @@ public abstract class WebActivity extends BaseActivity implements WebView {
     protected RoundCornerProgressBar roundPb;
     @InjectView(R.id.web_panel_webview)
     protected android.webkit.WebView webView;
+    @InjectView(R.id.web_title_concert_txt)
+    protected TextView concertText;
     protected WebPresenter webPresenter;
     protected Activity activity;
     protected abstract void loadChildrenMethod();//用于孩子的初始化
@@ -40,6 +44,7 @@ public abstract class WebActivity extends BaseActivity implements WebView {
         activity = this;
         webPresenter = new WebPresenterImple(this);
         webPresenter.getActivityDatas();
+        LogUtil.print("load webview");
     }
 
     @Override
@@ -52,6 +57,7 @@ public abstract class WebActivity extends BaseActivity implements WebView {
     @Override
     public void setWebTitle(String title) {
         titleView.setText(title);
+        titleChanged(title);
     }
 
     @Override
@@ -92,5 +98,9 @@ public abstract class WebActivity extends BaseActivity implements WebView {
     @Override
     public void loadChild() {
         loadChildrenMethod();
+    }
+
+    public void titleChanged(String title){
+
     }
 }

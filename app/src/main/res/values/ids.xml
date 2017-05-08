@@ -43,6 +43,7 @@
     <item name="web_title_return" type="id"/>
     <item name="web_title_title" type="id"/>
     <item name="web_title_right" type="id"/>
+    <item name="web_title_concert_txt" type="id"/>
     <item name="web_bottom" type="id"/>
     <item name="web_bottom_preorder" type="id"/>
     <item name="web_bottom_preorder_accept" type="id"/>
@@ -69,4 +70,14 @@
     <item name="item_check_ticket_content" type="id"/>
     <item name="item_check_ticket_cardview" type="id"/>
     <item name="check_ticket_azview" type="id"/>
+    <!--确认接单-->
+    <item name="check_order_address_line" type="id"/>
+    <item name="check_order_address_view" type="id"/>
+    <item name="check_order_address_cardview" type="id"/>
+    <item name="check_order_rece_time_cardview" type="id"/>
+    <item name="check_order_rece_ticket_cardview" type="id"/>
+    <item name="check_rece_order_time" type="id"/>
+    <item name="check_order_line" type="id"/>
+    <!--确认接单Item-->
+    <item name="item_confirm_order_txt" type="id"/>
 </resources>

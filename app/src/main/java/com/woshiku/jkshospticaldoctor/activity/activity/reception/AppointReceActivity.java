@@ -8,6 +8,7 @@ import android.webkit.JavascriptInterface;
 import android.widget.LinearLayout;
 import com.woshiku.dialoglib.BackOrderDialog;
 import com.woshiku.jkshospticaldoctor.R;
+import com.woshiku.jkshospticaldoctor.activity.activity.confirmorder.ConfirmOrderActivity;
 import com.woshiku.jkshospticaldoctor.activity.activity.web.WebActivity;
 import com.woshiku.jkshospticaldoctor.activity.utils.LogUtil;
 import com.woshiku.jkshospticaldoctor.activity.utils.ThreadManage;
@@ -57,7 +58,8 @@ public class AppointReceActivity extends WebActivity{
     void userClick(View view){
         switch (view.getId()){
             case R.id.web_bottom_preorder_accept:
-
+                Intent intent = new Intent(this, ConfirmOrderActivity.class);
+                startActivity(intent);
                 break;
             case R.id.web_bottom_preorder_cancel:
                 userBackOrder();

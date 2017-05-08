@@ -17,7 +17,6 @@ public class BaseApplication extends Application {
         super.onCreate();
         x.Ext.init(this);
         application = this;
-        LogUtil.print("on create");
     }
     public static Application getApplication(){
         return application;

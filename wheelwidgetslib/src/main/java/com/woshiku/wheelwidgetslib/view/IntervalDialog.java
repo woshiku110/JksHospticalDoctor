@@ -11,6 +11,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.woshiku.wheelwidgetslib.R;
 import com.woshiku.wheelwidgetslib.utils.IntervalUtil;
@@ -28,6 +29,7 @@ public class IntervalDialog extends PopupWindow{
     int hourIndex = 0,minuteIndex =0;
     List<String> hourList,minuteList;
     WheelView hourWheel,minuteWheel;
+    TextView chooseTimeView;
     Context context;
     private ChooseIntervalListener chooseTimeListener;
     public interface ChooseIntervalListener{
@@ -46,6 +48,7 @@ public class IntervalDialog extends PopupWindow{
         view = View.inflate(context, R.layout.interval_dialog_layout,null);
         view.startAnimation(AnimationUtils.loadAnimation(context,
                 R.anim.fade_ins));
+        chooseTimeView = (TextView)view.findViewById(R.id.wheel_dialog_title);
         ((LinearLayout)view.findViewById(R.id.mywheel_dialog_top)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -143,6 +146,10 @@ public class IntervalDialog extends PopupWindow{
     }
 
     public void showInterval(){
+        showAtLocation(parent, Gravity.LEFT | Gravity.TOP, 0, 0);
+    }
+    public void showInterval(String title){
+        chooseTimeView.setText(title);
         showAtLocation(parent, Gravity.LEFT | Gravity.TOP, 0, 0);
     }
 }

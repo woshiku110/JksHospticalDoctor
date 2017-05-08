@@ -9,6 +9,8 @@ import com.woshiku.jkshospticaldoctor.activity.activity.login.presenter.LoginPre
 import com.woshiku.jkshospticaldoctor.activity.activity.login.presenter.LoginPresenterImple;
 import com.woshiku.jkshospticaldoctor.activity.activity.login.view.LoginView;
 import com.woshiku.jkshospticaldoctor.activity.domain.LoginData;
+import com.woshiku.jkshospticaldoctor.activity.utils.LogUtil;
+
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
@@ -28,6 +30,7 @@ public class LoginActivity extends BaseActivity implements LoginView{
         setContentView(R.layout.activity_login);
         ButterKnife.inject(this);
         loginPresenter = new LoginPresenterImple(this);
+        LogUtil.print("loginActivity");
     }
 
     @Override

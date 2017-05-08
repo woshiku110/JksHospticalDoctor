@@ -76,7 +76,6 @@ public abstract class BaseFragment extends Fragment{
      * 加载显示图片
      * */
     public void displayImageView(ImageView imagewView, String path){
-        LogUtil.print(path);
         ImageOptions imageOptions = new ImageOptions.Builder()
                 .setIgnoreGif(false)//是否忽略gif图。false表示不忽略。不写这句，默认是true
                 .setFailureDrawableId(R.mipmap.img_error)

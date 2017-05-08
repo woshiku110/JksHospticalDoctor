@@ -1,7 +1,9 @@
 package com.woshiku.jkshospticaldoctor.activity.activity.splash;
 
 import android.content.Intent;
+import android.os.Handler;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.animation.AlphaAnimation;
@@ -35,7 +37,6 @@ public class SplashActivity extends BaseActivity implements SplashView {
         ButterKnife.inject(this);
         splashPresenter = new SplashPresenterImple(this);
         splashPresenter.initPage();
-        LogUtil.print("splash activity");
     }
 
     @Override
@@ -45,6 +46,7 @@ public class SplashActivity extends BaseActivity implements SplashView {
 
     @Override
     public void setAnimViewShow() {
+        LogUtil.print("set anim");
         AnimationSet set = new AnimationSet(false);// 动画集合
         AlphaAnimation alpha = new AlphaAnimation(1, 1);// 渐变动画
         alpha.setDuration(1000);// 动画时间
@@ -66,6 +68,7 @@ public class SplashActivity extends BaseActivity implements SplashView {
             }
         });
         lineSplash.startAnimation(set);
+
     }
 
     @Override
@@ -77,21 +80,28 @@ public class SplashActivity extends BaseActivity implements SplashView {
      * */
     @Override
     public void setAnimEnd() {
+        dealApp();
+    }
+    /**
+     * @desc用于处理APP命令
+     * */
+    private void dealApp(){
         String loginMsg = RdUtil.readData("logindata");
+        LogUtil.print("处理闪屏页");
         if(!TextUtils.isEmpty(loginMsg)){//有登录数据,最好重新拿一下token
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    scrollToFinishActivity();
+                    SplashActivity.this.finish();
                 }
             });
         }else{//没有登录数据，进入登录页面
-            Intent intent = new Intent(this, LoginActivity.class);
-            startActivity(intent);
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    scrollToFinishActivity();
+                    Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
+                    startActivity(intent);
+                    SplashActivity.this.finish();
                 }
             });
         }

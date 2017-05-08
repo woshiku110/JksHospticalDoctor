@@ -3,11 +3,14 @@ package com.woshiku.jkshospticaldoctor.activity;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Toast;
+
 import com.woshiku.waitlibrary.WaitDialog;
+
 import me.imid.swipebacklayout.lib.Utils;
 import me.imid.swipebacklayout.lib.app.SwipeBackActivityHelper;
 
@@ -114,4 +117,17 @@ public abstract class BaseActivity extends AppCompatActivity{
             }
         });
     }
+
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        if (ev.getAction() == MotionEvent.ACTION_DOWN) {
+            if (com.woshiku.jkshospticaldoctor.activity.utils.Utils.isFastDoubleClick()) {
+                return true;
+            }
+        }
+        return super.dispatchTouchEvent(ev);
+    }
+
+
 }
