@@ -8,11 +8,15 @@ import com.woshiku.jkshospticaldoctor.activity.inter.PageState;
  */
 
 public class HoldDialogData extends PageState {
-    private String id,name,icon,date,sex,amount;
+    private String id,name,icon,date,sex,amount="",state="";
     private boolean canCall = true;
+    private boolean isReturnDialog = false;//是不是可以返回诊断
+    private boolean isBtEnable = true;
+
     public HoldDialogData(int pageState){
         super.pageState = pageState;
     }
+
     public HoldDialogData(String id, String name, String icon, String date, String sex, String amount) {
         this.id = id;
         this.name = name;
@@ -20,6 +24,16 @@ public class HoldDialogData extends PageState {
         this.date = date;
         this.sex = sex;
         this.amount = amount;
+    }
+
+    public HoldDialogData(String id, String name, String icon, String date, String sex, String amount, String state) {
+        this.id = id;
+        this.name = name;
+        this.icon = icon;
+        this.date = date;
+        this.sex = sex;
+        this.amount = amount;
+        this.state = state;
     }
 
     public String getId() {
@@ -76,6 +90,30 @@ public class HoldDialogData extends PageState {
 
     public void setCanCall(boolean canCall) {
         this.canCall = canCall;
+    }
+
+    public boolean isBtEnable() {
+        return isBtEnable;
+    }
+
+    public void setBtEnable(boolean btEnable) {
+        isBtEnable = btEnable;
+    }
+
+    public boolean isReturnDialog() {
+        return isReturnDialog;
+    }
+
+    public void setReturnDialog(boolean returnDialog) {
+        isReturnDialog = returnDialog;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
     }
 
     @Override

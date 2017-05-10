@@ -8,4 +8,5 @@ public interface CheckTicketPresenter {
     void initPage();
     void firstLoadingPage();
     void loadData(String yyid);
+    void submitData(String ids,String names);
 }

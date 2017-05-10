@@ -9,8 +9,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
-import com.andview.refreshview.recyclerview.BaseRecyclerAdapter;
 import com.woshiku.jkshospticaldoctor.R;
 import com.woshiku.jkshospticaldoctor.activity.domain.PreorderData;
 import com.woshiku.jkshospticaldoctor.activity.utils.LogUtil;
@@ -101,16 +99,27 @@ public class PreorderAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             });
         }else if(holder instanceof TypeTwoHolder){//类型二
             final TypeTwoHolder twoHolder = (TypeTwoHolder)holder;
-            twoHolder.date.setText(preorderDataList.get(position).getDate());
-            twoHolder.name.setText(preorderDataList.get(position).getName());
+            final PreorderData preorderData = preorderDataList.get(position);
+            twoHolder.date.setText(preorderData.getDate());
+            twoHolder.name.setText(preorderData.getName());
             twoHolder.cardView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     if(onItemClickListener != null){
-                        onItemClickListener.onItemClick(preorderDataList.get(position),position);
+                        onItemClickListener.onItemClick(preorderData,position);
                     }
                 }
             });
+            try{
+                if(Integer.parseInt(preorderData.getAmount())>0){
+                    twoHolder.inspectView.setVisibility(View.VISIBLE);
+                }else{
+                    twoHolder.inspectView.setVisibility(View.INVISIBLE);
+                }
+            }catch (Exception e){
+                e.toString();
+                twoHolder.inspectView.setVisibility(View.INVISIBLE);
+            }
             displayImageView(twoHolder.icon, Global.imagePath+preorderDataList.get(position).getIcon());
             if(preorderDataList.get(position).getSex().equals("男")){
                 twoHolder.sex.setBackground(ContextCompat.getDrawable(context,R.mipmap.ico_man));
@@ -152,12 +161,13 @@ public class PreorderAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     }
     class TypeTwoHolder extends RecyclerView.ViewHolder{
         ImageView icon;
-        View sex;
+        View sex,inspectView;
         TextView date,name;
         CardView cardView;
         public TypeTwoHolder(View itemView) {
             super(itemView);
             cardView = (CardView)itemView.findViewById(R.id.item_preorder_card);
+            inspectView = itemView.findViewById(R.id.item_preorder_check);
             icon = (ImageView)itemView.findViewById(R.id.item_preorder_icon);
             sex =  itemView.findViewById(R.id.item_preorder_sex);
             date = (TextView)itemView.findViewById(R.id.item_preorder_date);
@@ -196,4 +206,18 @@ public class PreorderAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         LogUtil.print("index:"+index);
     }
 
+    public void confirmUpdateData(boolean isUndeal,List<PreorderData> preorderDatas,int index){
+        if(isUndeal){
+            notifyItemRemoved(index);
+            preorderDataList = preorderDatas;
+        }else{
+            notifyItemInserted(1);//插入数据
+            preorderDataList = preorderDatas;
+        }
+    }
+
+    public void updateDealedScreen(List<PreorderData> preorderDatas,int index){
+        preorderDataList = preorderDatas;
+        notifyItemChanged(index);
+    }
 }

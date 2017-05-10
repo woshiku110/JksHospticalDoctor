@@ -2,6 +2,7 @@ package com.woshiku.jkshospticaldoctor.activity.base;
 
 import android.app.Application;
 
+import com.woshiku.jkshospticaldoctor.activity.utils.AppManager;
 import com.woshiku.jkshospticaldoctor.activity.utils.LogUtil;
 
 import org.xutils.x;

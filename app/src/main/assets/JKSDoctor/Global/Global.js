@@ -142,6 +142,7 @@ var CYAjax = {
  */
 var CYCookie = {
     get: function(key) {
+        console.log("get key="+key);
         var that = this;
         var data = window.control.getValue(key);
         if (that.isJSONStr(data)){
@@ -150,6 +151,7 @@ var CYCookie = {
         return data;
     },
     set: function(key , value , time , path) {
+        console.log("set key="+key+"and value="+value);
         var type = typeof (value);
         if (type == 'object') {
             value = JSON.stringify(value);

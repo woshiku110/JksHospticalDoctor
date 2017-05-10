@@ -8,19 +8,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.woshiku.jkshospticaldoctor.R;
 import com.woshiku.jkshospticaldoctor.activity.domain.HoldDialogData;
-import com.woshiku.jkshospticaldoctor.activity.domain.PreorderData;
 import com.woshiku.jkshospticaldoctor.activity.utils.LogUtil;
-
 import org.xutils.image.ImageOptions;
 import org.xutils.x;
-
 import java.util.List;
-
 import common.Global;
-
 import static com.woshiku.jkshospticaldoctor.activity.inter.PageState.PageFail;
 import static com.woshiku.jkshospticaldoctor.activity.inter.PageState.PageNoData;
 import static com.woshiku.jkshospticaldoctor.activity.inter.PageState.PageOk;
@@ -76,20 +70,32 @@ public class HoldDialogAdapter  extends RecyclerView.Adapter<RecyclerView.ViewHo
     public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
         if(holder instanceof TypeHolderOne){
             final TypeHolderOne twoHolder = (TypeHolderOne)holder;
-            twoHolder.name.setText(holdDataList.get(position).getName());
-            twoHolder.cardView.setOnClickListener(new View.OnClickListener() {
+            final HoldDialogData holdDialogData = holdDataList.get(position);
+            twoHolder.name.setText(holdDialogData.getName());
+            twoHolder.backBt.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     if(onItemClickListener != null){
-                        onItemClickListener.onItemClick(holdDataList.get(position),position);
+                        onItemClickListener.onItemClick(holdDialogData,position);
                     }
                 }
             });
-            displayImageView(twoHolder.icon, Global.imagePath+holdDataList.get(position).getIcon());
-            if(holdDataList.get(position).getSex().equals("男")){
+            displayImageView(twoHolder.icon, Global.imagePath+holdDialogData.getIcon());
+            if(holdDialogData.getSex().equals("男")){
                 twoHolder.sex.setBackground(ContextCompat.getDrawable(context,R.mipmap.ico_man));
             }else {
                 twoHolder.sex.setBackground(ContextCompat.getDrawable(context,R.mipmap.ico_woman));
+            }
+            if(holdDialogData.isBtEnable()){
+                twoHolder.backBt.setBackgroundColor(ContextCompat.getColor(context,R.color.item_backorder_enable));
+                if(holdDialogData.isReturnDialog()){
+                    twoHolder.backBtText.setText("返回诊断");
+                }else{
+                    twoHolder.backBtText.setText("叫号");
+                }
+            }else{
+                twoHolder.backBtText.setText("叫号");
+                twoHolder.backBt.setBackgroundColor(ContextCompat.getColor(context,R.color.item_backorder_disable));
             }
         }
     }
@@ -116,20 +122,7 @@ public class HoldDialogAdapter  extends RecyclerView.Adapter<RecyclerView.ViewHo
                 .build();
         x.image().bind(imagewView,path,imageOptions);
     }
-    public void updateDatas(List<HoldDialogData> updateList){
-        compareData(holdDataList,updateList);
-        holdDataList = updateList;
-        notifyItemRangeChanged(0,updateList.size());
-    }
-    private void compareData(List<HoldDialogData> oldDatas,List<HoldDialogData> newDatas){
-        int count = oldDatas.size() - newDatas.size();
-        if(count>0){
-            notifyItemRangeRemoved(newDatas.size(),count);
-        }else if(count == 0){
-        }else{
-            notifyItemRangeInserted(oldDatas.size(),Math.abs(count));
-        }
-    }
+
     class TypeHolder extends RecyclerView.ViewHolder{
         public TypeHolder(View itemView) {
             super(itemView);
@@ -141,6 +134,7 @@ public class HoldDialogAdapter  extends RecyclerView.Adapter<RecyclerView.ViewHo
         TextView name;
         CardView cardView;
         CardView backBt;
+        TextView backBtText;
         public TypeHolderOne(View itemView) {
             super(itemView);
             cardView = (CardView)itemView.findViewById(R.id.item_preorder_card);
@@ -148,6 +142,32 @@ public class HoldDialogAdapter  extends RecyclerView.Adapter<RecyclerView.ViewHo
             sex =  itemView.findViewById(R.id.item_preorder_sex);
             name = (TextView)itemView.findViewById(R.id.item_preorder_name);
             backBt = (CardView)itemView.findViewById(R.id.item_hold_back);
+            backBtText = (TextView)itemView.findViewById(R.id.item_hold_back_txt);
+        }
+    }
+
+    /**
+     * @desc 更新界面数据
+     * @param updateList 更新的新数据
+     * */
+    public void updateDatas(List<HoldDialogData> updateList){
+        compareData(holdDataList,updateList);
+        holdDataList = updateList;
+        notifyItemRangeChanged(0,updateList.size());
+    }
+
+    /**
+     * @desc 比较数据
+     * @param oldDatas 更新的新数据
+     * @param newDatas 以前的数据
+     **/
+    private void compareData(List<HoldDialogData> oldDatas,List<HoldDialogData> newDatas){
+        int count = oldDatas.size() - newDatas.size();
+        if(count>0){
+            notifyItemRangeRemoved(newDatas.size(),count);
+        }else if(count == 0){
+        }else{
+            notifyItemRangeInserted(oldDatas.size(),Math.abs(count));
         }
     }
 }

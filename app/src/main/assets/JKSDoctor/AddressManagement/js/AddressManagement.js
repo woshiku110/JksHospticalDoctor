@@ -38,7 +38,7 @@ window.onload = function () {
  * 请求网络数据
  */
 function loadDataFromWeb() {
-    var paramete = {token:tokenx};
+    var paramete = {token:getToken()};
     CYAjax.post(paramete , 'yuyue/DocterPersonalCenter_getDoctorAddress' , function (res) {
         if(res.success){
             var msg = JSON.parse(res.msg);
@@ -55,7 +55,12 @@ function loadDataFromWeb() {
         prompt('网络请求错误');
     });
 }
-
+/*
+ *从客户端拿到token
+ */
+function getToken(){
+    return window.control.getAndroidToken();
+}
 
 /**
  * 初始化UI
@@ -84,8 +89,11 @@ function creatAddress(more1 , more2 ,margins ,isDefault) {
     var halfMargin = parseInt(margins)/2+'px';
 
     var box = $('<div></div>').css({
-        'padding-top':halfMargin
+        'padding-top':halfMargin,
     });
+
+    //box.attr('onclick','itemClick(this)');
+
     $(box).attr("isDefault",isDefault === '1' ? true : false);
 
     /*! 候诊 */
@@ -159,7 +167,10 @@ function creatAddress(more1 , more2 ,margins ,isDefault) {
     return box;
 }
 
-
+function itemClick(more1,more2){
+        alert('on click');
+        window.control.addressReturn(more1,more2);
+};
 /**
  * 点击删除
  */

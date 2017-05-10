@@ -9,6 +9,7 @@ import com.woshiku.jkshospticaldoctor.activity.utils.LogUtil;
 import java.util.HashMap;
 import java.util.Map;
 import butterknife.OnClick;
+import common.Global;
 
 /**
  * Created by admin on 2017-05-04.
@@ -39,6 +40,16 @@ public class AddressManageActivity extends WebActivity{
         public String getValue(String key){
             LogUtil.print("get:"+key+"value:"+saveMap.get(key));
             return saveMap.get(key);
+        }
+
+        @JavascriptInterface
+        public String getAndroidToken(){
+            return Global._token;
+        }
+
+        @JavascriptInterface
+        public void addressReturn(String more1,String more2){
+            LogUtil.print("more1:"+more1+"\t" + "more2"+more2);
         }
     }
 

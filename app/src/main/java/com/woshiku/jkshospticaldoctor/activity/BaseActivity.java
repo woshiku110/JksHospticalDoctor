@@ -9,6 +9,8 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Toast;
 
+import com.woshiku.jkshospticaldoctor.activity.utils.AppManager;
+import com.woshiku.jkshospticaldoctor.activity.utils.LogUtil;
 import com.woshiku.waitlibrary.WaitDialog;
 
 import me.imid.swipebacklayout.lib.Utils;
@@ -65,6 +67,8 @@ public abstract class BaseActivity extends AppCompatActivity{
         initSwipeBack();
         initViews();
         initStatusBar();
+        AppManager.getAppManager().addActivity(this);
+        LogUtil.print("create",this.getClass().getName());
     }
 
     @Override
@@ -129,5 +133,10 @@ public abstract class BaseActivity extends AppCompatActivity{
         return super.dispatchTouchEvent(ev);
     }
 
-
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        LogUtil.print("create","destory"+this.getClass().getName());
+        AppManager.getAppManager().finishActivity(this);
+    }
 }

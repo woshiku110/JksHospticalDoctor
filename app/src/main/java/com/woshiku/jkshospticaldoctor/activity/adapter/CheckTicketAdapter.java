@@ -77,7 +77,7 @@ public class CheckTicketAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             }else{
                 typeTwoHolder.contentView.setText(checkTicketData.getName());
             }
-            typeTwoHolder.chooseView.setOnClickListener(new View.OnClickListener() {
+            typeTwoHolder.cardView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     if(onItemClickListener != null){

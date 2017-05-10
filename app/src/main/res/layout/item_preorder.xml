@@ -15,7 +15,7 @@
             android:id="@id/item_preorder_card"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:background="#F7F7F7"
+            app:cardBackgroundColor="#F7F7F7"
             android:clickable="true"
             app:cardCornerRadius="0dp"
             app:cardElevation="0dp"
@@ -43,6 +43,15 @@
                     android:textSize="18sp"
                     android:text="woshiku"
                     android:layout_marginLeft="5dp"
+                    />
+                <View
+                    android:id="@id/item_preorder_check"
+                    android:layout_toRightOf="@id/item_preorder_name"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:background="@mipmap/ico_inspect"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="15dp"
                     />
                 <TextView
                     android:id="@id/item_preorder_date"

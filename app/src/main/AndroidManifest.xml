@@ -100,5 +100,17 @@
                   android:screenOrientation="portrait">
 
         </activity>
+        <activity android:name=".activity.activity.dealedticketdetail.DealedConfirmDetailActivity"
+                  android:theme="@style/TranslucentTheme"
+                  android:windowSoftInputMode="adjustPan|stateHidden"
+                  android:configChanges="orientation|keyboardHidden|screenSize"
+                  android:screenOrientation="portrait">
+        </activity>
+        <activity android:name=".activity.activity.holddialogdetail.HoldDialogDetailActivity"
+                  android:theme="@style/TranslucentTheme"
+                  android:windowSoftInputMode="adjustPan|stateHidden"
+                  android:configChanges="orientation|keyboardHidden|screenSize"
+                  android:screenOrientation="portrait">
+        </activity>
     </application>
 </manifest>

@@ -23,6 +23,7 @@
     <item name="item_preorder_sex" type="id"/>
     <item name="item_preorder_date" type="id"/>
     <item name="item_preorder_card" type="id"/>
+    <item name="item_preorder_check" type="id"/>
     <!--fragment个人中心-->
     <item name="item_personal_one_icon" type="id"/>
     <item name="item_personal_interval" type="id"/>
@@ -34,6 +35,7 @@
     <item name="item_personal_rece_history" type="id"/>
     <!--候诊列表-->
     <item name="item_hold_back" type="id"/>
+    <item name="item_hold_back_txt" type="id"/>
     <!--接诊时间-->
     <item name="rece_time_datepicker_line" type="id"/>
     <!--webview的id-->
@@ -64,6 +66,10 @@
     <item name="web_bottom_check" type="id"/>
     <item name="web_bottom_check_newdrug" type="id"/>
     <item name="web_bottom_check_ok" type="id"/>
+    <!--接诊详情-->
+    <item name="web_confirm_detail" type="id"/>
+    <item name="web_confirm_detail_backOrder" type="id"/>
+    <item name="web_confirm_detail_checkTicket" type="id"/>
     <!--检查单列表-->
     <item name="item_check_ticket_title" type="id"/>
     <item name="item_check_ticket_choose" type="id"/>
@@ -78,6 +84,13 @@
     <item name="check_order_rece_ticket_cardview" type="id"/>
     <item name="check_rece_order_time" type="id"/>
     <item name="check_order_line" type="id"/>
+    <item name="check_order_ticket_desc" type="id"/>
+    <item name="check_order_bt_sure" type="id"/>
     <!--确认接单Item-->
     <item name="item_confirm_order_txt" type="id"/>
+    <!--候诊详情webbottom-->
+    <item name="hold_dialog_detail_line" type="id"/>
+    <item name="hold_dialog_detail_check" type="id"/>
+    <item name="hold_dialog_detail_meet" type="id"/>
+    <item name="hold_dialog_detail_submit" type="id"/>
 </resources>

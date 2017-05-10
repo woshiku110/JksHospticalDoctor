@@ -1,4 +1,4 @@
-package com.woshiku.jkshospticaldoctor.activity.activity.reception;
+package com.woshiku.jkshospticaldoctor.activity.activity.dealedticketdetail;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,7 +8,7 @@ import android.webkit.JavascriptInterface;
 import android.widget.LinearLayout;
 import com.woshiku.dialoglib.BackOrderDialog;
 import com.woshiku.jkshospticaldoctor.R;
-import com.woshiku.jkshospticaldoctor.activity.activity.confirmorder.ConfirmOrderActivity;
+import com.woshiku.jkshospticaldoctor.activity.activity.checkticket.CheckTicketActivity;
 import com.woshiku.jkshospticaldoctor.activity.activity.web.WebActivity;
 import com.woshiku.jkshospticaldoctor.activity.utils.LogUtil;
 import com.woshiku.jkshospticaldoctor.activity.utils.ThreadManage;
@@ -22,12 +22,14 @@ import parse.BackOrderParse;
 
 /**
  * Created by admin on 2017-04-25.
- * @desc 预约接诊活动
+ * @desc 确认接单的详情界面
  */
 
-public class AppointReceActivity extends WebActivity{
-    @InjectView(R.id.web_bottom_preorder)
+public class DealedConfirmDetailActivity extends WebActivity{
+    @InjectView(R.id.web_confirm_detail)
     LinearLayout preorderLine;
+    @InjectView(R.id.web_confirm_detail_checkTicket)
+    LinearLayout checkTicketLine;
     String orderId;
     CommonUrl commonUrl;
     @Override
@@ -35,7 +37,13 @@ public class AppointReceActivity extends WebActivity{
         commonUrl = new CommonUrl();
         Bundle bd = getIntent().getExtras();
         orderId = bd.getString("orderId");
-        LogUtil.print("orderId:"+orderId);
+        int amount = bd.getInt("amount");
+        LogUtil.print("amount"+amount);
+        if(amount >= 1){
+            checkTicketLine.setEnabled(false);
+        }else{
+            checkTicketLine.setEnabled(true);
+        }
         webView.addJavascriptInterface(new JsInteration(), "control");
         preorderLine.setVisibility(View.VISIBLE);
     }
@@ -54,17 +62,18 @@ public class AppointReceActivity extends WebActivity{
 
     }
 
-    @OnClick({R.id.web_title_return,R.id.web_bottom_preorder_accept,R.id.web_bottom_preorder_cancel})
+    @OnClick({R.id.web_title_return,R.id.web_confirm_detail_backOrder,R.id.web_confirm_detail_checkTicket})
     void userClick(View view){
         switch (view.getId()){
-            case R.id.web_bottom_preorder_accept:
-                Intent intent = new Intent(this, ConfirmOrderActivity.class);
+            case R.id.web_confirm_detail_checkTicket:
+                Intent intent = new Intent(this, CheckTicketActivity.class);
                 Bundle bundle = new Bundle();
+                bundle.putBoolean("isChecked",true);
                 bundle.putString("orderId",orderId);
                 intent.putExtras(bundle);
                 startActivity(intent);
                 break;
-            case R.id.web_bottom_preorder_cancel:
+            case R.id.web_confirm_detail_backOrder:
                 userBackOrder();
                 break;
             case R.id.web_title_return:
@@ -85,7 +94,7 @@ public class AppointReceActivity extends WebActivity{
      * @desc 用户退单
      * */
     private void userBackOrder(){
-        new BackOrderDialog(AppointReceActivity.this,preorderLine)
+        new BackOrderDialog(DealedConfirmDetailActivity.this,preorderLine)
                 .setUserChooseListener(new BackOrderDialog.UserChooseListener() {
                     @Override
                     public void userChoose(final String msg) {
@@ -106,7 +115,7 @@ public class AppointReceActivity extends WebActivity{
                                                 bd.putString("intent","preorderUndeal");
                                                 bd.putString("orderId",orderId);
                                                 intent.putExtras(bd);
-                                                AppointReceActivity.this.sendBroadcast(intent);
+                                                DealedConfirmDetailActivity.this.sendBroadcast(intent);
                                                 toastShort("退单成功");
                                                 closeDialog();
                                                 scrollToFinishActivity();

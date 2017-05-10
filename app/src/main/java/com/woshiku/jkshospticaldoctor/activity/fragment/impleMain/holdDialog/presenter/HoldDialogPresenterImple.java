@@ -1,5 +1,8 @@
 package com.woshiku.jkshospticaldoctor.activity.fragment.impleMain.holdDialog.presenter;
 
+import android.app.Activity;
+
+import com.woshiku.jkshospticaldoctor.activity.domain.HoldDialogData;
 import com.woshiku.jkshospticaldoctor.activity.fragment.impleMain.holdDialog.model.HoldDialogModel;
 import com.woshiku.jkshospticaldoctor.activity.fragment.impleMain.holdDialog.model.HoldDialogModelImple;
 import com.woshiku.jkshospticaldoctor.activity.fragment.impleMain.holdDialog.view.HoldDialogView;
@@ -31,6 +34,12 @@ public class HoldDialogPresenterImple implements HoldDialogPresenter,HoldDialogM
     public void loadData() {
         holdDialogModel.loadData(this);
     }
+
+    @Override
+    public void doctorTreatMent(HoldDialogData holdDialogData) {
+        holdDialogModel.doctorTreatMent(holdDialogData,this);
+    }
+
     /**
      * @desc 以下是视图类接口
      * */
@@ -67,5 +76,21 @@ public class HoldDialogPresenterImple implements HoldDialogPresenter,HoldDialogM
         if(preorderView != null){
             preorderView.loadOk(isUndeal,object);
         }
+    }
+
+    @Override
+    public void onDoctorTreat(boolean isSuccess, HoldDialogData holdDialogData) {
+        if(preorderView != null){
+            preorderView.doctorTreat(isSuccess,holdDialogData);
+        }
+    }
+
+
+    @Override
+    public Activity onActivity() {
+        if(preorderView != null){
+            return preorderView.onGetActivity();
+        }
+        return null;
     }
 }

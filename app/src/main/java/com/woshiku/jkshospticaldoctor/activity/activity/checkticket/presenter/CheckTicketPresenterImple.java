@@ -30,6 +30,12 @@ public class CheckTicketPresenterImple implements CheckTicketPresenter,CheckTick
     public void loadData(String yyid) {
         checkTicketModel.loadData(yyid,this);
     }
+
+    @Override
+    public void submitData(String ids, String names) {
+        checkTicketModel.submitData(ids,names,this);
+    }
+
     /*以下是视图接口*/
     @Override
     public void onInitPage() {
@@ -63,6 +69,27 @@ public class CheckTicketPresenterImple implements CheckTicketPresenter,CheckTick
     public void onLoadOk(Object object) {
         if(checkTicketView != null){
             checkTicketView.loadOk(object);
+        }
+    }
+
+    @Override
+    public void onOpenDialog() {
+        if(checkTicketView != null){
+            checkTicketView.dialogOpen();
+        }
+    }
+
+    @Override
+    public void onCloseDialog() {
+        if(checkTicketView != null){
+            checkTicketView.dialogClose();
+        }
+    }
+
+    @Override
+    public void onSubmitPageState(boolean isOk) {
+        if(checkTicketView != null){
+            checkTicketView.submitPageState(isOk);
         }
     }
 }

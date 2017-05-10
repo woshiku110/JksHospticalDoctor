@@ -87,7 +87,6 @@ function edit(className , newNumber) {
     $(objectx[6]).each(function (index,domEle) {
         if (domEle[6] == className){
             var obj = $('.'+className+' p.number');
-            domEle[6] = newNumber;
             obj.text(newNumber + domEle[3]);
         }
     });

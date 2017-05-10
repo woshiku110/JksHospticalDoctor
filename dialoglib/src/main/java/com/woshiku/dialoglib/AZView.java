@@ -7,6 +7,7 @@ import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -66,7 +67,7 @@ public class AZView extends LinearLayout{
                 }
             });
             int size = (int)getContext().getResources().getDimension(R.dimen.check_az_size);
-            LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(size, size);
+            LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, size);
             addView(textView,lp);
         }
     }

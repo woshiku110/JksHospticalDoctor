@@ -7,9 +7,10 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+
 import com.andview.refreshview.XRefreshView;
 import com.woshiku.jkshospticaldoctor.R;
-import com.woshiku.jkshospticaldoctor.activity.activity.checkticket.CheckTicketActivity;
+import com.woshiku.jkshospticaldoctor.activity.activity.dealedticketdetail.DealedConfirmDetailActivity;
 import com.woshiku.jkshospticaldoctor.activity.activity.reception.AppointReceActivity;
 import com.woshiku.jkshospticaldoctor.activity.adapter.fragment.PreorderAdapter;
 import com.woshiku.jkshospticaldoctor.activity.domain.PreorderData;
@@ -19,8 +20,10 @@ import com.woshiku.jkshospticaldoctor.activity.fragment.impleMain.preorder.prese
 import com.woshiku.jkshospticaldoctor.activity.fragment.impleMain.preorder.view.PreorderView;
 import com.woshiku.jkshospticaldoctor.activity.inter.PageState;
 import com.woshiku.jkshospticaldoctor.activity.utils.LogUtil;
+
 import java.util.ArrayList;
 import java.util.List;
+
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 /**
@@ -173,7 +176,20 @@ public class PreorderFragment extends BaseFragment implements PreorderView, Preo
             intent.putExtras(bd);
             startActivity(intent);
         }else{
-            Intent intent = new Intent(mActivity, CheckTicketActivity.class);
+            Intent intent = new Intent(mActivity, DealedConfirmDetailActivity.class);
+            Bundle bd = new Bundle();
+            bd.putString("title","预约接诊");
+            bd.putString("loadUrl","JKSDoctor/MentDiagnose/MentDiagnose.html");
+            bd.putString("intent","loadasset");
+            bd.putString("orderId",preorderData.getId());
+            int amount = 0;
+            try{
+                amount = Integer.parseInt(preorderData.getAmount());
+            }catch (Exception e){
+
+            }
+            bd.putInt("amount",amount);
+            intent.putExtras(bd);
             startActivity(intent);
         }
     }
@@ -203,6 +219,7 @@ public class PreorderFragment extends BaseFragment implements PreorderView, Preo
                     loadNoData(isUndeal);
                 }else{
                     loadOk(isUndeal,dealedList);
+                    LogUtil.print("dealed:"+dealedList.toString());
                 }
             }else{
                 loadFail(isUndeal);
@@ -216,33 +233,113 @@ public class PreorderFragment extends BaseFragment implements PreorderView, Preo
     protected void dealBroadcastRece(Intent intent) {
         Bundle bundle = intent.getExtras();
         String intentStr = bundle.getString("intent");
-        final String orderId = bundle.getString("orderId");
         if(intentStr.equals("preorderUndeal")){
+            final String orderId = bundle.getString("orderId");
             LogUtil.print("删除orderId"+orderId);
             mActivity.runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    deleData(orderId);
+                    deleData(isUndealCheck,orderId);
                 }
             });
+        }else if(intentStr.equals("preorderCheck")){//用户提交了订单并且开了检查单
+            int amount = bundle.getInt("checkAmount");
+            String orderId = bundle.getString("orderId");
+            dealConfirmOrder(amount,orderId);
+        }else if(intentStr.equals("checkUndeal")){
+            final String orderId = bundle.getString("orderId");
+            updateDealedScreen(orderId);
         }
     }
 
-    private void deleData(String orderId){
+    private void deleData(boolean isUndeal,String orderId){
+        LogUtil.print("isUndeal"+isUndeal+"\t"+"orderId:"+orderId);
+        int index = -1;
+        if(isUndeal){
+            index = getDeleIndex(undealList,orderId);
+        }else{
+            index = getDeleIndex(dealedList,orderId);
+        }
+        if(index == -1){
+            return;
+        }
+        LogUtil.print("isUndeal two"+isUndeal+"\t"+"orderId:"+orderId);
+        if(isUndeal){
+            undealList.remove(index);
+            PreorderData preorderData = showList.get(0);
+            showList = new ArrayList<>();
+            showList.add(preorderData);
+            if(undealList.size() >= 1){
+                showList.addAll(undealList);
+            }else{
+                showList.add(new PreorderData(false,PageState.PageNoData));
+            }
+            preorderAdapter.deleData(showList,index+1);
+        }else{
+            dealedList.remove(index);
+            PreorderData preorderData = showList.get(0);
+            showList = new ArrayList<>();
+            showList.add(preorderData);
+            if(dealedList.size() >= 1){
+                showList.addAll(dealedList);
+            }else{
+                showList.add(new PreorderData(true,PageState.PageNoData));
+            }
+            preorderAdapter.deleData(showList,index+1);
+        }
+    }
+    /**
+     * @desc 用于处理确认订单并且改变列表
+     * */
+    private void dealConfirmOrder(int amount,String orderId){
         int index = getDeleIndex(undealList,orderId);
         if(index == -1){
             return;
         }
+        PreorderData preorderData = undealList.get(index);
+        preorderData.setChoose(false);
+        LogUtil.print("confirm order:"+preorderData.toString());
+        preorderData.setAmount(amount+"");
         undealList.remove(index);
+        dealedList.add(0,preorderData);
+        LogUtil.print("dealed confirm:"+dealedList.toString());
+        PreorderData firstData = showList.get(0);
+        showList = new ArrayList<>();
+        if(isUndealCheck){//待处理
+            showList.add(firstData);
+            if(undealList.size() >= 1){
+                showList.addAll(undealList);
+            }else{
+                showList.add(new PreorderData(false,PageState.PageNoData));
+            }
+        }else{//已处理
+            showList.add(firstData);
+            if(dealedList.size() >= 1){
+                showList.addAll(dealedList);
+            }else{
+                showList.add(new PreorderData(true,PageState.PageNoData));
+            }
+        }
+        preorderAdapter.confirmUpdateData(isUndealCheck,showList,index+1);
+    }
+    /**
+     * @desc 更新检查单已处理界面，为检查状态。
+     * */
+    private void updateDealedScreen(String orderId){
+        int index = getDeleIndex(dealedList,orderId);
+        if(index == -1){
+            return;
+        }
+        dealedList.get(index).setAmount("2");
         PreorderData preorderData = showList.get(0);
         showList = new ArrayList<>();
         showList.add(preorderData);
-        if(undealList.size() >= 1){
-            showList.addAll(undealList);
+        if(dealedList.size() >= 1){
+            showList.addAll(dealedList);
         }else{
-            showList.add(new PreorderData(false,PageState.PageNoData));
+            showList.add(new PreorderData(true,PageState.PageNoData));
         }
-        preorderAdapter.deleData(showList,index+1);
+        preorderAdapter.updateDealedScreen(showList,index+1);
     }
     //得到要删除用的索引
     private int getDeleIndex(List<PreorderData> newDatas,String orderId){

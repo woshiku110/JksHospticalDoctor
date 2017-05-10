@@ -14,6 +14,7 @@ import com.woshiku.jkshospticaldoctor.activity.BaseActivity;
 import com.woshiku.jkshospticaldoctor.activity.activity.splash.SplashActivity;
 import com.woshiku.jkshospticaldoctor.activity.domain.LoginReturnData;
 import com.woshiku.jkshospticaldoctor.activity.fragment.impleMain.FragmentFactory;
+import com.woshiku.jkshospticaldoctor.activity.utils.AppManager;
 import com.woshiku.jkshospticaldoctor.activity.utils.LogUtil;
 import com.woshiku.jkshospticaldoctor.activity.utils.RdUtil;
 import com.woshiku.jkshospticaldoctor.activity.view.NoSmoothViewPager;
@@ -132,6 +133,7 @@ public class MainActivity extends BaseActivity {
         if ((keyCode == KeyEvent.KEYCODE_BACK) )
         {
             FragmentFactory.clearFragments();
+            AppManager.getAppManager().finishAllActivity();
             finish();
             return true;
         }

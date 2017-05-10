@@ -20,6 +20,7 @@ import inter.ResultListener;
 public class HoldDialoglParse {
     public static void holdDialogParse(Result msg, ResultListener resultListener){
         if(msg.isSuccess()){
+            LogUtil.print("hold dialog"+msg.getMsg());
             parseMsg(msg.getMsg(),resultListener);
         }else{
             resultListener.onFail("parse fail");
@@ -62,6 +63,6 @@ public class HoldDialoglParse {
      * @desc 解析单个message
      * */
     private static HoldDialogData parseMessage(String[] strs){
-        return new HoldDialogData(strs[0],strs[1],strs[2],strs[3],strs[4],strs[5]);
+        return new HoldDialogData(strs[0],strs[1],strs[2],strs[3],strs[4],strs[5],strs[6]);
     }
 }

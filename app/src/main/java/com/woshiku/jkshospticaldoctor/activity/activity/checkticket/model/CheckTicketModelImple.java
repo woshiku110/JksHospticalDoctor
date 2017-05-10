@@ -12,7 +12,9 @@ import java.util.List;
 import java.util.Map;
 import inter.ResultListener;
 import param.CheckTicketParam;
+import param.DoctorCreateOrderParam;
 import parse.CheckTicketParse;
+import parse.DoctorCreateOrderParse;
 
 /**
  * Created by admin on 2017-05-05.
@@ -31,6 +33,11 @@ public class CheckTicketModelImple implements CheckTicketModel{
     @Override
     public void loadData(String yyid,CheckTicketModelListener checkTicketModelListener) {
         loadUrlData(yyid,checkTicketModelListener);
+    }
+
+    @Override
+    public void submitData(String ids, String names, CheckTicketModelListener checkTicketModelListener) {
+        loadUrlTwo(ids,names,checkTicketModelListener);
     }
 
     private void loadUrlData(final String yyid,final CheckTicketModelListener checkTicketModelListener){
@@ -58,6 +65,28 @@ public class CheckTicketModelImple implements CheckTicketModel{
         });
     }
 
+    private void loadUrlTwo(final String ids, final String names, final CheckTicketModelListener checkTicketModelListener){
+        ThreadManage.getInstance().carry(new Runnable() {
+            @Override
+            public void run() {
+                checkTicketModelListener.onOpenDialog();
+                Result result = commonUrl.loadUrlAsc(DoctorCreateOrderParam.doctorCreateOrder(ids,names));
+                DoctorCreateOrderParse.createOrder(result, new ResultListener() {
+                    @Override
+                    public void onSuccess(Object obj) {
+                        checkTicketModelListener.onSubmitPageState(true);
+                        checkTicketModelListener.onCloseDialog();
+                    }
+
+                    @Override
+                    public void onFail(Object obj) {
+                        checkTicketModelListener.onSubmitPageState(false);
+                        checkTicketModelListener.onCloseDialog();
+                    }
+                });
+            }
+        });
+    }
     private List<CheckTicketData> tidyData(List<CheckTicketData> dataList){
         for(int i=0;i<dataList.size();i++){
             String cc = new PinyinComparator().getPingYin(dataList.get(i).getName());
