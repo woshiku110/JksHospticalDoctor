@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/relate_pop"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:visibility="invisible">
+    <LinearLayout
+        android:id="@+id/lin_top"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal"
+        android:background="#aacccccc">
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/virutre_bottom"
+        android:layout_below="@+id/lin_top"
+        android:orientation="vertical"
+        android:background="@color/colorWhite">
+        <com.woshiku.albumlibrary.view.AlbumListView
+            android:id="@+id/album_listview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:divider="@null"
+            android:background="@null">
+
+        </com.woshiku.albumlibrary.view.AlbumListView>
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/virutre_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true"
+        >
+
+    </LinearLayout>
+</RelativeLayout>

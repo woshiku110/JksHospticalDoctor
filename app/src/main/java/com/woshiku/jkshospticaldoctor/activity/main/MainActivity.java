@@ -17,10 +17,19 @@ import com.woshiku.jkshospticaldoctor.activity.fragment.impleMain.FragmentFactor
 import com.woshiku.jkshospticaldoctor.activity.utils.AppManager;
 import com.woshiku.jkshospticaldoctor.activity.utils.LogUtil;
 import com.woshiku.jkshospticaldoctor.activity.utils.RdUtil;
+import com.woshiku.jkshospticaldoctor.activity.utils.ThreadManage;
 import com.woshiku.jkshospticaldoctor.activity.view.NoSmoothViewPager;
+import com.woshiku.urllibrary.domain.Result;
+import com.woshiku.urllibrary.url.base.CommonUrl;
+
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import common.Global;
+import inter.ResultListener;
+import param.DefaultAddressParam;
+import param.QueryDateParam;
+import parse.DefaultAddressParse;
+import parse.QueryDateParse;
 
 public class MainActivity extends BaseActivity {
     @InjectView(R.id.main_bottom_bar)
@@ -34,53 +43,77 @@ public class MainActivity extends BaseActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.inject(this);
         LogUtil.print("主活动");
-        try{
-            Bundle bundle = getIntent().getExtras();
-            boolean isLogin = bundle.getBoolean("isLogin");
-            if(isLogin){//从登录页面进来的
-                initBottomBar();
-                initFragment();
-            }else{//不是从登录页面进来的
-                LogUtil.print("不是从登录页面进来的");
-                startActivity(new Intent(this, SplashActivity.class));//打开闪屏页
-                String msg = RdUtil.readData("logindata");
-                if(!TextUtils.isEmpty(msg)){
-                    String loginMsg = RdUtil.readData("loginReturn");
-                    if(!TextUtils.isEmpty(loginMsg)){
-                        Gson gson = new Gson();
-                        Global.loginReturnData = gson.fromJson(loginMsg, LoginReturnData.class);
-                        Global._token = Global.loginReturnData.token;
+        ThreadManage.getInstance().carry(new InitPage());
+    }
+
+    class InitPage implements Runnable{
+
+        @Override
+        public void run() {
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    try{
+                        Bundle bundle = getIntent().getExtras();
+                        boolean isLogin = bundle.getBoolean("isLogin");
+                        if(isLogin){//从登录页面进来的
+                            String loginMsg = RdUtil.readData("loginReturn");
+                            if(!TextUtils.isEmpty(loginMsg)){
+                                Gson gson = new Gson();
+                                Global.loginReturnData = gson.fromJson(loginMsg, LoginReturnData.class);
+                                Global._token = Global.loginReturnData.token;
+                            }
+                            initBottomBar();
+                            initFragment();
+                            initQueryDate();
+                            initGetDefaultAddr();
+                        }else{//不是从登录页面进来的
+                            LogUtil.print("不是从登录页面进来的");
+                            startActivity(new Intent(MainActivity.this, SplashActivity.class));//打开闪屏页
+                            String msg = RdUtil.readData("logindata");
+                            if(!TextUtils.isEmpty(msg)){
+                                String loginMsg = RdUtil.readData("loginReturn");
+                                if(!TextUtils.isEmpty(loginMsg)){
+                                    Gson gson = new Gson();
+                                    Global.loginReturnData = gson.fromJson(loginMsg, LoginReturnData.class);
+                                    Global._token = Global.loginReturnData.token;
+                                }
+                                initBottomBar();
+                                initFragment();
+                                initQueryDate();
+                                initGetDefaultAddr();
+                            }else{
+                                FragmentFactory.clearFragments();
+                                MainActivity.this.finish();
+                            }
+                        }
+                    }catch (Exception e){
+                        //不是从登录页面进来的
+                        LogUtil.print("闪屏页面进入");
+                        startActivity(new Intent(MainActivity.this, SplashActivity.class));
+                        String msg = RdUtil.readData("logindata");
+                        if(!TextUtils.isEmpty(msg)){
+                            String loginMsg = RdUtil.readData("loginReturn");
+                            if(!TextUtils.isEmpty(loginMsg)){
+                                Gson gson = new Gson();
+                                Global.loginReturnData = gson.fromJson(loginMsg, LoginReturnData.class);
+                                Global._token = Global.loginReturnData.token;
+                            }
+                            initBottomBar();
+                            initFragment();
+                            initQueryDate();
+                            initGetDefaultAddr();
+                        }else{
+                            LogUtil.print("没有账号,结束主活动");
+                            FragmentFactory.clearFragments();
+                            MainActivity.this.finish();
+                        }
                     }
-                    initBottomBar();
-                    initFragment();
-                }else{
-                    FragmentFactory.clearFragments();
-                    MainActivity.this.finish();
                 }
-            }
-        }catch (Exception e){
-            //不是从登录页面进来的
-            LogUtil.print("闪屏页面进入");
-            startActivity(new Intent(this, SplashActivity.class));
-            String msg = RdUtil.readData("logindata");
-            if(!TextUtils.isEmpty(msg)){
-                String loginMsg = RdUtil.readData("loginReturn");
-                if(!TextUtils.isEmpty(loginMsg)){
-                    Gson gson = new Gson();
-                    Global.loginReturnData = gson.fromJson(loginMsg, LoginReturnData.class);
-                    Global._token = Global.loginReturnData.token;
-                }
-                initBottomBar();
-                initFragment();
-            }else{
-                LogUtil.print("没有账号,结束主活动");
-                FragmentFactory.clearFragments();
-                MainActivity.this.finish();
-            }
+            });
         }
     }
     private void initBottomBar(){
-        bottomTabBar.setTabbarNews(1,true,5);
         bottomTabBar.setTabbarClickListener(new BottomTabBar.TabbarClickListener(){
             @Override
             public void tabbarClick(int index) {
@@ -98,7 +131,30 @@ public class MainActivity extends BaseActivity {
         viewPager.setAdapter(new MainPage(MainActivity.this.getSupportFragmentManager()));
         viewPager.setOffscreenPageLimit(maxPage);
     }
-
+    /**
+     *获取查询日期
+     */
+    private void initQueryDate(){
+        ThreadManage.getInstance().carry(new Runnable() {
+            @Override
+            public void run() {
+                Result result = new CommonUrl().loadUrlAsc(QueryDateParam.queryDate());
+                QueryDateParse.queryDate(result);
+            }
+        });
+    }
+    /**
+     * 获取默认地址
+     * */
+    private void initGetDefaultAddr(){
+        ThreadManage.getInstance().carry(new Runnable() {
+            @Override
+            public void run() {
+                Result result = new CommonUrl().loadUrlAsc(DefaultAddressParam.defaultAddr());
+                DefaultAddressParse.defaultAddr(result);
+            }
+        });
+    }
     class MainPage extends FragmentStatePagerAdapter{
 
         public MainPage(FragmentManager fm) {

@@ -93,12 +93,23 @@ public class MonthView extends View {
     private List<String> dateSelected = new ArrayList<>();
     private int lastSelectedSize = -1;
     private DateChooseListener dateChooseListener;
+    private UserChooseDateListener userChooseDateListener;
+    public boolean isAdd = false;
+    String selectedDate;
     public interface DateChooseListener{
         void dateChoose(List<String> dateList);
     }
     public void setDateChooseListener(DateChooseListener dateChooseListener){
         this.dateChooseListener = dateChooseListener;
     }
+    public interface UserChooseDateListener{
+        void userChoose(boolean add,String date);
+    }
+
+    public void setUserChooseDateListener(UserChooseDateListener userChooseDateListener) {
+        this.userChooseDateListener = userChooseDateListener;
+    }
+
     public MonthView(Context context) {
         super(context);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
@@ -333,12 +344,16 @@ public class MonthView extends View {
     }
 
     private void drawBGCircle(Canvas canvas, BGCircle circle) {
-        canvas.save();
-        canvas.translate(circle.getX() - circle.getRadius() / 2,
-                circle.getY() - circle.getRadius() / 2);
-        circle.getShape().getShape().resize(circle.getRadius(), circle.getRadius());
-        circle.getShape().draw(canvas);
-        canvas.restore();
+        try{
+            canvas.save();
+            canvas.translate(circle.getX() - circle.getRadius() / 2,
+                    circle.getY() - circle.getRadius() / 2);
+            circle.getShape().getShape().resize(circle.getRadius(), circle.getRadius());
+            circle.getShape().draw(canvas);
+            canvas.restore();
+        }catch (Exception e){
+
+        }
     }
 
     private void draw(Canvas canvas, int x, int y, int year, int month) {
@@ -789,6 +804,9 @@ public class MonthView extends View {
                             dateSelected.remove(date);
                             //日期选择监听器
                             if(dateChooseListener!=null){
+                                //用户选中的日期
+                                isAdd = false;
+                                selectedDate = date;
                                 if(lastSelectedSize!=dateSelected.size()){
                                     lastSelectedSize = dateSelected.size();
                                     dateChooseListener.dateChoose(dateSelected);
@@ -820,6 +838,8 @@ public class MonthView extends View {
                                 dateSelected.add(date);
                                 //日期选择监听器
                                 if(dateChooseListener!=null){
+                                    isAdd = true;
+                                    selectedDate = date;
                                     if(lastSelectedSize!=dateSelected.size()){
                                         lastSelectedSize = dateSelected.size();
                                         dateChooseListener.dateChoose(dateSelected);

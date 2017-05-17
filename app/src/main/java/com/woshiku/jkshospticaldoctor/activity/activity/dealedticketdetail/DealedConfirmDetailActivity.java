@@ -7,8 +7,10 @@ import android.view.View;
 import android.webkit.JavascriptInterface;
 import android.widget.LinearLayout;
 import com.woshiku.dialoglib.BackOrderDialog;
+import com.woshiku.dialoglib.ScaleImagePop;
 import com.woshiku.jkshospticaldoctor.R;
 import com.woshiku.jkshospticaldoctor.activity.activity.checkticket.CheckTicketActivity;
+import com.woshiku.jkshospticaldoctor.activity.activity.reception.AppointReceActivity;
 import com.woshiku.jkshospticaldoctor.activity.activity.web.WebActivity;
 import com.woshiku.jkshospticaldoctor.activity.utils.LogUtil;
 import com.woshiku.jkshospticaldoctor.activity.utils.ThreadManage;
@@ -55,6 +57,16 @@ public class DealedConfirmDetailActivity extends WebActivity{
         public String getOrderId(){
             LogUtil.print("orderId:"+orderId);
             return orderId;
+        }
+        @JavascriptInterface
+        public void showPic(final String pic){
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    LogUtil.print("pic",pic);
+                    new ScaleImagePop(DealedConfirmDetailActivity.this,preorderLine,pic).show();
+                }
+            });
         }
     }
     @Override

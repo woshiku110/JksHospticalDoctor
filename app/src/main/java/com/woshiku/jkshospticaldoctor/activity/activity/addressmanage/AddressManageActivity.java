@@ -1,5 +1,7 @@
 package com.woshiku.jkshospticaldoctor.activity.activity.addressmanage;
 
+import android.content.Intent;
+import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
 import android.webkit.JavascriptInterface;
@@ -51,6 +53,27 @@ public class AddressManageActivity extends WebActivity{
         public void addressReturn(String more1,String more2){
             LogUtil.print("more1:"+more1+"\t" + "more2"+more2);
         }
+
+        @JavascriptInterface
+        public void showRemindText(String remindText){
+            toastShort(remindText);
+        }
+
+        @JavascriptInterface
+        public void getReturnAddr(final String holdAddr,final String receAddr){
+               runOnUiThread(new Runnable() {
+                   @Override
+                   public void run() {
+                       Intent intent = new Intent();
+                       Bundle bundle = new Bundle();
+                       bundle.putString("holdAddr",holdAddr);
+                       bundle.putString("receAddr",receAddr);
+                       intent.putExtras(bundle);
+                       setResult(Global.addressManageeReturn,intent);
+                       scrollToFinishActivity();
+                   }
+               });
+        }
     }
 
     @OnClick({R.id.web_title_return,R.id.web_title_right})
@@ -74,7 +97,6 @@ public class AddressManageActivity extends WebActivity{
                 if(title.equals("新增")){
                     webView.loadUrl("javascript:addAddress()");
                 }else if(title.equals("保存")){
-                    LogUtil.print("调用save");
                     webView.loadUrl("javascript:save()");
                 }
                 break;
@@ -90,6 +112,8 @@ public class AddressManageActivity extends WebActivity{
             concertText.setText("保存");
         }else if(title.equals("选择医院")){
             concertText.setText("");
+        }else if(title.equals("修改地址")){
+            concertText.setText("保存");
         }
         LogUtil.print(title);
     }

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="#393a3f">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:layout_marginLeft="10dp"
+            android:gravity="center"
+            >
+            <ImageView
+                android:id="@+id/preview_back_bt"
+                android:layout_width="40dp"
+                android:layout_height="30dp"
+                android:src="@mipmap/icon_back" />
+        </LinearLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="图片预览"
+            android:textColor="@color/white"
+            android:textSize="22sp"
+            android:layout_centerInParent="true" />
+    </RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <com.woshiku.albumlibrary.view.TouchImageView
+            android:id="@+id/dragImage"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+        <!--<com.woshiku.albumlibrary.view.DragImageView
+            android:id="@+id/dragImage"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />-->
+    </LinearLayout>
+
+</LinearLayout>

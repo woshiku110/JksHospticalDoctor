@@ -5,9 +5,21 @@
 
 
 window.onload = function () {
-    loadData('可爱的周明' , '18602650920' , '9999@qq.com' , 'test.jpg');
+    //loadData('可爱的周明' , '18602650920' , '9999@qq.com' , 'test.jpg');
+    var datas = getInfos();
+    setToken(datas[4]);
+    loadData(datas[0] , datas[1] , datas[2] , datas[3]);
 }
 
+function getInfos(){
+    var data = [];
+    data[0] = window.control.getName();
+    data[1] = window.control.getPhone();
+    data[2] = window.control.getQQ();
+    data[3] = window.control.getPic();
+    data[4] = window.control.getToken();
+    return data;
+}
 
 
 /**
@@ -19,10 +31,13 @@ function save(imgname) {
     CYAjax.post(parametes , 'yuyue/DocterPersonalCenter_updateDoctorInfo' , function (res) {
         if(res.success){
             prompt('修改成功');
+            window.control.reviseResult(true,"修改成功",parametes.phone,parametes.email,parametes.value);
         }else {
+            window.control.reviseResult(false,"修改失败",parametes.phone,parametes.email,parametes.value);
             prompt('修改失败');
         }
     },function (error) {
+        window.control.reviseResult(false,"网络请求失败",parametes.phone,parametes.email,parametes.value);
         prompt('网络请求失败');
     });
 }
@@ -55,6 +70,7 @@ function enterClick() {
  * 头像图片被点击
  */
 function headImgClick() {
+    window.control.iconClicked();
     console.log('头像图片被点击');
 }
 

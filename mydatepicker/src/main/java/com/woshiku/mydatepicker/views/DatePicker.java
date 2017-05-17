@@ -30,6 +30,16 @@ public class DatePicker extends LinearLayout {
     private TextView tvYear, tvMonth;// 年份 月份显示,leftBt,rightBt
     private OnDateSelectedListener onDateSelectedListener;// 日期多选后监听
     private ImageView leftBt,rightBt;
+    private UserChooseDateListener userChooseDateListener;
+
+    public interface UserChooseDateListener{
+        void userChooseDate(boolean isAdd,String date);
+    }
+
+    public void setUserChooseDateListener(UserChooseDateListener userChooseDateListener) {
+        this.userChooseDateListener = userChooseDateListener;
+    }
+
     /**
      * 日期单选监听器
      */
@@ -41,7 +51,7 @@ public class DatePicker extends LinearLayout {
      * 日期多选监听器
      */
     public interface OnDateSelectedListener {
-        void onDateSelected(List<String> date);
+        void onDateSelected(List<String> date,boolean isAdd,String dd);
     }
 
     public DatePicker(Context context) {
@@ -57,7 +67,7 @@ public class DatePicker extends LinearLayout {
     }
     public void getMutiDates(){
         if(onDateSelectedListener != null){
-            onDateSelectedListener.onDateSelected(monthView.getDateSelected());
+            onDateSelectedListener.onDateSelected(monthView.getDateSelected(),monthView.isAdd,monthView.selectedDate);
         }
     }
     public DatePicker(Context context, AttributeSet attrs,List<String> multiDates) {

@@ -10,4 +10,6 @@
     <dimen name="person_center_icon">25dp</dimen>
     <dimen name="check_ticket_margin">20dp</dimen>
     <dimen name="confirm_order_margin">25dp</dimen>
+    <dimen name="padding_middle">20dp</dimen>
+    <dimen name="max_height">300dp</dimen>
 </resources>

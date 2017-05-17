@@ -5,7 +5,7 @@
 
 window.onload = function () {
     loadDataFromWeb(getId());
-}
+};
 /**
 *@desc 用于获取原生的orderId
 */
@@ -62,7 +62,7 @@ function updataUI(msg) {
         for (var i=0 ; i<imgArr.length ; i++)
         {
             var imgURL =  IMGPATH + imgArr[i];
-            var imgBox = $("<div class='img' + i>");
+            var imgBox = $("<div class='img' + i onclick='imgBoxClick(this)'>");
             imgBox.css({
                 'display': 'inline-block',
                 'width':imgWidth + 'px' ,
@@ -101,4 +101,14 @@ function updataUI(msg) {
         'margin-bottom':'10px' ,
         'line-height': qaHeight/5 +'px'
     });
+}
+
+/**
+ * 图像被点击
+ * @param box      图片所在盒子
+ */
+function imgBoxClick(box) {
+    console.log('图片被点击'+box);
+    var path = box.style.backgroundImage;
+    window.control.showPic(getClickedImage(path));
 }

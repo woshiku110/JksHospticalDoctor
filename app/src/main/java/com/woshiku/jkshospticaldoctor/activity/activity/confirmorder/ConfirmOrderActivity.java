@@ -2,8 +2,10 @@ package com.woshiku.jkshospticaldoctor.activity.activity.confirmorder;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.google.gson.Gson;
@@ -11,12 +13,19 @@ import com.woshiku.jkshospticaldoctor.R;
 import com.woshiku.jkshospticaldoctor.activity.BaseActivity;
 import com.woshiku.jkshospticaldoctor.activity.activity.addressmanage.AddressManageActivity;
 import com.woshiku.jkshospticaldoctor.activity.activity.checkticket.CheckTicketActivity;
+import com.woshiku.jkshospticaldoctor.activity.domain.AddressData;
 import com.woshiku.jkshospticaldoctor.activity.utils.AppManager;
+import com.woshiku.jkshospticaldoctor.activity.utils.LogUtil;
+import com.woshiku.jkshospticaldoctor.activity.utils.RdUtil;
 import com.woshiku.jkshospticaldoctor.activity.utils.ThreadManage;
 import com.woshiku.jkshospticaldoctor.activity.view.CheckTicketViews;
 import com.woshiku.urllibrary.domain.Result;
 import com.woshiku.urllibrary.url.base.CommonUrl;
 import com.woshiku.wheelwidgetslib.view.IntervalDialog;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
@@ -25,6 +34,7 @@ import inter.ResultListener;
 import me.imid.swipebacklayout.lib.SwipeBackLayout;
 import param.DoctorCreateOrderParam;
 import param.DoctorReceiveParam;
+import parse.DefaultAddressParse;
 import parse.DoctorCreateOrderParse;
 import parse.DoctorReceiveParse;
 
@@ -48,9 +58,14 @@ public class ConfirmOrderActivity extends BaseActivity{
     protected LinearLayout concert_bt;
     @InjectView(R.id.check_order_line)
     LinearLayout checkLineLayout;//检查项选择展示的布局
+    @InjectView(R.id.check_order_rece_addr)
+    TextView receAddrView;
+    @InjectView(R.id.check_order_hold_addr)
+    TextView holdAddrView;
     private String[] selectedCheckedIds;//返回选择被选择的检查单ID
     private String[] selectedCheckedNames;//返回选择被选择的检查单项目名称
     private String orderId;//订单Id
+    String hourText,minuteText;
     CommonUrl commonUrl;
     @Override
     protected void initViews() {
@@ -68,6 +83,14 @@ public class ConfirmOrderActivity extends BaseActivity{
         titleView.setText("确认接单");
         concert_bt.setVisibility(View.INVISIBLE);
         orderId = getIntent().getExtras().getString("orderId");
+        String addrText = RdUtil.readData("address");
+        if(!TextUtils.isEmpty(addrText)){
+            AddressData addressData = DefaultAddressParse.getAddressData(addrText);
+            if(addressData != null){
+                receAddrView.setText(addressData.getReceAddr());
+                holdAddrView.setText(addressData.getHoldAddr());
+            }
+        }
     }
 
     /*activity活动默认配置*/
@@ -84,16 +107,18 @@ public class ConfirmOrderActivity extends BaseActivity{
                 bd.putString("loadUrl","JKSDoctor/AddressManagement/AddressManagement.html");
                 bd.putString("intent","loadasset");
                 intent.putExtras(bd);
-                startActivity(intent);
+                startActivityForResult(intent,Global.addressManageeEnter);
                 break;
             case R.id.check_order_rece_time_cardview:
-                new IntervalDialog(this,concert_bt).setChooseTimeListener(new IntervalDialog.ChooseIntervalListener() {
+                new IntervalDialog(this,concert_bt,true).setChooseTimeListener(new IntervalDialog.ChooseIntervalListener() {
                     @Override
                     public void chooseInterval(int hour, int minute) {
                         String h,m;
                         h = hour<10?"0"+hour:hour+"";
                         m = minute<10?"0"+minute:minute+"";
-                        receTimeView.setText(h+":"+m);
+                        hourText = h;
+                        minuteText = m;
+                        receTimeView.setText(h+"时"+m+"分");
                     }
                 }).showInterval("选择就诊时间");
                 break;
@@ -141,6 +166,11 @@ public class ConfirmOrderActivity extends BaseActivity{
                 new CheckTicketViews(this,checkLineLayout).generViews(selectedCheckedNames);
                 checkDescView.setText("已选择"+selectedCheckedNames.length+"项检查项");
             }
+        }else if(requestCode == Global.addressManageeEnter&&resultCode == Global.addressManageeReturn){
+            String holdAddr = data.getExtras().getString("holdAddr");
+            String receAddr = data.getExtras().getString("receAddr");
+            holdAddrView.setText(holdAddr);
+            receAddrView.setText(receAddr);
         }
     }
     private void doctorAcceptOrder(){
@@ -154,7 +184,7 @@ public class ConfirmOrderActivity extends BaseActivity{
                         DoctorCreateOrderParse.createOrder(result, new ResultListener() {
                             @Override
                             public void onSuccess(Object obj) {
-                                submitOrder("2017-8-10 04:40","地址一","地址二",selectedCheckedIds.length,orderId);
+                                userSubmit();
                             }
 
                             @Override
@@ -164,13 +194,34 @@ public class ConfirmOrderActivity extends BaseActivity{
                             }
                         });
                     }else{
-                        submitOrder("2017-8-10 04:40","地址一","地址二",0,orderId);
+                        userSubmit();
                     }
                 }else{
-                    submitOrder("2017-8-10 04:40","地址一","地址二",0,orderId);
+                    userSubmit();
                 }
             }
         });
+    }
+
+    private void userSubmit(){
+        String addr1 = receAddrView.getText().toString();
+        String addr2 = holdAddrView.getText().toString();
+        String time = receTimeView.getText().toString();
+        if(TextUtils.isEmpty(addr1)||TextUtils.isEmpty(addr2)){
+            toastShort("候诊地址或就诊地址不能为空!!!");
+            closeDialog();
+            return;
+        }
+        if(TextUtils.isEmpty(time)){
+            toastShort("就诊时间不能为空!!!");
+            closeDialog();
+            return;
+        }
+        SimpleDateFormat sdf =new SimpleDateFormat("yyyy-MM-dd");
+        String date = sdf.format(new Date());
+        date += " "+hourText+":"+minuteText;
+        LogUtil.print("addr",date);
+        submitOrder(date,addr1,addr2,0,orderId);
     }
     private void submitOrder(String time, String treatmentAddr, String waitAddr, final int amount,final String orderId){
         Result result = commonUrl.loadUrlAsc(DoctorReceiveParam.doctorReceive(time,treatmentAddr,waitAddr,orderId));
@@ -207,4 +258,6 @@ public class ConfirmOrderActivity extends BaseActivity{
             }
         });
     }
+
+
 }

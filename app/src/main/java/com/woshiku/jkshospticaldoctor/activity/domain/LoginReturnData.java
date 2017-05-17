@@ -6,5 +6,4 @@ package com.woshiku.jkshospticaldoctor.activity.domain;
 
 public class LoginReturnData {
     public String id,token,name,username,phone,email,state,logo;
-
 }

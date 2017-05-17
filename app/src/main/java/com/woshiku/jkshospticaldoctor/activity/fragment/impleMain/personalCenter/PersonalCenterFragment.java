@@ -2,27 +2,23 @@ package com.woshiku.jkshospticaldoctor.activity.fragment.impleMain.personalCente
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
-import android.support.v7.app.AlertDialog;
-import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.woshiku.jkshospticaldoctor.R;
-import com.woshiku.jkshospticaldoctor.activity.activity.recetime.ReceTimeActivity;
+import com.woshiku.jkshospticaldoctor.activity.activity.addressmanage.AddressManageActivity;
+import com.woshiku.jkshospticaldoctor.activity.activity.revisepersonalinfo.RevisePersonalInfoActivity;
 import com.woshiku.jkshospticaldoctor.activity.fragment.BaseFragment;
 import com.woshiku.jkshospticaldoctor.activity.fragment.impleMain.personalCenter.presenter.PersonalCenterPresenter;
 import com.woshiku.jkshospticaldoctor.activity.fragment.impleMain.personalCenter.presenter.PersonalCenterPresenterImple;
 import com.woshiku.jkshospticaldoctor.activity.fragment.impleMain.personalCenter.view.PersonalCenterView;
 import com.woshiku.jkshospticaldoctor.activity.main.MainActivity;
 import com.woshiku.jkshospticaldoctor.activity.utils.LogUtil;
-import com.woshiku.jkshospticaldoctor.activity.utils.RdUtil;
-import com.woshiku.wheelwidgetslib.view.IntervalDialog;
-import com.woshiku.wheelwidgetslib.view.SexDialog;
-import com.woshiku.wheelwidgetslib.view.YmdDialog;
+import com.woshiku.jkshospticaldoctor.activity.view.BgPopView;
+import com.woshiku.jkshospticaldoctor.activity.view.PhotoView;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -66,14 +62,25 @@ public class PersonalCenterFragment extends BaseFragment implements PersonalCent
 
 
     @OnClick({R.id.item_personal_exit,R.id.item_personal_interval,R.id.item_personal_interval_rece_time
-                ,R.id.item_personal_check_receipe,R.id.item_personal_rece_history})
+                ,R.id.item_personal_check_receipe,R.id.item_personal_rece_history,R.id.item_personal_icon,
+                    R.id.item_personal_address_manage})
     void userClick(View view){
        switch (view.getId()){
+           case R.id.item_personal_icon:
+               Intent intent = new Intent(mActivity, RevisePersonalInfoActivity.class);
+               Bundle bd = new Bundle();
+               bd.putString("title","预约接诊");
+               bd.putString("loadUrl","JKSDoctor/Modifinfo/Modifinfo.html");
+               bd.putString("intent","loadasset");
+               intent.putExtras(bd);
+               startActivity(intent);
+               break;
            case R.id.item_personal_exit:
                LogUtil.print("user click");
                presenter.exitLogin();
                break;
            case R.id.item_personal_interval:
+               /* new BgPopView(mActivity,nameView,new PhotoView(mActivity,nameView));*/
                presenter.openDialogsisInterval();
                break;
            case R.id.item_personal_interval_rece_time://接诊时间
@@ -86,6 +93,15 @@ public class PersonalCenterFragment extends BaseFragment implements PersonalCent
                LogUtil.print("接诊历史");
                presenter.openReceHistory();
                break;
+           case R.id.item_personal_address_manage:
+               Intent intent1 = new Intent(mActivity, AddressManageActivity.class);
+               Bundle bdOne = new Bundle();
+               bdOne.putString("title","地址管理");
+               bdOne.putString("loadUrl","JKSDoctor/AddressManagement/AddressManagement.html");
+               bdOne.putString("intent","loadasset");
+               intent1.putExtras(bdOne);
+               startActivity(intent1);
+               break;
        }
     }
 
@@ -94,8 +110,8 @@ public class PersonalCenterFragment extends BaseFragment implements PersonalCent
 
     @Override
     public void setInitPage() {
-        displayImageView(icon,Global.imagePath+Global.loginReturnData.logo);
         nameView.setText(Global.loginReturnData.name);
+        displayImageView(icon,Global.imagePath+Global.loginReturnData.logo);
     }
 
     @Override

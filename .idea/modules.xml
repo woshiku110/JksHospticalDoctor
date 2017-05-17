@@ -3,13 +3,17 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/JksHospticalDoctor.iml" filepath="$PROJECT_DIR$/JksHospticalDoctor.iml" />
+      <module fileurl="file://$PROJECT_DIR$/albumlib/albumlib.iml" filepath="$PROJECT_DIR$/albumlib/albumlib.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/bottomtabbarlib/bottomtabbarlib.iml" filepath="$PROJECT_DIR$/bottomtabbarlib/bottomtabbarlib.iml" />
       <module fileurl="file://$PROJECT_DIR$/commonjarslib/commonjarslib.iml" filepath="$PROJECT_DIR$/commonjarslib/commonjarslib.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cropLib/cropLib.iml" filepath="$PROJECT_DIR$/cropLib/cropLib.iml" />
       <module fileurl="file://$PROJECT_DIR$/dialoglib/dialoglib.iml" filepath="$PROJECT_DIR$/dialoglib/dialoglib.iml" />
+      <module fileurl="file://$PROJECT_DIR$/imageeditlibrary/imageeditlibrary.iml" filepath="$PROJECT_DIR$/imageeditlibrary/imageeditlibrary.iml" />
       <module fileurl="file://$PROJECT_DIR$/inputlib/inputlib.iml" filepath="$PROJECT_DIR$/inputlib/inputlib.iml" />
       <module fileurl="file://$PROJECT_DIR$/mydatepicker/mydatepicker.iml" filepath="$PROJECT_DIR$/mydatepicker/mydatepicker.iml" />
       <module fileurl="file://$PROJECT_DIR$/overscrolllib/overscrolllib.iml" filepath="$PROJECT_DIR$/overscrolllib/overscrolllib.iml" />
+      <module fileurl="file://$PROJECT_DIR$/photoview-release-1.2.4/photoview-release-1.2.4.iml" filepath="$PROJECT_DIR$/photoview-release-1.2.4/photoview-release-1.2.4.iml" />
       <module fileurl="file://$PROJECT_DIR$/progresslibrary/progresslibrary.iml" filepath="$PROJECT_DIR$/progresslibrary/progresslibrary.iml" />
       <module fileurl="file://$PROJECT_DIR$/swipebacklib/swipebacklib.iml" filepath="$PROJECT_DIR$/swipebacklib/swipebacklib.iml" />
       <module fileurl="file://$PROJECT_DIR$/urllibrary/urllibrary.iml" filepath="$PROJECT_DIR$/urllibrary/urllibrary.iml" />

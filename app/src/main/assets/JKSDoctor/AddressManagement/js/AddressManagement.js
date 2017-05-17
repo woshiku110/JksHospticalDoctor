@@ -33,7 +33,12 @@ window.onload = function () {
     loadDataFromWeb();
 }
 
-
+/*
+ *从客户端拿到token
+ */
+function getToken(){
+    return window.control.getAndroidToken();
+}
 /**
  * 请求网络数据
  */
@@ -55,12 +60,7 @@ function loadDataFromWeb() {
         prompt('网络请求错误');
     });
 }
-/*
- *从客户端拿到token
- */
-function getToken(){
-    return window.control.getAndroidToken();
-}
+
 
 /**
  * 初始化UI
@@ -88,12 +88,9 @@ function updataUI() {
 function creatAddress(more1 , more2 ,margins ,isDefault) {
     var halfMargin = parseInt(margins)/2+'px';
 
-    var box = $('<div></div>').css({
-        'padding-top':halfMargin,
+    var box = $('<div onclick=test(this) ></div>').css({
+        'padding-top':halfMargin
     });
-
-    //box.attr('onclick','itemClick(this)');
-
     $(box).attr("isDefault",isDefault === '1' ? true : false);
 
     /*! 候诊 */
@@ -106,7 +103,7 @@ function creatAddress(more1 , more2 ,margins ,isDefault) {
     $('<p>候诊地址</p>').css({
         'margin-bottom':halfMargin
     }).appendTo(waitingBox);
-    $('<p>'+more1+'</p>').appendTo(waitingBox);
+    $('<p class=addr >'+more1+'</p>').appendTo(waitingBox);
 
     $('<hr>').css({
         'border':'0',
@@ -123,7 +120,7 @@ function creatAddress(more1 , more2 ,margins ,isDefault) {
     $('<p>接诊地址</p>').css({
         'margin-bottom':halfMargin
     }).appendTo(diagnosisBox);
-    $('<p>'+more2+'</p>').appendTo(diagnosisBox);
+    $('<p class=addr >'+more2+'</p>').appendTo(diagnosisBox);
 
     $('<hr>').css({
         'border':'0',
@@ -166,11 +163,12 @@ function creatAddress(more1 , more2 ,margins ,isDefault) {
 
     return box;
 }
+function test(thisa){
+    var holdAddr = thisa.getElementsByClassName("addr")[0].innerText;
+    var receAddr = thisa.getElementsByClassName("addr")[1].innerText;
+    window.control.getReturnAddr(holdAddr,receAddr);
+}
 
-function itemClick(more1,more2){
-        alert('on click');
-        window.control.addressReturn(more1,more2);
-};
 /**
  * 点击删除
  */
@@ -290,7 +288,6 @@ function setDefault(button) {
             {
                 value.defaultAddress = '1';
                 updataAddress(value,function (str) {
-                    console.log(str);
                    if (str === '更新成功')
                    {
                        //更新UI
@@ -323,7 +320,7 @@ function setDefault(button) {
  */
 function updataAddress(obj,func) {
     $.ajax({
-        url: IP + "yuyue/DocterPersonalCenter_updateDoctorAddress",
+        url: URL + "yuyue/DocterPersonalCenter_updateDoctorAddress",
         type: 'post',
         dataType:'json',
         async:true,

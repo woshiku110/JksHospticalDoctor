@@ -3,11 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="65dp">
+    android:layout_height="50dp">
     <com.woshiku.jkshospticaldoctor.activity.view.ItemChooseView
         android:id="@id/item_preorder_choose"
         android:layout_width="match_parent"
-        android:layout_height="65dp"
+        android:layout_height="50dp"
         app:left_text="待接单列表"
         app:right_text="已接单列表">
 

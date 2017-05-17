@@ -7,11 +7,13 @@ import android.view.View;
 import android.webkit.JavascriptInterface;
 import android.widget.LinearLayout;
 import com.woshiku.dialoglib.BackOrderDialog;
+import com.woshiku.dialoglib.ScaleImagePop;
 import com.woshiku.jkshospticaldoctor.R;
 import com.woshiku.jkshospticaldoctor.activity.activity.confirmorder.ConfirmOrderActivity;
 import com.woshiku.jkshospticaldoctor.activity.activity.web.WebActivity;
 import com.woshiku.jkshospticaldoctor.activity.utils.LogUtil;
 import com.woshiku.jkshospticaldoctor.activity.utils.ThreadManage;
+import com.woshiku.jkshospticaldoctor.activity.view.PhotoView;
 import com.woshiku.urllibrary.domain.Result;
 import com.woshiku.urllibrary.url.base.CommonUrl;
 import butterknife.InjectView;
@@ -47,6 +49,16 @@ public class AppointReceActivity extends WebActivity{
         public String getOrderId(){
             LogUtil.print("orderId:"+orderId);
             return orderId;
+        }
+        @JavascriptInterface
+        public void showPic(final String pic){
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    LogUtil.print("pic",pic);
+                    new ScaleImagePop(AppointReceActivity.this,preorderLine,pic).show();
+                }
+            });
         }
     }
     @Override

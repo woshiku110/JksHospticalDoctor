@@ -5,8 +5,10 @@ import android.graphics.drawable.BitmapDrawable;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
@@ -15,9 +17,11 @@ import android.widget.TextView;
 
 import com.woshiku.wheelwidgetslib.R;
 import com.woshiku.wheelwidgetslib.utils.IntervalUtil;
+import com.woshiku.wheelwidgetslib.utils.TimeUtils;
 import com.woshiku.wheelwidgetslib.widget.OnWheelChangedListener;
 import com.woshiku.wheelwidgetslib.widget.WheelView;
 import com.woshiku.wheelwidgetslib.widget.adapters.TestAdapter;
+
 import java.util.List;
 
 /**
@@ -31,6 +35,8 @@ public class IntervalDialog extends PopupWindow{
     WheelView hourWheel,minuteWheel;
     TextView chooseTimeView;
     Context context;
+    boolean isShowTime = false;
+    RelativeLayout layout;
     private ChooseIntervalListener chooseTimeListener;
     public interface ChooseIntervalListener{
         void chooseInterval(int hour, int minute);
@@ -46,15 +52,68 @@ public class IntervalDialog extends PopupWindow{
         this.context = context;
         this.parent = parent;
         view = View.inflate(context, R.layout.interval_dialog_layout,null);
+        chooseTimeView = (TextView)view.findViewById(R.id.wheel_dialog_title);
+        layout = (RelativeLayout)view.findViewById(R.id.mywheel_dialog_bottom);
+        ((LinearLayout)view.findViewById(R.id.mywheel_dialog_top)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                closeDialog();
+            }
+        });
+        setWidth(ViewGroup.LayoutParams.MATCH_PARENT);
+        setHeight(ViewGroup.LayoutParams.MATCH_PARENT);
+        //setAnimationStyle(R.style.mypopwindow_anim_style);
+        setBackgroundDrawable(new BitmapDrawable());
+        setFocusable(true);
+        setOutsideTouchable(true);
+        setContentView(view);
+        update();
+        showAtLocation(parent, Gravity.BOTTOM, 0, 0);
+        LinearLayout btOk = (LinearLayout)view.findViewById(R.id.bt_sure);
+        LinearLayout btCancel = (LinearLayout)view.findViewById(R.id.bt_cancel);
+        btOk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.e("lookat","userClick");
+                if (chooseTimeListener != null) {
+                    chooseTimeListener.chooseInterval(hourIndex,minuteIndex);
+                }
+                closeDialog();
+            }
+        });
+        btCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                closeDialog();
+            }
+        });
+        initDatas();
+        initViews();
+        view.setOnKeyListener(new View.OnKeyListener()
+        {
+            public boolean onKey(View v, int keyCode, KeyEvent event)
+            {
+                if(keyCode == KeyEvent.KEYCODE_BACK)
+                    closeDialog();
+                return false;
+            }
+        });
+    }
+    public IntervalDialog(Context context, View parent,boolean showTimee) {
+        super(context);
+        this.context = context;
+        this.parent = parent;
+        view = View.inflate(context, R.layout.interval_dialog_layout,null);
         view.startAnimation(AnimationUtils.loadAnimation(context,
                 R.anim.fade_ins));
         chooseTimeView = (TextView)view.findViewById(R.id.wheel_dialog_title);
         ((LinearLayout)view.findViewById(R.id.mywheel_dialog_top)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dismiss();
+                closeDialog();
             }
         });
+        layout = (RelativeLayout)view.findViewById(R.id.mywheel_dialog_bottom);
         setWidth(ViewGroup.LayoutParams.MATCH_PARENT);
         setHeight(ViewGroup.LayoutParams.MATCH_PARENT);
         setBackgroundDrawable(new BitmapDrawable());
@@ -72,19 +131,28 @@ public class IntervalDialog extends PopupWindow{
                 if (chooseTimeListener != null) {
                     chooseTimeListener.chooseInterval(hourIndex,minuteIndex);
                 }
-                dismiss();
+                closeDialog();
             }
         });
+        isShowTime = showTimee;
         btCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dismiss();
+                closeDialog();
             }
         });
         initDatas();
         initViews();
+        view.setOnKeyListener(new View.OnKeyListener()
+        {
+            public boolean onKey(View v, int keyCode, KeyEvent event)
+            {
+                if(keyCode == KeyEvent.KEYCODE_BACK)
+                    closeDialog();
+                return false;
+            }
+        });
     }
-
     private void initDatas(){
         hourList = IntervalUtil.getHours();
         minuteList = IntervalUtil.getMinutes();
@@ -96,8 +164,13 @@ public class IntervalDialog extends PopupWindow{
         addLine((RelativeLayout) view.findViewById(R.id.line_interval_relate_hour));
         addLine((RelativeLayout) view.findViewById(R.id.line_interval_relate_minute));
         addChangeListener();
-        hourWheel.setCurrentIndex(0);
-        minuteWheel.setCurrentIndex(0);
+        if(isShowTime){
+            hourWheel.setCurrentIndex(TimeUtils.getHour());
+            minuteWheel.setCurrentIndex(TimeUtils.getMinute());
+        }else {
+            hourWheel.setCurrentIndex(0);
+            minuteWheel.setCurrentIndex(0);
+        }
     }
 
     public IntervalDialog setTime(int hourIndex,int fenIndex){
@@ -146,10 +219,30 @@ public class IntervalDialog extends PopupWindow{
     }
 
     public void showInterval(){
-        showAtLocation(parent, Gravity.LEFT | Gravity.TOP, 0, 0);
+        showAtLocation(parent, Gravity.BOTTOM, 0, 0);
+        Animation animation=AnimationUtils.loadAnimation(context, R.anim.popshow_anim);
+        layout.startAnimation(animation);
     }
     public void showInterval(String title){
         chooseTimeView.setText(title);
-        showAtLocation(parent, Gravity.LEFT | Gravity.TOP, 0, 0);
+        showAtLocation(parent, Gravity.BOTTOM, 0, 0);
+        Animation animation=AnimationUtils.loadAnimation(context, R.anim.popshow_anim);
+        layout.startAnimation(animation);
+    }
+    public void closeDialog(){
+        Animation animation=AnimationUtils.loadAnimation(context, R.anim.pophidden_anim);
+        layout.startAnimation(animation);
+        animation.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation arg0) {}   //在动画开始时使用
+
+            @Override
+            public void onAnimationRepeat(Animation arg0) {}  //在动画重复时使用
+
+            @Override
+            public void onAnimationEnd(Animation arg0) {
+                dismiss();
+            }
+        });
     }
 }

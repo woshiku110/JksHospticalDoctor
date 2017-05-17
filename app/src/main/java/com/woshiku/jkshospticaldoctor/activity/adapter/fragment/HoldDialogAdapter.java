@@ -87,7 +87,7 @@ public class HoldDialogAdapter  extends RecyclerView.Adapter<RecyclerView.ViewHo
                 twoHolder.sex.setBackground(ContextCompat.getDrawable(context,R.mipmap.ico_woman));
             }
             if(holdDialogData.isBtEnable()){
-                twoHolder.backBt.setBackgroundColor(ContextCompat.getColor(context,R.color.item_backorder_enable));
+                twoHolder.backBt.setBackground(ContextCompat.getDrawable(context,R.drawable.shape_bt_border_drawable));
                 if(holdDialogData.isReturnDialog()){
                     twoHolder.backBtText.setText("返回诊断");
                 }else{
@@ -95,7 +95,8 @@ public class HoldDialogAdapter  extends RecyclerView.Adapter<RecyclerView.ViewHo
                 }
             }else{
                 twoHolder.backBtText.setText("叫号");
-                twoHolder.backBt.setBackgroundColor(ContextCompat.getColor(context,R.color.item_backorder_disable));
+                twoHolder.backBt.setBackground(ContextCompat.getDrawable(context,R.drawable.shape_bt_unchoose_border_drawable));
+                /*twoHolder.backBt.setBackgroundColor(ContextCompat.getColor(context,R.color.item_backorder_disable));*/
             }
         }
     }
@@ -154,6 +155,12 @@ public class HoldDialogAdapter  extends RecyclerView.Adapter<RecyclerView.ViewHo
         compareData(holdDataList,updateList);
         holdDataList = updateList;
         notifyItemRangeChanged(0,updateList.size());
+    }
+
+    public void deleSingeDataWithUpdate(List<HoldDialogData> updateList,int index){
+        notifyItemRemoved(index);
+        notifyItemRangeChanged(0,updateList.size());
+        holdDataList = updateList;
     }
 
     /**

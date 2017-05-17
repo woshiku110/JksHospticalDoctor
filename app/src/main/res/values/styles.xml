@@ -15,6 +15,9 @@
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowBackground">@android:color/transparent</item>
     </style>
+    <style name="MainTheme" parent="TranslucentTheme">
+        <item name="android:windowIsTranslucent">false</item>
+    </style>
     <style name="personal_txt">
         <item name="android:textSize">18sp</item>
         <item name="android:textColor">#666666</item>

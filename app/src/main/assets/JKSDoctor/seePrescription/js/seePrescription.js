@@ -13,13 +13,13 @@ var prescription = function () {
     this.drugData = [];
     this.CaseimgArr = [];
     this.PrescriptionimgArr = [];
-}
+};
 
 
 
 window.onload = function () {
     loadDataFromWeb(getId());
-}
+};
 function getId(){
     return window.control.getOrderId();
 }
@@ -203,4 +203,6 @@ function imageLocation(spacing ,margin ,rowMaxCount,imgArr , fatherView) {
  */
 function imgBoxClick(box) {
     console.log('图片被点击'+box);
+    var path = box.style.backgroundImage;
+    window.control.showPic(getClickedImage(path));
 }

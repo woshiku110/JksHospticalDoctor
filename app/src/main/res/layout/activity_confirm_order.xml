@@ -23,7 +23,7 @@
                 <android.support.v7.widget.CardView
                     android:id="@id/check_order_address_cardview"
                     android:layout_width="match_parent"
-                    android:layout_height="95dp"
+                    android:layout_height="wrap_content"
                     app:cardCornerRadius="0dp"
                     app:cardElevation="0dp"
                     android:clickable="true"
@@ -31,11 +31,12 @@
                     android:foreground="?android:attr/selectableItemBackground">
                     <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_height="wrap_content">
                         <LinearLayout
                             android:id="@id/check_order_address_line"
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
+                            android:layout_height="wrap_content"
+                            android:minHeight="95dp"
                             android:layout_toLeftOf="@id/check_order_address_view"
                             android:layout_marginLeft="15dp"
                             android:orientation="horizontal">
@@ -58,12 +59,12 @@
                                     android:textColor="#545454"
                                     />
                                 <TextView
-                                    android:layout_width="wrap_content"
+                                    android:id="@id/check_order_hold_addr"
+                                    android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:textSize="14sp"
-                                    android:text="地址1"
-                                    android:layout_marginTop="2dp"
-                                    />
+                                    android:text=""
+                                    android:layout_marginTop="2dp" />
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
@@ -73,12 +74,12 @@
                                     android:textColor="#545454"
                                     />
                                 <TextView
-                                    android:layout_width="wrap_content"
+                                    android:id="@id/check_order_rece_addr"
+                                    android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:textSize="14sp"
-                                    android:text="地址2"
-                                    android:layout_marginTop="2dp"
-                                    />
+                                    android:text=""
+                                    android:layout_marginTop="2dp" />
                             </LinearLayout>
                         </LinearLayout>
                         <ImageView
@@ -92,6 +93,8 @@
                             />
                     </RelativeLayout>
                 </android.support.v7.widget.CardView>
+
+
                 <android.support.v7.widget.CardView
                     android:id="@id/check_order_rece_time_cardview"
                     android:layout_width="match_parent"
@@ -138,7 +141,8 @@
                                     android:id="@id/check_rece_order_time"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="设置接单时间"
+                                    android:hint="设置接单时间"
+                                    android:textColorHint="#BBBBBB"
                                     android:textSize="16sp"
                                     android:textColor="#BBBBBB"
                                     />

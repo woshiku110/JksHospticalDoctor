@@ -1,0 +1,55 @@
+<LinearLayout
+    android:id="@+id/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:weightSum="4"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:id="@+id/btn_stickers"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="@string/stickers"
+            android:textColor="#ffffff"
+            android:textSize="@dimen/image_edit_text_size"/>
+        <TextView
+            android:id="@+id/btn_crop"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="@string/crop"
+            android:textColor="#ffffff"
+            android:textSize="@dimen/image_edit_text_size"/>
+
+        <TextView
+            android:id="@+id/btn_rotate"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="@string/rotate"
+            android:textColor="#ffffff"
+            android:textSize="@dimen/image_edit_text_size"/>
+
+        <TextView
+            android:id="@+id/btn_text"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="@string/text"
+            android:textColor="#ffffff"
+            android:textSize="@dimen/image_edit_text_size"/>
+    </LinearLayout>
+</LinearLayout>
+

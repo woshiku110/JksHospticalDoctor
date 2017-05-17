@@ -168,6 +168,11 @@ public class HoldDialogFragment extends BaseFragment implements HoldDialogView, 
     protected void dealBroadcastRece(Intent intent) {
         if(intent.getExtras().getString("intent").equals("jumpcommand")){//收到发送跳过命令
             preorderAdapter.updateDatas(recoverDataList(showList));
+        }else if(intent.getExtras().getString("intent").equals("deledata")){
+            int index = deleOneDataList(showList);
+            if(index != -1){
+                preorderAdapter.deleSingeDataWithUpdate(showList,index);
+            }
         }
     }
     /**
@@ -243,8 +248,33 @@ public class HoldDialogFragment extends BaseFragment implements HoldDialogView, 
         }
         return mList;
     }
+    /**
+     * @param mList 当用户提交病历后  要改变的数据
+     * @return index 返哪里有要删除的索引
+     */
+    private int deleOneDataList(List<HoldDialogData> mList){
+        int index = -1;
+        for(int i=0;i<mList.size();i++){
+            if(mList.get(i).getState().equals("6")){
+                index = i;
+                break;
+            }
+        }
+        if(index != -1){
+            mList.remove(index);
+            LogUtil.print("index:"+index);
+        }
 
-
+        for(int i=0;i<mList.size();i++){
+            if(mList.get(i).getState().equals("6")){
+                mList.get(i).setState("5");
+            }
+            mList.get(i).setBtEnable(true);
+            mList.get(i).setReturnDialog(false);//表示诊断
+        }
+        LogUtil.print(mList.size()+"");
+        return index;
+    }
 
     /**
      * 用于改变具体位置的索引

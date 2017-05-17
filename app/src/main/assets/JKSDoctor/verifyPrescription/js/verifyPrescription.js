@@ -349,4 +349,8 @@ function imageLocation(spacing ,margin ,rowMaxCount,imgArr , fatherView) {
  */
 function imgBoxClick(box) {
     console.log('图片被点击'+box);
+    var path = box.style.backgroundImage;
+    /*console.log(getClickedImage(path));*/
+    /*alert(getClickedImage(path));*/
+    window.control.showPic(getClickedImage(path));
 }

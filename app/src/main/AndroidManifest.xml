@@ -2,10 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.woshiku.jkshospticaldoctor">
     <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+    <uses-permission android:name="android.permission.CAMERA"></uses-permission>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"></uses-permission>
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/ico_jks"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:name=".activity.base.BaseApplication"
@@ -17,7 +18,7 @@
                   android:screenOrientation="portrait">
         </activity>
         <activity android:name=".activity.main.MainActivity"
-                  android:theme="@style/TranslucentTheme"
+                  android:theme="@style/SplashTheme"
                   android:windowSoftInputMode="adjustPan|stateHidden"
                   android:configChanges="orientation|keyboardHidden|screenSize"
                   android:screenOrientation="portrait">
@@ -111,6 +112,31 @@
                   android:windowSoftInputMode="adjustPan|stateHidden"
                   android:configChanges="orientation|keyboardHidden|screenSize"
                   android:screenOrientation="portrait">
+        </activity>
+        <activity android:name=".activity.activity.submitill.SubmitIllnessActivity"
+                  android:theme="@style/TranslucentTheme"
+                  android:windowSoftInputMode="adjustPan|stateHidden"
+                  android:configChanges="orientation|keyboardHidden|screenSize"
+                  android:screenOrientation="portrait">
+        </activity>
+        <activity android:name=".activity.activity.revisepersonalinfo.RevisePersonalInfoActivity"
+                  android:theme="@style/TranslucentTheme"
+                  android:windowSoftInputMode="adjustPan|stateHidden"
+                  android:configChanges="orientation|keyboardHidden|screenSize"
+                  android:screenOrientation="portrait">
+        </activity>
+        <activity android:name="com.soundcloud.android.crop.CropImageActivity"
+                  android:windowSoftInputMode="adjustPan|stateHidden"
+                  android:configChanges="orientation|keyboardHidden|screenSize"
+                  android:screenOrientation="portrait">
+
+        </activity>
+        <activity android:name=".activity.activity.meetdialog.MeetDialogsisActivity"
+                  android:theme="@style/TranslucentTheme"
+                  android:windowSoftInputMode="adjustPan|stateHidden"
+                  android:configChanges="orientation|keyboardHidden|screenSize"
+                  android:screenOrientation="portrait">
+
         </activity>
     </application>
 </manifest>

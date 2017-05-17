@@ -5,7 +5,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.webkit.JavascriptInterface;
 import android.widget.LinearLayout;
+
+import com.woshiku.dialoglib.ScaleImagePop;
 import com.woshiku.jkshospticaldoctor.R;
+import com.woshiku.jkshospticaldoctor.activity.activity.holddialogdetail.HoldDialogDetailActivity;
 import com.woshiku.jkshospticaldoctor.activity.activity.medicalsearch.MedicalSearchActivity;
 import com.woshiku.jkshospticaldoctor.activity.activity.web.WebActivity;
 import com.woshiku.jkshospticaldoctor.activity.utils.LogUtil;
@@ -24,6 +27,7 @@ public class CheckReceDetailActivity extends WebActivity{
     LinearLayout checkLine;
     String orderId;
     CommonUrl commonUrl;
+
     @Override
     protected void loadChildrenMethod() {
         commonUrl = new CommonUrl();
@@ -48,7 +52,16 @@ public class CheckReceDetailActivity extends WebActivity{
             LogUtil.print("orderId:"+orderId);
             return orderId;
         }
-
+        @JavascriptInterface
+        public void showPic(final String pic) {
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    LogUtil.print("pic", pic);
+                    new ScaleImagePop(CheckReceDetailActivity.this, checkLine, pic).show();
+                }
+            });
+        }
         @JavascriptInterface
         public void openAmountDialog(){//打开药品数量对话框
             new MedicalDialog(CheckReceDetailActivity.this,checkLine).setMedicalAmountListener(new MedicalDialog.MedicalAmountListener() {

@@ -401,7 +401,7 @@ public class TouchImageView extends ImageView {
     /**
      * Set zoom parameters equal to another TouchImageView. Including scale, position,
      * and ScaleType.
-     * @param TouchImageView
+     * @param //TouchImageView
      */
     public void setZoom(TouchImageView img) {
     	PointF center = img.getScrollPosition();
@@ -748,6 +748,15 @@ public class TouchImageView extends ImageView {
      * @author Ortiz
      *
      */
+    public interface OnSingleClickListener{
+        void onSingleClick();
+    }
+    private OnSingleClickListener onSingleClickListener;
+
+    public void setOnSingleClickListener(OnSingleClickListener onSingleClickListener) {
+        this.onSingleClickListener = onSingleClickListener;
+    }
+
     private class GestureListener extends GestureDetector.SimpleOnGestureListener {
     	
         @Override
@@ -755,6 +764,9 @@ public class TouchImageView extends ImageView {
         {
             if(doubleTapListener != null) {
             	return doubleTapListener.onSingleTapConfirmed(e);
+            }
+            if(onSingleClickListener != null){
+                onSingleClickListener.onSingleClick();
             }
         	return performClick();
         }

@@ -1,7 +1,9 @@
 package com.woshiku.jkshospticaldoctor.activity;
 
+import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MotionEvent;
 import android.view.View;
@@ -9,8 +11,10 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Toast;
 
+import com.woshiku.jkshospticaldoctor.activity.domain.PermissionData;
 import com.woshiku.jkshospticaldoctor.activity.utils.AppManager;
 import com.woshiku.jkshospticaldoctor.activity.utils.LogUtil;
+import com.woshiku.jkshospticaldoctor.activity.utils.PermissionHelper;
 import com.woshiku.waitlibrary.WaitDialog;
 
 import me.imid.swipebacklayout.lib.Utils;
@@ -25,6 +29,8 @@ public abstract class BaseActivity extends AppCompatActivity{
     protected SwipeBackActivityHelper mHelper;
     WaitDialog waitDialog;
     View parentView;
+    private PermissionHelper permissionHelper;//权限管理
+    PermissionData permissionData;
     /**
      * @desc 用于初始化活动侧滑配置
      * */
@@ -50,6 +56,27 @@ public abstract class BaseActivity extends AppCompatActivity{
             parentView.setFitsSystemWindows(true);
         }
     }
+    /**
+     *用于初始化权限
+     */
+    private void initPermission(){
+        permissionHelper = new PermissionHelper(this);
+    }
+    public boolean isPermission(){
+        return permissionHelper.checkPermission(permissionData.getName());
+    }
+
+    public void allowPermission(){
+        permissionHelper.permissionsCheck(permissionData.getName(),permissionData.getReturnCode());
+    }
+
+    public PermissionData getPermissionData() {
+        return permissionData;
+    }
+
+    public void setPermissionData(PermissionData permissionData) {
+        this.permissionData = permissionData;
+    }
 
     /**
      * @param isok true表示 当前页面可以侧滑关闭 false表示 当前页面不进行侧滑关闭
@@ -68,6 +95,7 @@ public abstract class BaseActivity extends AppCompatActivity{
         initViews();
         initStatusBar();
         AppManager.getAppManager().addActivity(this);
+        initPermission();
         LogUtil.print("create",this.getClass().getName());
     }
 
@@ -138,5 +166,23 @@ public abstract class BaseActivity extends AppCompatActivity{
         super.onDestroy();
         LogUtil.print("create","destory"+this.getClass().getName());
         AppManager.getAppManager().finishActivity(this);
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if(requestCode == permissionData.getReturnCode()){
+            if (grantResults.length > 0
+                    && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                userPassPermission(permissionData);
+            } else {
+                permissionHelper.startAppSettings();//如果请求失败
+                Toast.makeText(this, permissionData.getFailReason(), Toast.LENGTH_SHORT).show();
+            }
+        }
+
+    }
+    protected void userPassPermission(PermissionData permissionData){
+
     }
 }

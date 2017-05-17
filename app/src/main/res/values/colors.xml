@@ -9,4 +9,5 @@
     <color name="login_bg">#e9f0f6</color>
     <color name="item_backorder_enable">#FC5057</color>
     <color name="item_backorder_disable">#C0C0C0</color>
+    <color name="descBg">#1a000000</color>
 </resources>

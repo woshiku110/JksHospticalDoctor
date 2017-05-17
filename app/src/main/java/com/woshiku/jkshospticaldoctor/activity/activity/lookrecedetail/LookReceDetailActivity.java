@@ -4,7 +4,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.webkit.JavascriptInterface;
 import android.widget.LinearLayout;
+
+import com.woshiku.dialoglib.ScaleImagePop;
 import com.woshiku.jkshospticaldoctor.R;
+import com.woshiku.jkshospticaldoctor.activity.activity.holddialogdetail.HoldDialogDetailActivity;
 import com.woshiku.jkshospticaldoctor.activity.activity.web.WebActivity;
 import com.woshiku.jkshospticaldoctor.activity.utils.LogUtil;
 import com.woshiku.urllibrary.url.base.CommonUrl;
@@ -42,6 +45,16 @@ public class LookReceDetailActivity extends WebActivity{
         public String getOrderId(){//拿到订单ID
             LogUtil.print("orderId:"+orderId);
             return orderId;
+        }
+        @JavascriptInterface
+        public void showPic(final String pic) {
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    LogUtil.print("pic", pic);
+                    new ScaleImagePop(LookReceDetailActivity.this, checkLine, pic).show();
+                }
+            });
         }
     }
 

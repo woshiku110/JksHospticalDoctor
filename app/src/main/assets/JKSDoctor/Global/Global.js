@@ -19,8 +19,20 @@ function setToken(value) {
  */
 function prompt(text) {
     console.log(text);
-}
+    try{
+        window.control.showRemindText(text);
+    }catch(error){
 
+    }
+}
+/**
+ * 得到被点击图片地址
+ * */
+function getClickedImage(path){
+    var pathOne = path.split("(")[1].split(")")[0];
+    pathOne = pathOne.substr(1,pathOne.length-2);
+    return pathOne;
+}
 
 /**
  * 返回对象的属性数组
@@ -159,6 +171,7 @@ var CYCookie = {
         window.control.setKeyValue(key,value);
     },
     clear: function(key , value) {
+        window.control.setKeyValue(key,"");
     },
     isJSONStr:function(str) {
         if (typeof str == 'string') {

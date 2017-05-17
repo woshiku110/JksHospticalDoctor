@@ -10,7 +10,7 @@ import java.util.List;
 public class IntervalUtil {
     public static List<String> getHours(){
         List<String> mList = new ArrayList<>();
-        for(int i=0;i<=12;i++){
+        for(int i=0;i<=23;i++){
             String str;
             if(i<10){
                 str = "0"+i;
@@ -23,7 +23,7 @@ public class IntervalUtil {
     }
     public static List<String> getMinutes(){
         List<String> mList = new ArrayList<>();
-        for(int i=0;i<=60;i++){
+        for(int i=0;i<=59;i++){
             String str;
             if(i<10){
                 str = "0"+i;

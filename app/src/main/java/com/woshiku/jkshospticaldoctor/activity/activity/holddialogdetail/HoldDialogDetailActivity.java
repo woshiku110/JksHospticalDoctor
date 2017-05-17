@@ -6,9 +6,15 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.webkit.JavascriptInterface;
 import android.widget.LinearLayout;
+
+import com.woshiku.dialoglib.ScaleImagePop;
 import com.woshiku.jkshospticaldoctor.R;
 import com.woshiku.jkshospticaldoctor.activity.activity.checkticket.CheckTicketActivity;
+import com.woshiku.jkshospticaldoctor.activity.activity.dealedticketdetail.DealedConfirmDetailActivity;
+import com.woshiku.jkshospticaldoctor.activity.activity.meetdialog.MeetDialogsisActivity;
+import com.woshiku.jkshospticaldoctor.activity.activity.submitill.SubmitIllnessActivity;
 import com.woshiku.jkshospticaldoctor.activity.activity.web.WebActivity;
+import com.woshiku.jkshospticaldoctor.activity.domain.PermissionData;
 import com.woshiku.jkshospticaldoctor.activity.utils.LogUtil;
 import com.woshiku.jkshospticaldoctor.activity.utils.ThreadManage;
 import com.woshiku.urllibrary.domain.Result;
@@ -48,6 +54,16 @@ public class HoldDialogDetailActivity extends WebActivity{
             LogUtil.print("orderId:"+orderId);
             return orderId;
         }
+        @JavascriptInterface
+        public void showPic(final String pic) {
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    LogUtil.print("pic", pic);
+                    new ScaleImagePop(HoldDialogDetailActivity.this, preorderLine, pic).show();
+                }
+            });
+        }
     }
     @Override
     protected void swipeBackCallback() {
@@ -65,10 +81,26 @@ public class HoldDialogDetailActivity extends WebActivity{
                 startActivity(intent);
                 break;
             case R.id.hold_dialog_detail_meet:
-
+                Intent intent1 = new Intent(this, MeetDialogsisActivity.class);
+                Bundle bundle1 = new Bundle();
+                bundle1.putString("title","地址管理");
+                bundle1.putString("loadUrl","JKSDoctor/consultation/consulation.html");
+                bundle1.putString("intent","loadasset");
+                intent1.putExtras(bundle1);
+                startActivity(intent1);
                 break;
             case R.id.hold_dialog_detail_submit:
-
+                setPermissionData(new PermissionData(Global.WritePermission,Global.WriteReturnCode,Global.WriteReason));
+                if(isPermission()){
+                    setPermissionData(new PermissionData(Global.CameraPermission,Global.CameraReturnCode,Global.CameraReason));
+                    if(isPermission()){
+                        enterSubmitIllActivity();
+                    }else{
+                        allowPermission();
+                    }
+                }else{
+                    allowPermission();
+                }
                 break;
             case R.id.web_title_right:
                 jumpCommand(orderId);//执行跳过命令
@@ -141,6 +173,29 @@ public class HoldDialogDetailActivity extends WebActivity{
         }else{//提交失败
             toastShort("提交失败");
         }
+    }
+
+    @Override
+    protected void userPassPermission(PermissionData permissionData) {
+        super.userPassPermission(permissionData);
+        if(permissionData.getName().equals(Global.WritePermission)){
+            setPermissionData(new PermissionData(Global.CameraPermission,Global.CameraReturnCode,Global.CameraReason));
+            if(isPermission()){
+                enterSubmitIllActivity();
+            }else{
+                allowPermission();
+            }
+        }else if(permissionData.getName().equals(Global.CameraPermission)){
+            enterSubmitIllActivity();
+        }
+    }
+
+    private void enterSubmitIllActivity(){
+        Intent intent = new Intent(this, SubmitIllnessActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putString("orderId",orderId);
+        intent.putExtras(bundle);
+        startActivity(intent);
     }
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {

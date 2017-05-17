@@ -37,7 +37,7 @@ var state = CYCookie.get('addressManageMentState');//保存还是更新状态
 window.onload = function () {
     //接收更新地址 的 传值
     if (state == 'DocterPersonalCenter_updateDoctorAddress'
-        && (addressx == null || addressx == undefined)){
+        && (addressx == null || addressx == undefined ||addressx == '')){
         addressx = JSON.parse(decodeURI(getURLParam('data')));
         CYCookie.set('addressX',addressx);
         CYCookie.set('chooseHospitalData',new hospitalAddress(addressx.hospitalID , addressx.hospitalName));
@@ -48,9 +48,13 @@ window.onload = function () {
 
 
     //选择医院
+    //CYCookie.set('chooseHospitalData',"123");
     selectHosptial = CYCookie.get('chooseHospitalData');
     if (selectHosptial != null){
-        $('#selectAccepts').text(selectHosptial.addressName);
+        try{
+            $('#selectAccepts').text(selectHosptial.addressName);
+        }catch(err){
+        }
     }
 
     //默认选择
@@ -83,7 +87,6 @@ function setDefaults(button) {
  * 保存
  */
 function save() {
-    alert('is save');
     var waitAddressStr = $('#WaitAddress').find('textarea').val();
     var seeAddressStr = $('#SeeAddress').find('textarea').val();
 
@@ -95,13 +98,14 @@ function save() {
         prompt('就诊地址不能为空');
         return;
     }
-    if (selectHosptial == null || selectHosptial == undefined){
+    if (selectHosptial == null || selectHosptial == undefined ||selectHosptial == ''){
         prompt('接诊医院不能为空');
         return;
     }
 
     var defaultAddressStr =  isDefault == true ? '1' : '0';
-    var dzidStr = (addressx != null && addressx != undefined) ? addressx.addressID : '';
+    var dzidStr = (addressx != null && addressx != undefined &&addressx != '') ? addressx.addressID : '';
+
     var array = [dzidStr , seeAddressStr , waitAddressStr , selectHosptial.addressName, defaultAddressStr,selectHosptial.addressID ];
     loadDataFromWeb(new address(array));
 }
@@ -112,6 +116,7 @@ function save() {
  * 请求网络数据
  */
 function loadDataFromWeb(data) {
+
     var parameter = {
         jzdz : data.seeingAddress,
         hzdz : data.watingAddress ,
@@ -120,8 +125,8 @@ function loadDataFromWeb(data) {
         dzid : data.addressID,
         token: tokenx
     };
-
-    CYAjax.post(parameter , "yuyue/"+state ,function (res) {
+   
+    CYAjax.post(parameter ,'yuyue/'+state ,function (res) {
         if(res.success){
             prompt('更新成功');
             window.history.back();
