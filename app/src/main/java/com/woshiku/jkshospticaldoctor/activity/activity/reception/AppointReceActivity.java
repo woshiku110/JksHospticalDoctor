@@ -18,6 +18,7 @@ import com.woshiku.urllibrary.domain.Result;
 import com.woshiku.urllibrary.url.base.CommonUrl;
 import butterknife.InjectView;
 import butterknife.OnClick;
+import common.Global;
 import inter.ResultListener;
 import param.BackOrderParam;
 import parse.BackOrderParse;
@@ -45,6 +46,10 @@ public class AppointReceActivity extends WebActivity{
      * 需要js实现的方法
      * */
     public class JsInteration {
+        @JavascriptInterface
+        public String getToken() {
+            return Global._token;
+        }
         @JavascriptInterface
         public String getOrderId(){
             LogUtil.print("orderId:"+orderId);

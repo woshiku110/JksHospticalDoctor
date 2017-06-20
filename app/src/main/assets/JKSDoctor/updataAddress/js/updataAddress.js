@@ -105,8 +105,9 @@ function save() {
 
     var defaultAddressStr =  isDefault == true ? '1' : '0';
     var dzidStr = (addressx != null && addressx != undefined &&addressx != '') ? addressx.addressID : '';
-
     var array = [dzidStr , seeAddressStr , waitAddressStr , selectHosptial.addressName, defaultAddressStr,selectHosptial.addressID ];
+    //var array = ['' , seeAddressStr , waitAddressStr , 'dulala', defaultAddressStr,'1'];
+    //alert(array[0]+"\t"+array[1]+array[2]+"\t"+array[3]+"\t"+array[4]+"\t"+array[5]);
     loadDataFromWeb(new address(array));
 }
 

@@ -1,9 +1,13 @@
 package com.woshiku.jkshospticaldoctor.activity.activity.meetdialog;
 
 import android.view.View;
+import android.webkit.JavascriptInterface;
+
 import com.woshiku.jkshospticaldoctor.R;
+import com.woshiku.jkshospticaldoctor.activity.activity.addressmanage.AddressManageActivity;
 import com.woshiku.jkshospticaldoctor.activity.activity.web.WebActivity;
 import butterknife.OnClick;
+import common.Global;
 
 /**
  * Created by admin on 2017-05-04.
@@ -14,7 +18,7 @@ public class MeetDialogsisActivity extends WebActivity{
 
     @Override
     protected void loadChildrenMethod() {
-
+        webView.addJavascriptInterface(new JsInteration(), "control");
     }
 
     @Override
@@ -22,7 +26,15 @@ public class MeetDialogsisActivity extends WebActivity{
 
     }
 
-
+    /**
+     * 需要js实现的方法
+     * */
+    public class JsInteration {
+        @JavascriptInterface
+        public String getToken() {
+            return Global._token;
+        }
+    }
 
     @OnClick({R.id.web_title_return})
     void userClick(View view){

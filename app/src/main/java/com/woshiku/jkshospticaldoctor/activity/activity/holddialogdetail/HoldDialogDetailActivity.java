@@ -50,6 +50,10 @@ public class HoldDialogDetailActivity extends WebActivity{
      * */
     public class JsInteration {
         @JavascriptInterface
+        public String getToken(){
+            return Global._token;
+        }
+        @JavascriptInterface
         public String getOrderId(){
             LogUtil.print("orderId:"+orderId);
             return orderId;

@@ -13,6 +13,7 @@ import com.woshiku.jkshospticaldoctor.activity.utils.LogUtil;
 import com.woshiku.urllibrary.url.base.CommonUrl;
 import butterknife.InjectView;
 import butterknife.OnClick;
+import common.Global;
 
 /**
  * Created by admin on 2017-05-04.
@@ -41,6 +42,10 @@ public class LookReceDetailActivity extends WebActivity{
      * 需要js实现的方法
      * */
     public class JsInteration {
+        @JavascriptInterface
+        public String getToken(){
+            return Global._token;
+        }
         @JavascriptInterface
         public String getOrderId(){//拿到订单ID
             LogUtil.print("orderId:"+orderId);

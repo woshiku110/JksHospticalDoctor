@@ -9,9 +9,12 @@ import com.woshiku.jkshospticaldoctor.activity.domain.LoginReturnData;
  */
 
 public class Global {
-    public static String baseUrl = "http://123.207.243.224/jfs1.1/";
-    public static String imagePath = "http://123.207.243.224/File/filebed/";
-    public static String uploadUrl = "http://123.207.243.224/File/uploadFile";
+    public static String baseUrl = "http://211.159.188.107/jfs1.1/";
+    public static String imagePath = "http://211.159.188.107/File/filebed/";
+    public static String uploadUrl = "http://211.159.188.107/File/uploadFile";
+    /*public static String baseUrl = "http://192.168.0.202/jfs1.1/";
+    public static String imagePath = "http://192.168.0.202/File/filebed/";
+    public static String uploadUrl = "http://192.168.0.202/File/uploadFile";*/
     public static String _token = "";
     public static String mainAction = "com.woshiku.mainaction";
     public static LoginReturnData loginReturnData;

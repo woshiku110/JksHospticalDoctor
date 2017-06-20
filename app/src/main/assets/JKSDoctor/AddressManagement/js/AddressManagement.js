@@ -88,13 +88,13 @@ function updataUI() {
 function creatAddress(more1 , more2 ,margins ,isDefault) {
     var halfMargin = parseInt(margins)/2+'px';
 
-    var box = $('<div onclick=test(this) ></div>').css({
+    var box = $('<div ></div>').css({
         'padding-top':halfMargin
     });
     $(box).attr("isDefault",isDefault === '1' ? true : false);
 
     /*! 候诊 */
-    var waitingBox =  $('<div></div>').css({
+    var waitingBox =  $('<div onclick=test(this) ></div>').css({
         'margin':margins ,
         'margin-top':'0px',
         'margin-bottom':halfMargin
@@ -112,7 +112,7 @@ function creatAddress(more1 , more2 ,margins ,isDefault) {
 
 
     /*!接诊 */
-    var diagnosisBox =  $('<div></div>').css({
+    var diagnosisBox =  $('<div onclick=test(this)></div>').css({
         'margin':margins ,
         'margin-top':halfMargin
     }).appendTo(box);
@@ -164,8 +164,8 @@ function creatAddress(more1 , more2 ,margins ,isDefault) {
     return box;
 }
 function test(thisa){
-    var holdAddr = thisa.getElementsByClassName("addr")[0].innerText;
-    var receAddr = thisa.getElementsByClassName("addr")[1].innerText;
+    var holdAddr = thisa.parentNode.getElementsByClassName("addr")[0].innerText;
+    var receAddr = thisa.parentNode.getElementsByClassName("addr")[1].innerText;
     window.control.getReturnAddr(holdAddr,receAddr);
 }
 

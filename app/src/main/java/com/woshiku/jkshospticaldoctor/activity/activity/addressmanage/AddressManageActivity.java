@@ -30,6 +30,10 @@ public class AddressManageActivity extends WebActivity{
      * */
     public class JsInteration {
         @JavascriptInterface
+        public String getToken(){
+            return Global._token;
+        }
+        @JavascriptInterface
         public void test(){
 
         }

@@ -5,10 +5,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.webkit.JavascriptInterface;
 import android.widget.LinearLayout;
-
 import com.woshiku.dialoglib.ScaleImagePop;
 import com.woshiku.jkshospticaldoctor.R;
-import com.woshiku.jkshospticaldoctor.activity.activity.holddialogdetail.HoldDialogDetailActivity;
 import com.woshiku.jkshospticaldoctor.activity.activity.medicalsearch.MedicalSearchActivity;
 import com.woshiku.jkshospticaldoctor.activity.activity.web.WebActivity;
 import com.woshiku.jkshospticaldoctor.activity.utils.LogUtil;
@@ -47,6 +45,11 @@ public class CheckReceDetailActivity extends WebActivity{
      * 需要js实现的方法
      * */
     public class JsInteration {
+        @JavascriptInterface
+        public String getToken(){
+            return Global._token;
+        }
+
         @JavascriptInterface
         public String getOrderId(){//拿到订单ID
             LogUtil.print("orderId:"+orderId);
