@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+    <RelativeLayout
+        android:id="@+id/my_checkbox_relate"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp">
+        <CheckBox
+            android:id="@+id/my_checkbox_view"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_centerVertical="true"
+            android:button="@null"
+            android:background="@drawable/item_checkbox_selector" />
+        <TextView
+            android:id="@+id/my_checkbox_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:text="分诊错误"
+            android:textColor="#666666"
+            android:layout_toRightOf="@+id/my_checkbox_view"
+            android:layout_marginLeft="14dp"
+            android:layout_gravity="center_vertical"
+            android:layout_centerVertical="true"
+            />
+    </RelativeLayout>
+
+</LinearLayout>

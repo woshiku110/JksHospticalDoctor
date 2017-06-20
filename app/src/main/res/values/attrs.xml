@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="ItemChooseView">
+        <attr name="left_text" format="string"/>
+        <attr name="right_text" format="string"/>
+    </declare-styleable>
+    <declare-styleable name="MaxHeightLayout">
+        <attr name="max_height" format="dimension"/>
+    </declare-styleable>
+</resources>

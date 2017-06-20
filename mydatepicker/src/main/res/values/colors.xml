@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="oldDateColor">#d9d9d9</color>
+    <color name="newDateColor">#54708b</color>
+    <color name="bg">#803d96e2</color>
+</resources>

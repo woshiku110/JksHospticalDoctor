@@ -1,1 +1,1 @@
-include ':app', ':swipebacklib', ':bottomtabbarlib'
+include ':app', ':swipebacklib', ':bottomtabbarlib', ':commonjarslib', ':urllibrary', ':inputlib', ':waitlibrary', ':progresslibrary', ':dialoglib', ':overscrolllib', ':wheelwidgetslib', ':mydatepicker', ':imageeditlibrary', ':albumlib', ':photoview-release-1.2.4', ':cropLib'

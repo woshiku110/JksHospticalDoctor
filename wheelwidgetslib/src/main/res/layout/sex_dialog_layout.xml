@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/pop_bg">
+    <LinearLayout
+        android:id="@+id/mywheel_dialog_top"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:layout_above="@+id/mywheel_dialog_bottom">
+
+    </LinearLayout>
+    <RelativeLayout
+        android:id="@+id/mywheel_dialog_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="320dp"
+        android:background="@color/time_dialog_bg"
+        android:layout_alignParentBottom="true">
+        <LinearLayout
+            android:id="@+id/time_top"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_alignParentTop="true"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="49dp"
+                android:gravity="center">
+                <TextView
+                    android:id="@+id/wheel_dialog_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/timedialog_mywheel_text_size"
+                    android:textColor="#656565"
+                    android:text="选择血型" />
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#8f8f8f"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                />
+        </LinearLayout>
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/time_top"
+            android:layout_above="@+id/time_bottom"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp">
+
+            <include layout="@layout/sex_dialog_layout_content"/>
+        </FrameLayout>
+        <LinearLayout
+            android:id="@+id/time_bottom"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_alignParentBottom="true"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/bt_cancel"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:background="#f0f0f0">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/timedialog_mywheel_text_size"
+                    android:textColor="#7c7b7b"
+                    android:text="退出" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/bt_sure"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:background="#3d96e2"
+                android:layout_weight="1">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/timedialog_mywheel_text_size"
+                    android:text="确定"
+                    android:textColor="#ffffff"
+                    />
+            </LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
+</RelativeLayout>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/blueTitleBg">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+        <include layout="@layout/item_web_title"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <com.andview.refreshview.XRefreshView
+                android:id="@id/multi_xrecycleview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#E9F0F6">
+                <android.support.v7.widget.RecyclerView
+                    android:id="@id/multi_recycleview"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                </android.support.v7.widget.RecyclerView>
+            </com.andview.refreshview.XRefreshView>
+            <com.woshiku.dialoglib.AZView
+                android:id="@id/check_ticket_azview"
+                android:layout_width="30dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="2dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:gravity="center_horizontal">
+
+            </com.woshiku.dialoglib.AZView>
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

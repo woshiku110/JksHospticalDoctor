@@ -1,0 +1,18 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="gap_size">40dp</dimen>
+    <dimen name="time_line_height">60dp</dimen>
+    <dimen name="choose_txt_size">12sp</dimen>
+    <dimen name="common_size">9dp</dimen>
+    <dimen name="small_size">6dp</dimen>
+    <dimen name="check_ticket_height">87dp</dimen>
+    <dimen name="check_detail_view_address_height">38dp</dimen>
+    <dimen name="check_detail_view_margin">20dp</dimen>
+    <dimen name="check_detail_view_round">18dp</dimen>
+    <dimen name="check_detail_view_round_margin">17dp</dimen>
+    <dimen name="check_detail_view_item_height">35dp</dimen>
+    <dimen name="check_detail_view_item_check_margin">10dp</dimen>
+    <dimen name="check_detail_view_item_check_size">16dp</dimen>
+    <dimen name="check_detail_top_view_margin">18dp</dimen>
+    <dimen name="check_az_size">18dp</dimen>
+</resources>

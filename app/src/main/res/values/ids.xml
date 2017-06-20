@@ -2,4 +2,106 @@
 <resources>
     <!--闪屏页-->
     <item name="line_splash" type="id"/>
+    <!--登录界面-->
+    <item name="login_input_user" type="id"/>
+    <item name="login_input_pass" type="id"/>
+    <item name="login_bt" type="id"/>
+    <!--主界面-->
+    <item name="main_top_title" type="id"/>
+    <item name="main_bottom_bar" type="id"/>
+    <item name="main_bottom_viewpager" type="id"/>
+    <!--fragment Preorder-->
+    <item name="preorder_xrecycle" type="id"/>
+    <item name="preorder_recycle" type="id"/>
+    <item name="item_preorder_choose" type="id"/>
+    <item name="item_choose_left" type="id"/>
+    <item name="item_choose_left_txt" type="id"/>
+    <item name="item_choose_right" type="id"/>
+    <item name="item_choose_right_txt" type="id"/>
+    <item name="item_preorder_icon" type="id"/>
+    <item name="item_preorder_name" type="id"/>
+    <item name="item_preorder_sex" type="id"/>
+    <item name="item_preorder_date" type="id"/>
+    <item name="item_preorder_card" type="id"/>
+    <item name="item_preorder_check" type="id"/>
+    <!--fragment个人中心-->
+    <item name="item_personal_one_icon" type="id"/>
+    <item name="item_personal_interval" type="id"/>
+    <item name="item_personal_interval_time_txt" type="id"/>
+    <item name="item_personal_interval_name" type="id"/>
+    <item name="item_personal_interval_rece_time" type="id"/>
+    <item name="item_personal_address_manage" type="id"/>
+    <item name="item_personal_exit" type="id"/>
+    <item name="item_personal_check_receipe" type="id"/>
+    <item name="item_personal_rece_history" type="id"/>
+    <item name="item_personal_icon" type="id"/>
+    <!--候诊列表-->
+    <item name="item_hold_back" type="id"/>
+    <item name="item_hold_back_txt" type="id"/>
+    <!--接诊时间-->
+    <item name="rece_time_datepicker_line" type="id"/>
+    <!--webview的id-->
+    <item name="web_panel_webview" type="id"/>
+    <item name="web_panel_pb" type="id"/>
+    <!--webview的title-->
+    <item name="web_title_return" type="id"/>
+    <item name="web_title_title" type="id"/>
+    <item name="web_title_right" type="id"/>
+    <item name="web_title_concert_txt" type="id"/>
+    <item name="web_bottom" type="id"/>
+    <item name="web_bottom_preorder" type="id"/>
+    <item name="web_bottom_preorder_accept" type="id"/>
+    <item name="web_bottom_preorder_cancel" type="id"/>
+    <!--药品列表-->
+    <item name="item_medical_search_input" type="id"/>
+    <item name="item_medical_search_bt" type="id"/>
+    <item name="item_medical_no" type="id"/>
+    <item name="item_medical_name" type="id"/>
+    <item name="item_medical_unit" type="id"/>
+    <item name="item_medical_card" type="id"/>
+    <!--刷新外加recycle列表-->
+    <item name="multi_xrecycleview" type="id"/>
+    <item name="multi_xrecycleview_one" type="id"/>
+    <item name="multi_recycleview" type="id"/>
+    <!--核实处方-->
+    <item name="item_check_rece_choose" type="id"/>
+    <!--审核详情-->
+    <item name="web_bottom_check" type="id"/>
+    <item name="web_bottom_check_newdrug" type="id"/>
+    <item name="web_bottom_check_ok" type="id"/>
+    <!--接诊详情-->
+    <item name="web_confirm_detail" type="id"/>
+    <item name="web_confirm_detail_backOrder" type="id"/>
+    <item name="web_confirm_detail_checkTicket" type="id"/>
+    <!--检查单列表-->
+    <item name="item_check_ticket_title" type="id"/>
+    <item name="item_check_ticket_choose" type="id"/>
+    <item name="item_check_ticket_content" type="id"/>
+    <item name="item_check_ticket_cardview" type="id"/>
+    <item name="check_ticket_azview" type="id"/>
+    <!--确认接单-->
+    <item name="check_order_address_line" type="id"/>
+    <item name="check_order_address_view" type="id"/>
+    <item name="check_order_address_cardview" type="id"/>
+    <item name="check_order_rece_time_cardview" type="id"/>
+    <item name="check_order_rece_ticket_cardview" type="id"/>
+    <item name="check_rece_order_time" type="id"/>
+    <item name="check_order_line" type="id"/>
+    <item name="check_order_ticket_desc" type="id"/>
+    <item name="check_order_bt_sure" type="id"/>
+    <item name="check_order_rece_addr" type="id"/>
+    <item name="check_order_hold_addr" type="id"/>
+    <!--确认接单Item-->
+    <item name="item_confirm_order_txt" type="id"/>
+    <!--候诊详情webbottom-->
+    <item name="hold_dialog_detail_line" type="id"/>
+    <item name="hold_dialog_detail_check" type="id"/>
+    <item name="hold_dialog_detail_meet" type="id"/>
+    <item name="hold_dialog_detail_submit" type="id"/>
+    <!--提交病历-->
+    <item name="submit_ill_top" type="id"/>
+    <item name="submit_ill_bottom" type="id"/>
+    <item name="item_square_layout" type="id"/>
+    <item name="item_square_layout_image" type="id"/>
+    <item name="item_square_layout_dele" type="id"/>
 </resources>

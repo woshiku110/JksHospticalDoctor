@@ -1,0 +1,74 @@
+
+
+
+
+p{
+    font-size: 16px;
+}
+
+textarea:focus{
+    outline: none;
+    box-shadow: 0;
+}
+
+
+.content{
+    background-color: white;
+    padding: 15px;
+    border: 1px solid #dddddd;
+}
+
+
+/*就诊医院*/
+#Accepts{
+    margin-top: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#Accepts p{
+}
+
+#Accepts img{
+    width: 10px;
+}
+
+#Accepts div{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#selectAccepts{
+    /*float: left;*/
+    margin-right: 15px;
+    font-size: 14px;
+}
+
+
+/*候诊地址*/
+#SeeAddress{
+    margin-top: 10px;
+}
+
+
+
+/*接诊地址*/
+#WaitAddress{
+    margin-top: 10px;
+}
+
+
+
+
+/*设为默认*/
+#setDefault{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 6px;
+}
+#setDefault img{
+    width: 18px;
+}

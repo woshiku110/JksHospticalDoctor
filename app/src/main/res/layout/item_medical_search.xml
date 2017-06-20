@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="50dp">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#e2e2e2">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="49dp"
+            android:background="#f7f7f7"
+            android:gravity="center">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp">
+                <EditText
+                    android:id="@id/item_medical_search_input"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textCursorDrawable="@null"
+                    android:background="@drawable/input_search_bg"
+                    android:textColor="#676767"
+                    android:textColorHint="#D0D0D0"
+                    android:hint="搜索药品编号/名称"
+                    android:paddingLeft="38dp"
+                    android:imeOptions="actionSearch"
+                    android:textSize="16sp"/>
+                <ImageView
+                    android:id="@id/item_medical_search_bt"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:src="@android:drawable/ic_menu_search"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    />
+            </RelativeLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

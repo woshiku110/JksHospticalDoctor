@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="LeftIconInput">
+        <attr name="icon_width" format="reference|dimension"/>
+        <attr name="icon_height" format="reference|dimension"/>
+        <attr name="icon_bg" format="reference"/>
+        <attr name="icon_left_margin" format="reference|dimension"/>
+        <attr name="icon_right_margin" format="reference|dimension"/>
+        <attr name="icon_bottom_margin" format="reference|dimension"/>
+        <attr name="line_height" format="reference|dimension"/>
+        <attr name="text_size" format="reference|dimension"/>
+        <attr name="line_bg" format="reference|color"/>
+        <attr name="text_color" format="reference|color"/>
+        <attr name="hint_text_color" format="reference|color"/>
+        <attr name="hint_text" format="reference|string"/>
+    </declare-styleable>
+</resources>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <title>添加新地址</title>
+    <link href="../Global/Global.css" rel="stylesheet">
+    <link href="css/updataAddress.css" rel="stylesheet">
+</head>
+
+
+
+<body>
+<!--接诊医院-->
+<div class="content" id="Accepts" onclick="choseHosptial()">
+    <p>接诊医院</p>
+    <div>
+        <p id="selectAccepts"></p>
+        <img src="../Global/imgs/Enter.png" >
+    </div>
+
+</div>
+
+<!--候诊地址-->
+<div class="content" id="SeeAddress">
+    <p>候诊地址</p>
+    <textarea data-adaptheight rows="1" cols="40" placeholder="候诊详细地址" style=" line-height: 1.5; width: 100%; resize: none "></textarea>
+</div>
+
+<!--接诊地址-->
+<div class="content" id="WaitAddress">
+    <p>接诊地址</p>
+    <textarea data-adaptheight rows="1" cols="40" placeholder="接诊详细地址" style=" line-height: 1.5; width: 100%; resize: none "></textarea>
+</div>
+
+
+<!--设为默认-->
+<div class="content" id="setDefault" onclick="setDefaults(this)">
+    <p style="display: inline-block">设为默认</p>
+    <img src="./../Global/imgs/btn_s.png" style="display: inline-block" >
+</div>
+
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="../Global/Jquery/jquery1.11.3.min.js"></script>
+<script src="../Global/Global.js"></script>
+<script src="js/updataAddress.js"></script>
+</body>
+</html>

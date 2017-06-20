@@ -4,4 +4,10 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="blueTitleBg">#3d96e2</color>
+    <color name="txt_selected_color">@android:color/white</color>
+    <color name="txt_unselected_color">#666666</color>
+    <color name="login_bg">#e9f0f6</color>
+    <color name="item_backorder_enable">#FC5057</color>
+    <color name="item_backorder_disable">#C0C0C0</color>
+    <color name="descBg">#1a000000</color>
 </resources>
